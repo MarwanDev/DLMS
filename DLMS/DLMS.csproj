@@ -78,12 +78,6 @@
     <Compile Include="UserControls\ucHeader.Designer.cs">
       <DependentUpon>ucHeader.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\UcFormHeader.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\UcFormHeader.Designer.cs">
-      <DependentUpon>UcFormHeader.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -108,9 +102,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucHeader.resx">
       <DependentUpon>ucHeader.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\UcFormHeader.resx">
-      <DependentUpon>UcFormHeader.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -225,6 +216,7 @@
     <Content Include="Resources\Prev 32.png" />
     <Content Include="Resources\Prev 64.png" />
     <Content Include="Resources\Question 32.png" />
+    <None Include="Resources\question-mark-96.png" />
     <Content Include="Resources\Release Detained License 32.png" />
     <Content Include="Resources\Release Detained License 512.png" />
     <Content Include="Resources\Release Detained License 64.png" />

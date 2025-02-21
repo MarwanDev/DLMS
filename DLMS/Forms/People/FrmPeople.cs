@@ -15,7 +15,6 @@ namespace DLMS.Forms
             ucHeader1.SetColor(System.Drawing.Color.Red);
             MinimizeBox = false;
             MaximizeBox = false;
-            cbFilter.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private enum Mode { All, Filter };
