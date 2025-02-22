@@ -57,6 +57,7 @@
             this.lblId = new System.Windows.Forms.Label();
             this.pbPersonImage = new System.Windows.Forms.PictureBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.fdPersonImage = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -72,6 +73,7 @@
             this.llSetImage.TabStop = true;
             this.llSetImage.Text = "Set Image";
             this.llSetImage.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.llSetImage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LlSetImage_LinkClicked);
             // 
             // cbCountry
             // 
@@ -113,6 +115,7 @@
             this.btnSave.TabIndex = 42;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // rtbAddress
             // 
@@ -368,6 +371,10 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // fdPersonImage
+            // 
+            this.fdPersonImage.FileName = "openFileDialog1";
+            // 
             // FrmAddEditPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -441,5 +448,6 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.OpenFileDialog fdPersonImage;
     }
 }

@@ -62,7 +62,6 @@
             this.Controls.Add(this.pbHeader);
             this.Name = "UcHeader";
             this.Size = new System.Drawing.Size(258, 219);
-            this.Load += new System.EventHandler(this.UcHeader_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbHeader)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

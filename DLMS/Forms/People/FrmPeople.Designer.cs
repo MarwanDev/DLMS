@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dgvPeople = new System.Windows.Forms.DataGridView();
             this.btnAddPerson = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -37,11 +38,16 @@
             this.pnlGender = new System.Windows.Forms.Panel();
             this.rdbMale = new System.Windows.Forms.RadioButton();
             this.rdbFemale = new System.Windows.Forms.RadioButton();
-            this.ucHeader1 = new DLMS.UcHeader();
             this.label2 = new System.Windows.Forms.Label();
             this.lblCount = new System.Windows.Forms.Label();
+            this.cmsPerson = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.viewPersonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editPersonToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.deletePersonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ucHeader1 = new DLMS.UcHeader();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeople)).BeginInit();
             this.pnlGender.SuspendLayout();
+            this.cmsPerson.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvPeople
@@ -55,6 +61,7 @@
             this.dgvPeople.Size = new System.Drawing.Size(1306, 289);
             this.dgvPeople.TabIndex = 1;
             this.dgvPeople.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvPeople_CellClick);
+            this.dgvPeople.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvPeople_CellMouseDown);
             this.dgvPeople.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvPeople_ColumnHeaderMouseClick);
             // 
             // btnAddPerson
@@ -157,14 +164,6 @@
             this.rdbFemale.UseVisualStyleBackColor = true;
             this.rdbFemale.CheckedChanged += new System.EventHandler(this.RdbGender_CheckedChanged);
             // 
-            // ucHeader1
-            // 
-            this.ucHeader1.BackColor = System.Drawing.Color.Transparent;
-            this.ucHeader1.Location = new System.Drawing.Point(550, 12);
-            this.ucHeader1.Name = "ucHeader1";
-            this.ucHeader1.Size = new System.Drawing.Size(258, 219);
-            this.ucHeader1.TabIndex = 0;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -184,6 +183,43 @@
             this.lblCount.Size = new System.Drawing.Size(174, 24);
             this.lblCount.TabIndex = 9;
             this.lblCount.Text = "Number of People: ";
+            // 
+            // cmsPerson
+            // 
+            this.cmsPerson.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewPersonToolStripMenuItem,
+            this.editPersonToolStripMenuItem1,
+            this.deletePersonToolStripMenuItem});
+            this.cmsPerson.Name = "cmsPerson";
+            this.cmsPerson.Size = new System.Drawing.Size(181, 92);
+            // 
+            // viewPersonToolStripMenuItem
+            // 
+            this.viewPersonToolStripMenuItem.Name = "viewPersonToolStripMenuItem";
+            this.viewPersonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewPersonToolStripMenuItem.Text = "View Person";
+            this.viewPersonToolStripMenuItem.Click += new System.EventHandler(this.ViewPersonToolStripMenuItem_Click);
+            // 
+            // editPersonToolStripMenuItem1
+            // 
+            this.editPersonToolStripMenuItem1.Name = "editPersonToolStripMenuItem1";
+            this.editPersonToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.editPersonToolStripMenuItem1.Text = "Edit Person";
+            this.editPersonToolStripMenuItem1.Click += new System.EventHandler(this.EditPersonToolStripMenuItem_Click);
+            // 
+            // deletePersonToolStripMenuItem
+            // 
+            this.deletePersonToolStripMenuItem.Name = "deletePersonToolStripMenuItem";
+            this.deletePersonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deletePersonToolStripMenuItem.Text = "Delete Person";
+            // 
+            // ucHeader1
+            // 
+            this.ucHeader1.BackColor = System.Drawing.Color.Transparent;
+            this.ucHeader1.Location = new System.Drawing.Point(550, 12);
+            this.ucHeader1.Name = "ucHeader1";
+            this.ucHeader1.Size = new System.Drawing.Size(258, 219);
+            this.ucHeader1.TabIndex = 0;
             // 
             // FrmPeople
             // 
@@ -207,6 +243,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeople)).EndInit();
             this.pnlGender.ResumeLayout(false);
             this.pnlGender.PerformLayout();
+            this.cmsPerson.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,5 +263,9 @@
         private System.Windows.Forms.RadioButton rdbMale;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblCount;
+        private System.Windows.Forms.ContextMenuStrip cmsPerson;
+        private System.Windows.Forms.ToolStripMenuItem viewPersonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editPersonToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem deletePersonToolStripMenuItem;
     }
 }

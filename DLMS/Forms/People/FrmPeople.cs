@@ -2,6 +2,8 @@
 using System.Data;
 using System.Windows.Forms;
 using DLMS_Business;
+using System;
+using DLMS.Forms.People;
 
 namespace DLMS.Forms
 {
@@ -15,6 +17,7 @@ namespace DLMS.Forms
             ucHeader1.SetColor(System.Drawing.Color.Red);
             MinimizeBox = false;
             MaximizeBox = false;
+            dgvPeople.ContextMenuStrip = cmsPerson;
         }
 
         private enum Mode { All, Filter };
@@ -23,7 +26,7 @@ namespace DLMS.Forms
 
         private void UpdateCountLabel(string searchQuery = "")
         {
-            lblCount.Text = CurrentMode == Mode.All ? 
+            lblCount.Text = CurrentMode == Mode.All ?
                 Person.GetAllPeopleCount().ToString() :
                 Person.GetFilteredPeopleCount(searchQuery).ToString();
         }
@@ -205,12 +208,10 @@ namespace DLMS.Forms
             }
         }
 
+        private int SelectedPersonId;
+
         private void DgvPeople_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1)
-            {
-                //MessageBox.Show($"{(DataGridCell)}")
-            }
         }
 
         private void DgvPeople_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -218,7 +219,6 @@ namespace DLMS.Forms
             if (e.ColumnIndex >= 0)
             {
                 string headerText = dgvPeople.Columns[e.ColumnIndex].HeaderText;
-                //MessageBox.Show($"Header Text: {headerText}", "Column Header Clicked");
                 Person.ApplySorting(GetSortingParameter(headerText));
                 if (tbSearch.Text.Trim() != "" || rdbFemale.Checked || rdbMale.Checked)
                     if (tbSearch.Text.Trim() != "")
@@ -232,6 +232,38 @@ namespace DLMS.Forms
                 else
                     GetAllPeopleInDGV();
             }
+        }
+
+        private void DgvPeople_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                SelectedPersonId = Int32.Parse(dgvPeople.Rows[e.RowIndex].Cells[0].Value?.ToString());
+                DataGridView.HitTestInfo hit = dgvPeople.HitTest(e.X, e.Y);
+                if (hit.RowIndex >= 0)
+                {
+                    dgvPeople.ClearSelection();
+                    dgvPeople.Rows[hit.RowIndex].Selected = true;
+                    dgvPeople.CurrentCell = dgvPeople.Rows[hit.RowIndex].Cells[0];
+                }
+            }
+        }
+
+        private void EditPersonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"Person ID: {SelectedPersonId}", "Row Clicked", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void ViewPersonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Person person = Person.Find(SelectedPersonId);
+            if (person != null)
+            {
+                FrmShowPersonDetails frmShowPersonDetails = new FrmShowPersonDetails(person);
+                frmShowPersonDetails.ShowDialog();
+            }
+            else
+                MessageBox.Show("Bala7");
         }
     }
 }

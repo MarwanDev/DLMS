@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace DLMS
@@ -34,10 +33,5 @@ namespace DLMS
 
         public void SetBackColor(Color color)
         { this.BackColor = color; }
-
-        private void UcHeader_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

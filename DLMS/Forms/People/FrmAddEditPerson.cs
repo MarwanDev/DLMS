@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Data;
 using System.Text.RegularExpressions;
@@ -14,6 +15,8 @@ namespace DLMS.Forms
         {
             InitializeComponent();
         }
+
+        private Person person;
 
         private readonly Dictionary<Control, string> errorTracker = new Dictionary<Control, string>();
 
@@ -31,7 +34,6 @@ namespace DLMS.Forms
         {
             return errorTracker.Count;
         }
-
 
         private void FrmAddEditPerson_Load(object sender, EventArgs e)
         {
@@ -208,6 +210,49 @@ namespace DLMS.Forms
         {
             pbPersonImage.Image = rdbFemale.Checked ? Resources.Female_512 : Resources.Male_512;
             ChangeSaveBtnAbilityIfPossible();
+        }
+
+        private void SaveAddition()
+        {
+            person = new Person
+            {
+                FirstName = tbFirstName.Text,
+                SecondName = tbSecondName.Text,
+                ThirdName = tbThirdName.Text,
+                LastName = tbLastName.Text,
+                NationalNo = tbNationalNumber.Text,
+                Email = tbEmail.Text,
+                Phone = tbPhone.Text,
+                Address = rtbAddress.Text,
+                DateOfBirth = dtpDOB.Value,
+                NationalityCountryID = cbCountry.SelectedIndex,
+                Gender = (byte)(rdbFemale.Checked ? 0 : 1),
+                ImagePath = "test"
+            };
+            if (person.Save())
+            {
+                MessageBox.Show($"Person added succesfully with PersonId {person.ID}", "Success",
+                    MessageBoxButtons.OK,
+                    icon: MessageBoxIcon.Information);
+                lblId.Text = person.ID.ToString();
+            }
+            else
+                MessageBox.Show($"Something wrong happened", "Error",
+                    MessageBoxButtons.OK,
+                    icon: MessageBoxIcon.Error);
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            SaveAddition();
+        }
+
+        private void LlSetImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (fdPersonImage.ShowDialog() == DialogResult.OK)
+            {
+                pbPersonImage.Image = Image.FromFile(fdPersonImage.FileName);
+            }
         }
     }
 }
