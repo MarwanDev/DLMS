@@ -16,6 +16,34 @@ namespace DLMS.Forms
             InitializeComponent();
         }
 
+        private static int CountryID;
+
+        private Person CurrentPerson { get; set; }
+
+        public FrmAddEditPerson(Person person)
+        {
+            InitializeComponent();
+            lblId.Text = person.ID.ToString();
+            CurrentPerson = person ?? null;
+            tbFirstName.Text = person.FirstName;
+            tbSecondName.Text = person.SecondName;
+            tbThirdName.Text = person.ThirdName;
+            tbLastName.Text = person.LastName;
+            tbNationalNumber.Text = person.NationalNo;
+            dtpDOB.Value = person.DateOfBirth;
+            tbEmail.Text = person.Email;
+            rtbAddress.Text = person.Address;
+            FillCountriesCb();
+            CountryID = person.NationalityCountryID;
+            tbPhone.Text = person.Phone;
+            rdbFemale.Checked = person.Gender == 0;
+            rdbMale.Checked = person.Gender == 1;
+        }
+
+        public enum Mode { Add, Edit };
+
+        public Mode CurrentMode { get; set; }
+
         private Person person;
 
         private readonly Dictionary<Control, string> errorTracker = new Dictionary<Control, string>();
@@ -39,13 +67,19 @@ namespace DLMS.Forms
         {
             ResetInputsPlacehodlers();
             SetMaxDate();
-            FillCountriesCB();
-            rdbMale.Checked = false;
-            rdbFemale.Checked = false;
-            pbPersonImage.Image = Resources.question_mark_96;
+            FillCountriesCb();
+            if (CurrentMode == Mode.Add)
+            {
+                rdbMale.Checked = false;
+                rdbFemale.Checked = false;
+                pbPersonImage.Image = Resources.question_mark_96;
+            }
+            else
+                cbCountry.SelectedIndex = CountryID - 1;
+            lblHeader.Text = CurrentMode == Mode.Add ? "Add New Person" : "Edit Person";
         }
 
-        private void FillCountriesCB()
+        private void FillCountriesCb()
         {
             DataTable dataTable = Country.GetAllCountries();
             cbCountry.DataSource = dataTable;
@@ -55,14 +89,17 @@ namespace DLMS.Forms
 
         private void ResetInputsPlacehodlers()
         {
-            tbFirstName.Text = "First Name";
-            tbSecondName.Text = "Second Name";
-            tbThirdName.Text = "Third Name";
-            tbLastName.Text = "Last Name";
-            tbFirstName.ForeColor = System.Drawing.Color.LightGray;
-            tbSecondName.ForeColor = System.Drawing.Color.LightGray;
-            tbThirdName.ForeColor = System.Drawing.Color.LightGray;
-            tbLastName.ForeColor = System.Drawing.Color.LightGray;
+            if (CurrentMode == Mode.Add)
+            {
+                tbFirstName.Text = tbFirstName.Tag.ToString();
+                tbSecondName.Text = tbSecondName.Tag.ToString();
+                tbThirdName.Text = tbThirdName.Tag.ToString();
+                tbLastName.Text = tbLastName.Tag.ToString();
+                tbFirstName.ForeColor = System.Drawing.Color.LightGray;
+                tbSecondName.ForeColor = System.Drawing.Color.LightGray;
+                tbThirdName.ForeColor = System.Drawing.Color.LightGray;
+                tbLastName.ForeColor = System.Drawing.Color.LightGray;
+            }
         }
 
         private void SetMaxDate()
@@ -225,7 +262,7 @@ namespace DLMS.Forms
                 Phone = tbPhone.Text,
                 Address = rtbAddress.Text,
                 DateOfBirth = dtpDOB.Value,
-                NationalityCountryID = cbCountry.SelectedIndex,
+                NationalityCountryID = cbCountry.SelectedIndex + 1,
                 Gender = (byte)(rdbFemale.Checked ? 0 : 1),
                 ImagePath = "test"
             };
@@ -242,9 +279,36 @@ namespace DLMS.Forms
                     icon: MessageBoxIcon.Error);
         }
 
+        private void SaveUpdate()
+        {
+            CurrentPerson.FirstName = tbFirstName.Text;
+            CurrentPerson.SecondName = tbSecondName.Text;
+            CurrentPerson.ThirdName = tbThirdName.Text;
+            CurrentPerson.LastName = tbLastName.Text;
+            CurrentPerson.NationalNo = tbNationalNumber.Text;
+            CurrentPerson.Email = tbEmail.Text;
+            CurrentPerson.Phone = tbPhone.Text;
+            CurrentPerson.Address = rtbAddress.Text;
+            CurrentPerson.DateOfBirth = dtpDOB.Value;
+            CurrentPerson.NationalityCountryID = cbCountry.SelectedIndex + 1;
+            CurrentPerson.Gender = (byte)(rdbFemale.Checked ? 0 : 1);
+            CurrentPerson.ImagePath = "test";
+            if (CurrentPerson.Save())
+                MessageBox.Show($"Person updated succesfully with PersonId {CurrentPerson.ID}", "Success",
+                    MessageBoxButtons.OK,
+                    icon: MessageBoxIcon.Information);
+            else
+                MessageBox.Show($"Something wrong happened", "Error",
+                    MessageBoxButtons.OK,
+                    icon: MessageBoxIcon.Error);
+        }
+
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            SaveAddition();
+            if (CurrentMode == Mode.Add)
+                SaveAddition();
+            else
+                SaveUpdate();
         }
 
         private void LlSetImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

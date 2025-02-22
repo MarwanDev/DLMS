@@ -73,6 +73,7 @@ namespace DLMS.Forms
         private void BtnAddPerson_Click(object sender, System.EventArgs e)
         {
             FrmAddEditPerson frmAddEditPerson = new FrmAddEditPerson();
+            frmAddEditPerson.CurrentMode = FrmAddEditPerson.Mode.Add;
             frmAddEditPerson.ShowDialog();
         }
 
@@ -251,7 +252,12 @@ namespace DLMS.Forms
 
         private void EditPersonToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show($"Person ID: {SelectedPersonId}", "Row Clicked", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Person person = Person.Find(SelectedPersonId);
+            FrmAddEditPerson frmAddEditPerson = new FrmAddEditPerson(person)
+            {
+                CurrentMode = FrmAddEditPerson.Mode.Edit
+            };
+            frmAddEditPerson.ShowDialog();
         }
 
         private void ViewPersonToolStripMenuItem_Click(object sender, EventArgs e)
@@ -263,7 +269,7 @@ namespace DLMS.Forms
                 frmShowPersonDetails.ShowDialog();
             }
             else
-                MessageBox.Show("Bala7");
+                MessageBox.Show("Something Went Wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
