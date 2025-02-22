@@ -125,14 +125,6 @@ namespace DLMS.Forms
             this.Close();
         }
 
-        private void CbCountry_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void TbNationalNumber_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         private bool IsValidEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
@@ -197,14 +189,6 @@ namespace DLMS.Forms
                 btnSave.Enabled = false;
         }
 
-        private void RtbAddress_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void TbEmail_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         private void TbEmail_Leave(object sender, EventArgs e)
         {
             if (!IsValidEmail(tbEmail.Text.Trim()) && tbEmail.Text.Trim() != "")
@@ -227,10 +211,6 @@ namespace DLMS.Forms
                 SetError(rtbAddress, "");
             rtbAddress.Text = rtbAddress.Text.Trim();
             ChangeSaveBtnAbilityIfPossible();
-        }
-
-        private void TbPhone_TextChanged(object sender, EventArgs e)
-        {
         }
 
         private void TbPhone_Leave(object sender, EventArgs e)
