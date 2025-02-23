@@ -72,8 +72,10 @@ namespace DLMS.Forms
 
         private void BtnAddPerson_Click(object sender, System.EventArgs e)
         {
-            FrmAddEditPerson frmAddEditPerson = new FrmAddEditPerson();
-            frmAddEditPerson.CurrentMode = FrmAddEditPerson.Mode.Add;
+            FrmAddEditPerson frmAddEditPerson = new FrmAddEditPerson
+            {
+                CurrentMode = FrmAddEditPerson.Mode.Add
+            };
             frmAddEditPerson.ShowDialog();
         }
 

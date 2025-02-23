@@ -84,7 +84,6 @@
             this.cbCountry.Name = "cbCountry";
             this.cbCountry.Size = new System.Drawing.Size(171, 32);
             this.cbCountry.TabIndex = 45;
-            this.cbCountry.SelectedIndexChanged += new System.EventHandler(this.CbCountry_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -127,7 +126,6 @@
             this.rtbAddress.Size = new System.Drawing.Size(563, 82);
             this.rtbAddress.TabIndex = 41;
             this.rtbAddress.Text = "";
-            this.rtbAddress.TextChanged += new System.EventHandler(this.RtbAddress_TextChanged);
             this.rtbAddress.Leave += new System.EventHandler(this.RtbAddress_Leave);
             // 
             // tbEmail
@@ -140,7 +138,6 @@
             this.tbEmail.Size = new System.Drawing.Size(171, 22);
             this.tbEmail.TabIndex = 40;
             this.tbEmail.Tag = "Third Name";
-            this.tbEmail.TextChanged += new System.EventHandler(this.TbEmail_TextChanged);
             this.tbEmail.Leave += new System.EventHandler(this.TbEmail_Leave);
             // 
             // tbPhone
@@ -153,7 +150,6 @@
             this.tbPhone.Size = new System.Drawing.Size(171, 22);
             this.tbPhone.TabIndex = 39;
             this.tbPhone.Tag = "Third Name";
-            this.tbPhone.TextChanged += new System.EventHandler(this.TbPhone_TextChanged);
             this.tbPhone.Leave += new System.EventHandler(this.TbPhone_Leave);
             // 
             // label7
@@ -222,7 +218,6 @@
             this.tbNationalNumber.Size = new System.Drawing.Size(171, 22);
             this.tbNationalNumber.TabIndex = 33;
             this.tbNationalNumber.Tag = "First Name";
-            this.tbNationalNumber.TextChanged += new System.EventHandler(this.TbNationalNumber_TextChanged);
             this.tbNationalNumber.Leave += new System.EventHandler(this.TbNationalNumber_Leave);
             // 
             // tbLastName
@@ -374,6 +369,7 @@
             // fdPersonImage
             // 
             this.fdPersonImage.FileName = "openFileDialog1";
+            this.fdPersonImage.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
             // 
             // FrmAddEditPerson
             // 

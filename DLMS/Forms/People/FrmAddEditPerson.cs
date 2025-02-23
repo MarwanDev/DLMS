@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DLMS.Properties;
 using DLMS_Business;
+using System.IO;
 
 namespace DLMS.Forms
 {
@@ -225,7 +226,11 @@ namespace DLMS.Forms
 
         private void RdbGender_CheckedChanged(object sender, EventArgs e)
         {
-            pbPersonImage.Image = rdbFemale.Checked ? Resources.Female_512 : Resources.Male_512;
+            pbPersonImage.Image = TempImagePath != null ? Image.FromFile(TempImagePath) :
+                ((CurrentPerson != null && !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
+                File.Exists(CurrentPerson.ImagePath)) ?
+                Image.FromFile(CurrentPerson.ImagePath) :
+                rdbFemale.Checked ? Resources.Female_512 : Resources.Male_512);
             ChangeSaveBtnAbilityIfPossible();
         }
 
@@ -244,7 +249,10 @@ namespace DLMS.Forms
                 DateOfBirth = dtpDOB.Value,
                 NationalityCountryID = cbCountry.SelectedIndex + 1,
                 Gender = (byte)(rdbFemale.Checked ? 0 : 1),
-                ImagePath = "test"
+                ImagePath = pbPersonImage.Image != Resources.Male_512 &&
+                    pbPersonImage.Image != Resources.Female_512 &&
+                    pbPersonImage.Image != Resources.question_mark_96 &&
+                    pbPersonImage.Image != null ? NewImagePath : null
             };
             if (person.Save())
             {
@@ -252,6 +260,7 @@ namespace DLMS.Forms
                     MessageBoxButtons.OK,
                     icon: MessageBoxIcon.Information);
                 lblId.Text = person.ID.ToString();
+                SaveNewImageFile();
             }
             else
                 MessageBox.Show($"Something wrong happened", "Error",
@@ -272,11 +281,18 @@ namespace DLMS.Forms
             CurrentPerson.DateOfBirth = dtpDOB.Value;
             CurrentPerson.NationalityCountryID = cbCountry.SelectedIndex + 1;
             CurrentPerson.Gender = (byte)(rdbFemale.Checked ? 0 : 1);
-            CurrentPerson.ImagePath = "test";
+            CurrentPerson.ImagePath = pbPersonImage.Image != Resources.Male_512 &&
+                pbPersonImage.Image != Resources.Female_512 &&
+                pbPersonImage.Image != Resources.question_mark_96 &&
+                pbPersonImage.Image != null ? NewImagePath : null;
             if (CurrentPerson.Save())
+            {
                 MessageBox.Show($"Person updated succesfully with PersonId {CurrentPerson.ID}", "Success",
                     MessageBoxButtons.OK,
                     icon: MessageBoxIcon.Information);
+                DeleteOldImage();
+                SaveNewImageFile();
+            }
             else
                 MessageBox.Show($"Something wrong happened", "Error",
                     MessageBoxButtons.OK,
@@ -291,11 +307,64 @@ namespace DLMS.Forms
                 SaveUpdate();
         }
 
+        private static string OldImagePath { set; get; }
+
+        private static string NewImagePath { set; get; }
+
+        private void DeleteOldImage()
+        {
+            if (File.Exists(OldImagePath))
+                File.Delete(OldImagePath);
+        }
+
+        private void SaveNewImageFile()
+        {
+
+            try
+            {
+                File.Copy(TempImagePath, NewImagePath, true);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error Saving image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private string NewFileExtension;
+
+        private string TempImagePath;
+
         private void LlSetImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            if (CurrentPerson != null &&
+                !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
+                File.Exists(CurrentPerson.ImagePath))
+            {
+                OldImagePath = CurrentPerson.ImagePath;
+            }
             if (fdPersonImage.ShowDialog() == DialogResult.OK)
             {
-                pbPersonImage.Image = Image.FromFile(fdPersonImage.FileName);
+                string sourceFilePath = fdPersonImage.FileName;
+                FileInfo fi = new FileInfo(sourceFilePath);
+                NewFileExtension = fi.Extension;
+                string targetDirectory = @"C:\dlms-people\images";
+                if (!Directory.Exists(targetDirectory))
+                {
+                    Directory.CreateDirectory(targetDirectory);
+                }
+                string uniqueId = Guid.NewGuid().ToString();
+                string fileName = Path.GetFileName(uniqueId) + NewFileExtension;
+                string targetFilePath = Path.Combine(targetDirectory, fileName);
+                NewImagePath = targetFilePath;
+                try
+                {
+                    TempImagePath = sourceFilePath;
+                    pbPersonImage.Image = Image.FromFile(TempImagePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error fetching image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }
