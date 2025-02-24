@@ -286,5 +286,21 @@ namespace DLMS.Forms
             else
                 MessageBox.Show("Something Went Wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void DeletePerson()
+        {
+            if (Person.DeletePerson(SelectedPersonId))
+                MessageBox.Show($"Person Deleted Successfully!", "Sucecess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show($"Something Went Wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            ReloadData();
+        }
+
+        private void DeletePersonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show($"Are you sure you want to delete person witn ID: {SelectedPersonId}?",
+                "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                DeletePerson();
+        }
     }
 }

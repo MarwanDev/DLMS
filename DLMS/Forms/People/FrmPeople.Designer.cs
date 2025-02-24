@@ -211,6 +211,7 @@
             this.deletePersonToolStripMenuItem.Name = "deletePersonToolStripMenuItem";
             this.deletePersonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deletePersonToolStripMenuItem.Text = "Delete Person";
+            this.deletePersonToolStripMenuItem.Click += new System.EventHandler(this.DeletePersonToolStripMenuItem_Click);
             // 
             // ucHeader1
             // 
