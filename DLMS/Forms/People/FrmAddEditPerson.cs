@@ -15,15 +15,19 @@ namespace DLMS.Forms
         public FrmAddEditPerson()
         {
             InitializeComponent();
+            MinimizeBox = false;
+            MaximizeBox = false;
         }
 
-        private static int CountryID;
+        private static int CountryID { set; get; }
 
         private Person CurrentPerson { get; set; }
 
         public FrmAddEditPerson(Person person)
         {
             InitializeComponent();
+            MinimizeBox = false;
+            MaximizeBox = false;
             lblId.Text = person.ID.ToString();
             CurrentPerson = person ?? null;
             tbFirstName.Text = person.FirstName;
@@ -45,7 +49,7 @@ namespace DLMS.Forms
 
         public Mode CurrentMode { get; set; }
 
-        private Person person;
+        private Person Person { set; get; }
 
         private readonly Dictionary<Control, string> errorTracker = new Dictionary<Control, string>();
 
@@ -68,6 +72,7 @@ namespace DLMS.Forms
         {
             ResetInputsPlacehodlers();
             SetMaxDate();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             FillCountriesCb();
             if (CurrentMode == Mode.Add)
             {
@@ -236,7 +241,7 @@ namespace DLMS.Forms
 
         private void SaveAddition()
         {
-            person = new Person
+            Person = new Person
             {
                 FirstName = tbFirstName.Text,
                 SecondName = tbSecondName.Text,
@@ -252,15 +257,17 @@ namespace DLMS.Forms
                 ImagePath = pbPersonImage.Image != Resources.Male_512 &&
                     pbPersonImage.Image != Resources.Female_512 &&
                     pbPersonImage.Image != Resources.question_mark_96 &&
-                    pbPersonImage.Image != null ? NewImagePath : null
+                    pbPersonImage.Image != null ? NewImagePath : ""
             };
-            if (person.Save())
+            if (Person.Save())
             {
-                MessageBox.Show($"Person added succesfully with PersonId {person.ID}", "Success",
+                MessageBox.Show($"Person added succesfully with PersonId {Person.ID}", "Success",
                     MessageBoxButtons.OK,
                     icon: MessageBoxIcon.Information);
-                lblId.Text = person.ID.ToString();
+                lblId.Text = Person.ID.ToString();
                 SaveNewImageFile();
+                CurrentMode = Mode.Edit;
+                CurrentPerson = Person;
             }
             else
                 MessageBox.Show($"Something wrong happened", "Error",
@@ -284,10 +291,13 @@ namespace DLMS.Forms
             CurrentPerson.ImagePath = pbPersonImage.Image != Resources.Male_512 &&
                 pbPersonImage.Image != Resources.Female_512 &&
                 pbPersonImage.Image != Resources.question_mark_96 &&
-                pbPersonImage.Image != null ? NewImagePath : null;
+                pbPersonImage.Image != null ?
+                CurrentPerson.ImagePath != null &&
+                File.Exists(CurrentPerson.ImagePath) ?
+                CurrentPerson.ImagePath : NewImagePath : "";
             if (CurrentPerson.Save())
             {
-                MessageBox.Show($"Person updated succesfully with PersonId {CurrentPerson.ID}", "Success",
+                MessageBox.Show($"Person updated succesfully", "Success",
                     MessageBoxButtons.OK,
                     icon: MessageBoxIcon.Information);
                 DeleteOldImage();
@@ -314,25 +324,31 @@ namespace DLMS.Forms
         private void DeleteOldImage()
         {
             if (File.Exists(OldImagePath))
+            {
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
                 File.Delete(OldImagePath);
+            }
         }
 
         private void SaveNewImageFile()
         {
-
-            try
+            if (!string.IsNullOrEmpty(NewImagePath))
             {
-                File.Copy(TempImagePath, NewImagePath, true);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error Saving image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                try
+                {
+                    File.Copy(TempImagePath, NewImagePath, true);
+                }
+                catch (Exception)
+                {
+                    //MessageBox.Show($"Error Saving image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
-        private string NewFileExtension;
+        private string NewFileExtension { set; get; }
 
-        private string TempImagePath;
+        private string TempImagePath { set; get; }
 
         private void LlSetImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -366,6 +382,13 @@ namespace DLMS.Forms
                     MessageBox.Show($"Error fetching image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        public new event Action OnFormClosed;
+
+        private void FrmAddEditPerson_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            OnFormClosed?.Invoke();
         }
     }
 }

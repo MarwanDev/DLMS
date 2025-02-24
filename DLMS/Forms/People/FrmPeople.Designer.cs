@@ -60,7 +60,6 @@
             this.dgvPeople.ReadOnly = true;
             this.dgvPeople.Size = new System.Drawing.Size(1306, 289);
             this.dgvPeople.TabIndex = 1;
-            this.dgvPeople.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvPeople_CellClick);
             this.dgvPeople.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvPeople_CellMouseDown);
             this.dgvPeople.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvPeople_ColumnHeaderMouseClick);
             // 

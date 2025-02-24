@@ -1,5 +1,9 @@
 ﻿using DLMS.Forms;
 using DLMS.Properties;
+using DLMS_Business;
+using System;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace DLMS.UserControls
@@ -41,14 +45,77 @@ namespace DLMS.UserControls
         public string GetCountry() => lblCountry.Text;
         public void SetCountry(string value) => lblCountry.Text = value;
 
+        public Image GetImage() => pbPersonImage.Image;
+
+        public void SetImage(string value) => pbPersonImage.Image = Image.FromFile(value);
+
+        private Person CurrentPerson { get; set; }
+
+        private string TempImagePath { get; set; }
+
+        private void CreateTempImage()
+        {
+            string sourceFilePath = CurrentPerson.ImagePath;
+            FileInfo fi = new FileInfo(sourceFilePath);
+            string fileExtension = fi.Extension;
+            string targetDirectory = @"C:\dlms-people\temp";
+            if (!Directory.Exists(targetDirectory))
+            {
+                Directory.CreateDirectory(targetDirectory);
+            }
+            string uniqueId = Guid.NewGuid().ToString();
+            string fileName = Path.GetFileName(uniqueId) + fileExtension;
+            string targetFilePath = Path.Combine(targetDirectory, fileName);
+            File.Copy(CurrentPerson.ImagePath, targetFilePath);
+            try
+            {
+                TempImagePath = targetFilePath;
+                pbPersonImage.Image = Image.FromFile(TempImagePath);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error fetching image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void SetPerson(Person person) => CurrentPerson = person;
+
         private void UcPersonInfo_Load(object sender, System.EventArgs e)
         {
-            pbPersonImage.Image = GetGender() == "Female" ? Resources.Female_512 : Resources.Male_512;
+            pbPersonImage.Image = GetImage() ?? (GetGender() == "Female" ? Resources.Female_512 : Resources.Male_512);
+        }
+
+        private void ReloadData()
+        {
+            SetPerson(Person.Find(Convert.ToInt32(GetPersonId())));
+            SetAddress(CurrentPerson.Address);
+            SetPersonName(CurrentPerson.FirstName + " " +
+                CurrentPerson.SecondName + " " +
+                CurrentPerson.ThirdName + " " +
+                CurrentPerson.LastName);
+            SetNationalNo(CurrentPerson.NationalNo);
+            SetGender(CurrentPerson.Gender == 0 ? "Female" : "Male");
+            SetEmail(CurrentPerson.Email);
+            SetCountry(CurrentPerson.Country);
+            SetDateOfBirth(CurrentPerson.DateOfBirth.ToString());
+            SetPhone(CurrentPerson.Phone);
+            if (!string.IsNullOrEmpty(CurrentPerson.ImagePath) && File.Exists(CurrentPerson.ImagePath))
+                SetImage(CurrentPerson.ImagePath);
+            this.Refresh();
         }
 
         private void LblEdit_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FrmAddEditPerson frmAddEditPerson = new FrmAddEditPerson();
+            Person person = Person.Find(Convert.ToInt32(GetPersonId()));
+            FrmAddEditPerson frmAddEditPerson = new FrmAddEditPerson(person)
+            {
+                CurrentMode = FrmAddEditPerson.Mode.Edit
+            };
+            if(!string.IsNullOrEmpty(CurrentPerson.ImagePath) && File.Exists(CurrentPerson.ImagePath))
+            {
+                CreateTempImage();
+            }
+            frmAddEditPerson.OnFormClosed += ReloadData;
             frmAddEditPerson.ShowDialog();
         }
     }

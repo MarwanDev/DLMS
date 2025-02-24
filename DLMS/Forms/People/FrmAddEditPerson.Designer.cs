@@ -406,6 +406,7 @@
             this.Name = "FrmAddEditPerson";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAddEditPerson";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmAddEditPerson_FormClosed);
             this.Load += new System.EventHandler(this.FrmAddEditPerson_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

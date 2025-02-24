@@ -71,7 +71,10 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.label1);
             this.Name = "FrmShowPersonDetails";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmShowPersonDetails";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmShowPersonDetails_FormClosed);
+            this.Load += new System.EventHandler(this.FrmShowPersonDetails_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

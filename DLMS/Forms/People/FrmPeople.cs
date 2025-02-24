@@ -211,11 +211,7 @@ namespace DLMS.Forms
             }
         }
 
-        private int SelectedPersonId;
-
-        private void DgvPeople_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
+        private int SelectedPersonId { get; set; }
 
         private void DgvPeople_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -252,6 +248,21 @@ namespace DLMS.Forms
             }
         }
 
+        private void ReloadData()
+        {
+            if(tbSearch.Visible && tbSearch.Text != "")
+            {
+                FilterPeople(tbSearch.Text.Trim());
+            }else if(rdbFemale.Visible && rdbMale.Visible && (rdbFemale.Checked || rdbMale.Checked))
+            {
+                FilterWithGender();
+            }
+            else
+            {
+                GetAllPeopleInDGV();
+            }
+        }
+
         private void EditPersonToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Person person = Person.Find(SelectedPersonId);
@@ -259,6 +270,7 @@ namespace DLMS.Forms
             {
                 CurrentMode = FrmAddEditPerson.Mode.Edit
             };
+            frmAddEditPerson.OnFormClosed += ReloadData;
             frmAddEditPerson.ShowDialog();
         }
 
@@ -268,6 +280,7 @@ namespace DLMS.Forms
             if (person != null)
             {
                 FrmShowPersonDetails frmShowPersonDetails = new FrmShowPersonDetails(person);
+                frmShowPersonDetails.OnFormClosed += ReloadData;
                 frmShowPersonDetails.ShowDialog();
             }
             else
