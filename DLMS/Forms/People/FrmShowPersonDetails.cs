@@ -18,20 +18,20 @@ namespace DLMS.Forms.People
             MinimizeBox = false;
             MaximizeBox = false;
             ucPersonInfo2.SetPerson(person);
-            ucPersonInfo2.SetPersonId(person.ID.ToString());
-            ucPersonInfo2.SetPersonName(person.FirstName + " " +
-                person.SecondName + " " +
-                person.ThirdName + " " +
-                person.LastName);
-            ucPersonInfo2.SetNationalNo(person.NationalNo);
-            ucPersonInfo2.SetGender(person.Gender == 0 ? "Female" : "Male");
-            ucPersonInfo2.SetEmail(person.Email);
-            ucPersonInfo2.SetAddress(person.Address);
-            ucPersonInfo2.SetCountry(person.Country);
-            ucPersonInfo2.SetDateOfBirth(person.DateOfBirth.ToString());
-            ucPersonInfo2.SetPhone(person.Phone);
-            if (!string.IsNullOrEmpty(person.ImagePath) && File.Exists(person.ImagePath))
-                ucPersonInfo2.SetImage(person.ImagePath);
+            ucPersonInfo2.SetPersonId(ucPersonInfo2.CurrentPerson.ID.ToString());
+            ucPersonInfo2.SetPersonName(ucPersonInfo2.CurrentPerson.FirstName + " " +
+                ucPersonInfo2.CurrentPerson.SecondName + " " +
+                ucPersonInfo2.CurrentPerson.ThirdName + " " +
+                ucPersonInfo2.CurrentPerson.LastName);
+            ucPersonInfo2.SetNationalNo(ucPersonInfo2.CurrentPerson.NationalNo);
+            ucPersonInfo2.SetGender(ucPersonInfo2.CurrentPerson.Gender == 0 ? "Female" : "Male");
+            ucPersonInfo2.SetEmail(ucPersonInfo2.CurrentPerson.Email);
+            ucPersonInfo2.SetAddress(ucPersonInfo2.CurrentPerson.Address);
+            ucPersonInfo2.SetCountry(ucPersonInfo2.CurrentPerson.Country);
+            ucPersonInfo2.SetDateOfBirth(ucPersonInfo2.CurrentPerson.DateOfBirth.ToString());
+            ucPersonInfo2.SetPhone(ucPersonInfo2.CurrentPerson.Phone);
+            if (!string.IsNullOrEmpty(ucPersonInfo2.CurrentPerson.ImagePath) && File.Exists(person.ImagePath))
+                ucPersonInfo2.SetImage(ucPersonInfo2.CurrentPerson.ImagePath);
         }
 
 

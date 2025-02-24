@@ -81,7 +81,9 @@ namespace DLMS.Forms
                 pbPersonImage.Image = Resources.question_mark_96;
             }
             else
+            {
                 cbCountry.SelectedIndex = CountryID - 1;
+            }
             lblHeader.Text = CurrentMode == Mode.Add ? "Add New Person" : "Edit Person";
         }
 
@@ -292,8 +294,9 @@ namespace DLMS.Forms
                 pbPersonImage.Image != Resources.Female_512 &&
                 pbPersonImage.Image != Resources.question_mark_96 &&
                 pbPersonImage.Image != null ?
-                CurrentPerson.ImagePath != null &&
-                File.Exists(CurrentPerson.ImagePath) ?
+                !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
+                File.Exists(CurrentPerson.ImagePath) &&
+                string.IsNullOrEmpty(NewImagePath) ?
                 CurrentPerson.ImagePath : NewImagePath : "";
             if (CurrentPerson.Save())
             {
@@ -317,9 +320,9 @@ namespace DLMS.Forms
                 SaveUpdate();
         }
 
-        private static string OldImagePath { set; get; }
+        private string OldImagePath { set; get; }
 
-        private static string NewImagePath { set; get; }
+        private string NewImagePath { set; get; }
 
         private void DeleteOldImage()
         {

@@ -49,7 +49,7 @@ namespace DLMS.UserControls
 
         public void SetImage(string value) => pbPersonImage.Image = Image.FromFile(value);
 
-        private Person CurrentPerson { get; set; }
+        public Person CurrentPerson { get; set; }
 
         private string TempImagePath { get; set; }
 
@@ -70,7 +70,7 @@ namespace DLMS.UserControls
             try
             {
                 TempImagePath = targetFilePath;
-                pbPersonImage.Image = Image.FromFile(TempImagePath);
+                SetImage(TempImagePath);
             }
             catch (Exception ex)
             {
@@ -100,7 +100,10 @@ namespace DLMS.UserControls
             SetDateOfBirth(CurrentPerson.DateOfBirth.ToString());
             SetPhone(CurrentPerson.Phone);
             if (!string.IsNullOrEmpty(CurrentPerson.ImagePath) && File.Exists(CurrentPerson.ImagePath))
+            {
                 SetImage(CurrentPerson.ImagePath);
+                pbPersonImage.Refresh();
+            }
             this.Refresh();
         }
 
