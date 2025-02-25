@@ -76,6 +76,7 @@ namespace DLMS.Forms
             {
                 CurrentMode = FrmAddEditPerson.Mode.Add
             };
+            frmAddEditPerson.OnFormClosed += ReloadData;
             frmAddEditPerson.ShowDialog();
         }
 

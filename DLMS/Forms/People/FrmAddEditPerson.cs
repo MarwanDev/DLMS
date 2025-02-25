@@ -284,9 +284,15 @@ namespace DLMS.Forms
                 pbPersonImage.Image != null ?
                 !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
                 File.Exists(CurrentPerson.ImagePath) &&
-                string.IsNullOrEmpty(NewImagePath) ?
-                CurrentPerson.ImagePath : NewImagePath : "";
+                //!string.IsNullOrEmpty(NewImagePath) &&
+                //File.Exists(NewImagePath) &&
+                !IsImageRemoved ? CurrentPerson.ImagePath :
+                !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
+                File.Exists(CurrentPerson.ImagePath) &&
+                IsImageRemoved ? null : NewImagePath : null;
         }
+
+        private bool IsImageRemoved { get; set; }
 
         private void SaveAddition()
         {
@@ -303,11 +309,24 @@ namespace DLMS.Forms
                 DateOfBirth = dtpDOB.Value,
                 NationalityCountryID = cbCountry.SelectedIndex + 1,
                 Gender = (byte)(rdbFemale.Checked ? 0 : 1),
-                ImagePath = GetToBeSavedPersonImagePath()
                 //ImagePath = pbPersonImage.Image != Resources.Male_512 &&
                 //    pbPersonImage.Image != Resources.Female_512 &&
                 //    pbPersonImage.Image != Resources.question_mark_96 &&
-                //    pbPersonImage.Image != null ? NewImagePath : ""
+                //    pbPersonImage.Image != null ?
+                //    !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
+                //    File.Exists(CurrentPerson.ImagePath) &&
+                //    !string.IsNullOrEmpty(NewImagePath) &&
+                //    File.Exists(NewImagePath) &&
+                //    !IsImageRemoved ? CurrentPerson.ImagePath :
+                //    !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
+                //    File.Exists(CurrentPerson.ImagePath) &&
+                //    IsImageRemoved ? null : NewImagePath : null
+                ImagePath = pbPersonImage.Image != Resources.Male_512 &&
+                    pbPersonImage.Image != Resources.Female_512 &&
+                    pbPersonImage.Image != Resources.question_mark_96 &&
+                    pbPersonImage.Image != null ? 
+                    !string.IsNullOrEmpty(NewImagePath) ?
+                    NewImagePath : null : null
             };
             if (Person.Save())
             {
@@ -416,11 +435,14 @@ namespace DLMS.Forms
                 string fileName = Path.GetFileName(uniqueId) + NewFileExtension;
                 string targetFilePath = Path.Combine(targetDirectory, fileName);
                 NewImagePath = targetFilePath;
+                MessageBox.Show(NewImagePath);
+                MessageBox.Show(File.Exists(NewImagePath).ToString());
                 try
                 {
                     TempImagePath = sourceFilePath;
                     pbPersonImage.Image = Image.FromFile(TempImagePath);
                     ChangeRemoveImageLinkLabelVisibility(false);
+                    IsImageRemoved = false;
                 }
                 catch (Exception ex)
                 {
@@ -454,6 +476,7 @@ namespace DLMS.Forms
             ClearAssignedImagePaths();
             ChangeSetImageLinkLabelText(false);
             ChangeRemoveImageLinkLabelVisibility(false);
+            IsImageRemoved = true;
         }
     }
 }
