@@ -219,17 +219,7 @@ namespace DLMS.Forms
             {
                 string headerText = dgvPeople.Columns[e.ColumnIndex].HeaderText;
                 Person.ApplySorting(GetSortingParameter(headerText));
-                if (tbSearch.Text.Trim() != "" || rdbFemale.Checked || rdbMale.Checked)
-                    if (tbSearch.Text.Trim() != "")
-                    {
-                        FilterPeople(tbSearch.Text.Trim());
-                    }
-                    else
-                    {
-                        FilterWithGender();
-                    }
-                else
-                    GetAllPeopleInDGV();
+                ReloadData();
             }
         }
 
@@ -250,7 +240,7 @@ namespace DLMS.Forms
 
         private void ReloadData()
         {
-            if(tbSearch.Visible && tbSearch.Text != "")
+            if(tbSearch.Visible && tbSearch.Text.Trim() != "")
             {
                 FilterPeople(tbSearch.Text.Trim());
             }else if(rdbFemale.Visible && rdbMale.Visible && (rdbFemale.Checked || rdbMale.Checked))

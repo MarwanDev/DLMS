@@ -58,6 +58,7 @@
             this.pbPersonImage = new System.Windows.Forms.PictureBox();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.fdPersonImage = new System.Windows.Forms.OpenFileDialog();
+            this.llRemoveImage = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -100,7 +101,7 @@
             this.btnClose.Location = new System.Drawing.Point(573, 483);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(89, 33);
-            this.btnClose.TabIndex = 43;
+            this.btnClose.TabIndex = 42;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
@@ -111,7 +112,7 @@
             this.btnSave.Location = new System.Drawing.Point(687, 483);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(89, 33);
-            this.btnSave.TabIndex = 42;
+            this.btnSave.TabIndex = 43;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
@@ -371,11 +372,25 @@
             this.fdPersonImage.FileName = "openFileDialog1";
             this.fdPersonImage.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif";
             // 
+            // llRemoveImage
+            // 
+            this.llRemoveImage.AutoSize = true;
+            this.llRemoveImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llRemoveImage.Location = new System.Drawing.Point(833, 450);
+            this.llRemoveImage.Name = "llRemoveImage";
+            this.llRemoveImage.Size = new System.Drawing.Size(117, 20);
+            this.llRemoveImage.TabIndex = 51;
+            this.llRemoveImage.TabStop = true;
+            this.llRemoveImage.Text = "Remove Image";
+            this.llRemoveImage.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.llRemoveImage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LlRemoveImage_LinkClicked);
+            // 
             // FrmAddEditPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1002, 528);
+            this.Controls.Add(this.llRemoveImage);
             this.Controls.Add(this.lblId);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lblHeader);
@@ -446,5 +461,6 @@
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.OpenFileDialog fdPersonImage;
+        private System.Windows.Forms.LinkLabel llRemoveImage;
     }
 }

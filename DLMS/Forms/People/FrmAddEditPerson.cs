@@ -28,8 +28,13 @@ namespace DLMS.Forms
             InitializeComponent();
             MinimizeBox = false;
             MaximizeBox = false;
-            lblId.Text = person.ID.ToString();
+            ModifyControlsAccordingToPerson(person);
+        }
+
+        private void ModifyControlsAccordingToPerson(Person person)
+        {
             CurrentPerson = person ?? null;
+            lblId.Text = person.ID.ToString();
             tbFirstName.Text = person.FirstName;
             tbSecondName.Text = person.SecondName;
             tbThirdName.Text = person.ThirdName;
@@ -38,11 +43,12 @@ namespace DLMS.Forms
             dtpDOB.Value = person.DateOfBirth;
             tbEmail.Text = person.Email;
             rtbAddress.Text = person.Address;
-            FillCountriesCb();
-            CountryID = person.NationalityCountryID;
             tbPhone.Text = person.Phone;
             rdbFemale.Checked = person.Gender == 0;
             rdbMale.Checked = person.Gender == 1;
+            FillCountriesCb();
+            CountryID = person.NationalityCountryID;
+            ChangeSetImageLinkLabelText();
         }
 
         public enum Mode { Add, Edit };
@@ -68,12 +74,41 @@ namespace DLMS.Forms
             return errorTracker.Count;
         }
 
+        private void ChangeRemoveImageLinkLabelVisibility(bool isOnLoad = true)
+        {
+            if (isOnLoad)
+                llRemoveImage.Visible = CurrentPerson != null &&
+                    !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
+                    File.Exists(CurrentPerson.ImagePath);
+            else
+                llRemoveImage.Visible = !string.IsNullOrEmpty(TempImagePath) &&
+                    File.Exists(TempImagePath);
+        }
+
+        private void ChangeSetImageLinkLabelText(bool isOnLoad = true)
+        {
+            //llSetImage.Text = CurrentPerson != null &&
+            //    !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
+            //    File.Exists(CurrentPerson.ImagePath) &&
+            //    !string.IsNullOrEmpty(NewImagePath) &&
+            //    File.Exists(NewImagePath) && !string.IsNullOrEmpty(TempImagePath) &&
+            //    File.Exists(TempImagePath) ? "Change Image" : "Set Image";
+            if (isOnLoad)
+                llSetImage.Text = CurrentPerson != null &&
+                    !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
+                    File.Exists(CurrentPerson.ImagePath) ? "Change Image" : "Set Image";
+            else
+                llSetImage.Text = !string.IsNullOrEmpty(TempImagePath) &&
+                    File.Exists(TempImagePath) ? "Change Image" : "Set Image";
+        }
+
         private void FrmAddEditPerson_Load(object sender, EventArgs e)
         {
             ResetInputsPlacehodlers();
             SetMaxDate();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             FillCountriesCb();
+            ChangeRemoveImageLinkLabelVisibility();
             if (CurrentMode == Mode.Add)
             {
                 rdbMale.Checked = false;
@@ -241,6 +276,18 @@ namespace DLMS.Forms
             ChangeSaveBtnAbilityIfPossible();
         }
 
+        private string GetToBeSavedPersonImagePath()
+        {
+            return pbPersonImage.Image != Resources.Male_512 &&
+                pbPersonImage.Image != Resources.Female_512 &&
+                pbPersonImage.Image != Resources.question_mark_96 &&
+                pbPersonImage.Image != null ?
+                !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
+                File.Exists(CurrentPerson.ImagePath) &&
+                string.IsNullOrEmpty(NewImagePath) ?
+                CurrentPerson.ImagePath : NewImagePath : "";
+        }
+
         private void SaveAddition()
         {
             Person = new Person
@@ -256,10 +303,11 @@ namespace DLMS.Forms
                 DateOfBirth = dtpDOB.Value,
                 NationalityCountryID = cbCountry.SelectedIndex + 1,
                 Gender = (byte)(rdbFemale.Checked ? 0 : 1),
-                ImagePath = pbPersonImage.Image != Resources.Male_512 &&
-                    pbPersonImage.Image != Resources.Female_512 &&
-                    pbPersonImage.Image != Resources.question_mark_96 &&
-                    pbPersonImage.Image != null ? NewImagePath : ""
+                ImagePath = GetToBeSavedPersonImagePath()
+                //ImagePath = pbPersonImage.Image != Resources.Male_512 &&
+                //    pbPersonImage.Image != Resources.Female_512 &&
+                //    pbPersonImage.Image != Resources.question_mark_96 &&
+                //    pbPersonImage.Image != null ? NewImagePath : ""
             };
             if (Person.Save())
             {
@@ -290,14 +338,7 @@ namespace DLMS.Forms
             CurrentPerson.DateOfBirth = dtpDOB.Value;
             CurrentPerson.NationalityCountryID = cbCountry.SelectedIndex + 1;
             CurrentPerson.Gender = (byte)(rdbFemale.Checked ? 0 : 1);
-            CurrentPerson.ImagePath = pbPersonImage.Image != Resources.Male_512 &&
-                pbPersonImage.Image != Resources.Female_512 &&
-                pbPersonImage.Image != Resources.question_mark_96 &&
-                pbPersonImage.Image != null ?
-                !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
-                File.Exists(CurrentPerson.ImagePath) &&
-                string.IsNullOrEmpty(NewImagePath) ?
-                CurrentPerson.ImagePath : NewImagePath : "";
+            CurrentPerson.ImagePath = GetToBeSavedPersonImagePath();
             if (CurrentPerson.Save())
             {
                 MessageBox.Show($"Person updated succesfully", "Success",
@@ -379,6 +420,7 @@ namespace DLMS.Forms
                 {
                     TempImagePath = sourceFilePath;
                     pbPersonImage.Image = Image.FromFile(TempImagePath);
+                    ChangeRemoveImageLinkLabelVisibility(false);
                 }
                 catch (Exception ex)
                 {
@@ -392,6 +434,26 @@ namespace DLMS.Forms
         private void FrmAddEditPerson_FormClosed(object sender, FormClosedEventArgs e)
         {
             OnFormClosed?.Invoke();
+        }
+
+        private void ChangePictureBoxImageWithNoImageSet()
+        {
+            pbPersonImage.Image = rdbFemale.Checked ? Resources.Female_512 :
+                rdbMale.Checked ? Resources.Male_512 : Resources.question_mark_96;
+        }
+
+        private void ClearAssignedImagePaths()
+        {
+            TempImagePath = null;
+            NewImagePath = null;
+        }
+
+        private void LlRemoveImage_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ChangePictureBoxImageWithNoImageSet();
+            ClearAssignedImagePaths();
+            ChangeSetImageLinkLabelText(false);
+            ChangeRemoveImageLinkLabelVisibility(false);
         }
     }
 }
