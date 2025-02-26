@@ -7,11 +7,6 @@ namespace DLMS.Forms.People
 {
     public partial class FrmShowPersonDetails : Form
     {
-        public FrmShowPersonDetails()
-        {
-            InitializeComponent();
-        }
-
         public FrmShowPersonDetails(Person person)
         {
             InitializeComponent();
@@ -33,7 +28,6 @@ namespace DLMS.Forms.People
             if (!string.IsNullOrEmpty(ucPersonInfo2.CurrentPerson.ImagePath) && File.Exists(person.ImagePath))
                 ucPersonInfo2.SetImage(ucPersonInfo2.CurrentPerson.ImagePath);
         }
-
 
         private void BtnClose_Click(object sender, System.EventArgs e)
         {

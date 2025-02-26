@@ -47,7 +47,10 @@ namespace DLMS.UserControls
 
         public Image GetImage() => pbPersonImage.Image;
 
-        public void SetImage(string value) => pbPersonImage.Image = Image.FromFile(value);
+        public void SetImage(string value) => pbPersonImage.Image = !string.IsNullOrEmpty(value) &&
+            File.Exists(value) ? Image.FromFile(value) :
+            CurrentPerson.Gender == 0 ? Resources.Female_512 :
+            Resources.Male_512;
 
         public Person CurrentPerson { get; set; }
 
@@ -82,7 +85,17 @@ namespace DLMS.UserControls
 
         private void UcPersonInfo_Load(object sender, System.EventArgs e)
         {
-            pbPersonImage.Image = GetImage() ?? (GetGender() == "Female" ? Resources.Female_512 : Resources.Male_512);
+            if (CurrentPerson != null)
+            {
+                if (!string.IsNullOrEmpty(CurrentPerson.ImagePath) && File.Exists(CurrentPerson.ImagePath))
+                {
+                    SetImage(CurrentPerson.ImagePath);
+                }
+                else
+                {
+                    pbPersonImage.Image = CurrentPerson.Gender == 0 ? Resources.Female_512 : Resources.Male_512;
+                }
+            }
         }
 
         private void ReloadData()
@@ -104,6 +117,10 @@ namespace DLMS.UserControls
                 SetImage(CurrentPerson.ImagePath);
                 pbPersonImage.Refresh();
             }
+            else
+            {
+                pbPersonImage.Image = CurrentPerson.Gender == 0 ? Resources.Female_512 : Resources.Male_512;
+            }
             this.Refresh();
         }
 
@@ -114,7 +131,7 @@ namespace DLMS.UserControls
             {
                 CurrentMode = FrmAddEditPerson.Mode.Edit
             };
-            if(!string.IsNullOrEmpty(CurrentPerson.ImagePath) && File.Exists(CurrentPerson.ImagePath))
+            if (!string.IsNullOrEmpty(CurrentPerson.ImagePath) && File.Exists(CurrentPerson.ImagePath))
             {
                 CreateTempImage();
             }
