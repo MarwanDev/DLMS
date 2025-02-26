@@ -306,7 +306,7 @@ namespace DLMS.Forms
                 Email = tbEmail.Text,
                 Phone = tbPhone.Text,
                 Address = rtbAddress.Text,
-                DateOfBirth = dtpDOB.Value,
+                DateOfBirth = dtpDOB.Value.Date,
                 NationalityCountryID = cbCountry.SelectedIndex + 1,
                 Gender = (byte)(rdbFemale.Checked ? 0 : 1),
                 //ImagePath = pbPersonImage.Image != Resources.Male_512 &&
@@ -354,7 +354,7 @@ namespace DLMS.Forms
             CurrentPerson.Email = tbEmail.Text;
             CurrentPerson.Phone = tbPhone.Text;
             CurrentPerson.Address = rtbAddress.Text;
-            CurrentPerson.DateOfBirth = dtpDOB.Value;
+            CurrentPerson.DateOfBirth = dtpDOB.Value.Date;
             CurrentPerson.NationalityCountryID = cbCountry.SelectedIndex + 1;
             CurrentPerson.Gender = (byte)(rdbFemale.Checked ? 0 : 1);
             CurrentPerson.ImagePath = GetToBeSavedPersonImagePath();

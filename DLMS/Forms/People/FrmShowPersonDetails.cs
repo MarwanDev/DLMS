@@ -23,7 +23,7 @@ namespace DLMS.Forms.People
             ucPersonInfo2.SetEmail(ucPersonInfo2.CurrentPerson.Email);
             ucPersonInfo2.SetAddress(ucPersonInfo2.CurrentPerson.Address);
             ucPersonInfo2.SetCountry(ucPersonInfo2.CurrentPerson.Country);
-            ucPersonInfo2.SetDateOfBirth(ucPersonInfo2.CurrentPerson.DateOfBirth.ToString());
+            ucPersonInfo2.SetDateOfBirth(ucPersonInfo2.CurrentPerson.DateOfBirth.Date.ToString());
             ucPersonInfo2.SetPhone(ucPersonInfo2.CurrentPerson.Phone);
             if (!string.IsNullOrEmpty(ucPersonInfo2.CurrentPerson.ImagePath) && File.Exists(person.ImagePath))
                 ucPersonInfo2.SetImage(ucPersonInfo2.CurrentPerson.ImagePath);

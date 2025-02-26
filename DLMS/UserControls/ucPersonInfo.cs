@@ -110,7 +110,7 @@ namespace DLMS.UserControls
             SetGender(CurrentPerson.Gender == 0 ? "Female" : "Male");
             SetEmail(CurrentPerson.Email);
             SetCountry(CurrentPerson.Country);
-            SetDateOfBirth(CurrentPerson.DateOfBirth.ToString());
+            SetDateOfBirth(CurrentPerson.DateOfBirth.Date.ToString());
             SetPhone(CurrentPerson.Phone);
             if (!string.IsNullOrEmpty(CurrentPerson.ImagePath) && File.Exists(CurrentPerson.ImagePath))
             {
