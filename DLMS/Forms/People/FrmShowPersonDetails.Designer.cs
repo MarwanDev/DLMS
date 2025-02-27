@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.ucPersonInfo2 = new DLMS.UserControls.UcPersonInfo();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -57,10 +59,16 @@
             // 
             // ucPersonInfo2
             // 
+            this.ucPersonInfo2.CurrentPerson = null;
             this.ucPersonInfo2.Location = new System.Drawing.Point(0, 77);
             this.ucPersonInfo2.Name = "ucPersonInfo2";
             this.ucPersonInfo2.Size = new System.Drawing.Size(781, 461);
             this.ucPersonInfo2.TabIndex = 3;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 10000;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // FrmShowPersonDetails
             // 
@@ -84,5 +92,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnClose;
         private UserControls.UcPersonInfo ucPersonInfo2;
+        private System.Windows.Forms.Timer timer1;
     }
 }

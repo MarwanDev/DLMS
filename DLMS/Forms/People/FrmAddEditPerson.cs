@@ -120,6 +120,7 @@ namespace DLMS.Forms
                 cbCountry.SelectedIndex = CountryID - 1;
             }
             lblHeader.Text = CurrentMode == Mode.Add ? "Add New Person" : "Edit Person";
+            timer1.Enabled = true;
         }
 
         private void FillCountriesCb()
@@ -324,7 +325,7 @@ namespace DLMS.Forms
                 ImagePath = pbPersonImage.Image != Resources.Male_512 &&
                     pbPersonImage.Image != Resources.Female_512 &&
                     pbPersonImage.Image != Resources.question_mark_96 &&
-                    pbPersonImage.Image != null ? 
+                    pbPersonImage.Image != null ?
                     !string.IsNullOrEmpty(NewImagePath) ?
                     NewImagePath : null : null
             };
@@ -337,6 +338,7 @@ namespace DLMS.Forms
                 SaveNewImageFile();
                 CurrentMode = Mode.Edit;
                 CurrentPerson = Person;
+                lblHeader.Text = "Edit Person";
             }
             else
                 MessageBox.Show($"Something wrong happened", "Error",
@@ -435,8 +437,6 @@ namespace DLMS.Forms
                 string fileName = Path.GetFileName(uniqueId) + NewFileExtension;
                 string targetFilePath = Path.Combine(targetDirectory, fileName);
                 NewImagePath = targetFilePath;
-                MessageBox.Show(NewImagePath);
-                MessageBox.Show(File.Exists(NewImagePath).ToString());
                 try
                 {
                     TempImagePath = sourceFilePath;
@@ -477,6 +477,12 @@ namespace DLMS.Forms
             ChangeSetImageLinkLabelText(false);
             ChangeRemoveImageLinkLabelVisibility(false);
             IsImageRemoved = true;
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            if (CurrentPerson != null && CurrentMode == Mode.Edit)
+                Utils.CheckPersonAvailabilityWithTimer(timer1, CurrentPerson.ID, this);
         }
     }
 }

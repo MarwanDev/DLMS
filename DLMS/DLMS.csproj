@@ -90,6 +90,7 @@
     <Compile Include="UserControls\ucPersonInfo.Designer.cs">
       <DependentUpon>ucPersonInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utils.cs" />
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

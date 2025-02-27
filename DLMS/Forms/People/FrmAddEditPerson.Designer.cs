@@ -59,6 +59,7 @@
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.fdPersonImage = new System.Windows.Forms.OpenFileDialog();
             this.llRemoveImage = new System.Windows.Forms.LinkLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -385,6 +386,11 @@
             this.llRemoveImage.VisitedLinkColor = System.Drawing.Color.Blue;
             this.llRemoveImage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LlRemoveImage_LinkClicked);
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 10000;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
             // FrmAddEditPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -462,5 +468,6 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.OpenFileDialog fdPersonImage;
         private System.Windows.Forms.LinkLabel llRemoveImage;
+        private System.Windows.Forms.Timer timer1;
     }
 }
