@@ -241,10 +241,11 @@ namespace DLMS.Forms
 
         private void ReloadData()
         {
-            if(tbSearch.Visible && tbSearch.Text.Trim() != "")
+            if (tbSearch.Visible && tbSearch.Text.Trim() != "")
             {
                 FilterPeople(tbSearch.Text.Trim());
-            }else if(rdbFemale.Visible && rdbMale.Visible && (rdbFemale.Checked || rdbMale.Checked))
+            }
+            else if (rdbFemale.Visible && rdbMale.Visible && (rdbFemale.Checked || rdbMale.Checked))
             {
                 FilterWithGender();
             }
@@ -283,7 +284,10 @@ namespace DLMS.Forms
             if (Person.DeletePerson(SelectedPersonId))
                 MessageBox.Show($"Person Deleted Successfully!", "Sucecess", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
-                MessageBox.Show($"Something Went Wrong", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Couldn't delet person {SelectedPersonId} as they're connected with other part(s) in the system",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             ReloadData();
         }
 
