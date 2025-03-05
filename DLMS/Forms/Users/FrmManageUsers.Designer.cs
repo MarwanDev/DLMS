@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ucHeader1 = new DLMS.UcHeader();
             this.lblCount = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pnlActivationStatus = new System.Windows.Forms.Panel();
@@ -40,17 +39,10 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
+            this.ucHeader1 = new DLMS.UcHeader();
             this.pnlActivationStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.SuspendLayout();
-            // 
-            // ucHeader1
-            // 
-            this.ucHeader1.BackColor = System.Drawing.Color.Transparent;
-            this.ucHeader1.Location = new System.Drawing.Point(544, 12);
-            this.ucHeader1.Name = "ucHeader1";
-            this.ucHeader1.Size = new System.Drawing.Size(258, 219);
-            this.ucHeader1.TabIndex = 0;
             // 
             // lblCount
             // 
@@ -76,9 +68,9 @@
             // 
             this.pnlActivationStatus.Controls.Add(this.rdbInactive);
             this.pnlActivationStatus.Controls.Add(this.rdbActive);
-            this.pnlActivationStatus.Location = new System.Drawing.Point(647, 272);
+            this.pnlActivationStatus.Location = new System.Drawing.Point(668, 270);
             this.pnlActivationStatus.Name = "pnlActivationStatus";
-            this.pnlActivationStatus.Size = new System.Drawing.Size(377, 48);
+            this.pnlActivationStatus.Size = new System.Drawing.Size(239, 48);
             this.pnlActivationStatus.TabIndex = 16;
             this.pnlActivationStatus.Visible = false;
             // 
@@ -93,6 +85,7 @@
             this.rdbInactive.TabStop = true;
             this.rdbInactive.Text = "Inactive";
             this.rdbInactive.UseVisualStyleBackColor = true;
+            this.rdbInactive.CheckedChanged += new System.EventHandler(this.RdbACtivation_CheckedChanged);
             // 
             // rdbActive
             // 
@@ -105,6 +98,7 @@
             this.rdbActive.TabStop = true;
             this.rdbActive.Text = "Active";
             this.rdbActive.UseVisualStyleBackColor = true;
+            this.rdbActive.CheckedChanged += new System.EventHandler(this.RdbACtivation_CheckedChanged);
             // 
             // tbSearch
             // 
@@ -114,6 +108,8 @@
             this.tbSearch.Size = new System.Drawing.Size(247, 31);
             this.tbSearch.TabIndex = 15;
             this.tbSearch.Visible = false;
+            this.tbSearch.TextChanged += new System.EventHandler(this.TbSearch_TextChanged);
+            this.tbSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbSearch_KeyPress);
             // 
             // label1
             // 
@@ -133,32 +129,29 @@
             this.cbFilter.Items.AddRange(new object[] {
             "None",
             "PersonId",
-            "National No.",
-            "First Name",
-            "Second Name",
-            "Third Name",
-            "Last Name",
-            "Nationality",
-            "Gender",
-            "Phone",
-            "Email"});
+            "UserId",
+            "Name",
+            "UserName",
+            "Active/Inactive"});
             this.cbFilter.Location = new System.Drawing.Point(109, 286);
             this.cbFilter.Name = "cbFilter";
             this.cbFilter.Size = new System.Drawing.Size(210, 32);
             this.cbFilter.TabIndex = 13;
+            this.cbFilter.SelectedIndexChanged += new System.EventHandler(this.CbFilter_SelectedIndexChanged);
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(1166, 625);
+            this.btnClose.Location = new System.Drawing.Point(1014, 624);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(113, 36);
             this.btnClose.TabIndex = 12;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // btnAddUser
             // 
-            this.btnAddUser.Location = new System.Drawing.Point(1166, 269);
+            this.btnAddUser.Location = new System.Drawing.Point(1014, 277);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(113, 36);
             this.btnAddUser.TabIndex = 11;
@@ -173,14 +166,24 @@
             this.dgvUsers.Location = new System.Drawing.Point(-1, 329);
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ReadOnly = true;
-            this.dgvUsers.Size = new System.Drawing.Size(1306, 289);
+            this.dgvUsers.Size = new System.Drawing.Size(1128, 289);
             this.dgvUsers.TabIndex = 10;
+            this.dgvUsers.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvUsers_CellMouseDown);
+            this.dgvUsers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvUsers_ColumnHeaderMouseClick);
+            // 
+            // ucHeader1
+            // 
+            this.ucHeader1.BackColor = System.Drawing.Color.Transparent;
+            this.ucHeader1.Location = new System.Drawing.Point(439, 27);
+            this.ucHeader1.Name = "ucHeader1";
+            this.ucHeader1.Size = new System.Drawing.Size(258, 219);
+            this.ucHeader1.TabIndex = 0;
             // 
             // FrmManageUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1305, 666);
+            this.ClientSize = new System.Drawing.Size(1128, 666);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pnlActivationStatus);
@@ -192,6 +195,7 @@
             this.Controls.Add(this.dgvUsers);
             this.Controls.Add(this.ucHeader1);
             this.Name = "FrmManageUsers";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmManageUsers";
             this.Load += new System.EventHandler(this.FrmManageUsers_Load);
             this.pnlActivationStatus.ResumeLayout(false);

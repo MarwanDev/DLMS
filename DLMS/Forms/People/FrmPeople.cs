@@ -40,6 +40,7 @@ namespace DLMS.Forms
         {
             DataTable people = Person.GetAllPeople();
             dgvPeople.DataSource = people;
+            Utils.DisableDGVColumnSorting(dgvPeople);
             dgvPeople.Refresh();
             CurrentMode = Mode.All;
             UpdateCountLabel();
@@ -51,7 +52,6 @@ namespace DLMS.Forms
             dgvPeople.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             AdjustTableColumWidths();
-            Utils.DisableDGVColumnSorting(dgvPeople);
             cbFilter.Text = "None";
         }
 
@@ -158,6 +158,7 @@ namespace DLMS.Forms
                 Person.FilterPeople(GetFilterParameter(), searchKeyWord) :
                 Person.FilterPeople("Gender", searchKeyWord);
             dgvPeople.DataSource = filteredPeople;
+            Utils.DisableDGVColumnSorting(dgvPeople);
             dgvPeople.Refresh();
             CurrentMode = Mode.Filter;
             UpdateCountLabel(searchKeyWord);

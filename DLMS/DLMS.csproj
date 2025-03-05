@@ -152,10 +152,6 @@
       <Project>{aa61a789-6204-4086-9ef2-1bc1e31df15d}</Project>
       <Name>DLMS_Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Class Libraries\DLMS_DataAccess\DLMS_DataAccess\DLMS_DataAccess.csproj">
-      <Project>{1C84A75F-1CEF-4485-957E-602176F07974}</Project>
-      <Name>DLMS_DataAccess</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\pngwing.com.png" />
