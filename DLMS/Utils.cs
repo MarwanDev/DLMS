@@ -16,5 +16,13 @@ namespace DLMS
                     form.Close();
             }
         }
+
+        public static void DisableDGVColumnSorting(DataGridView dataGridView)
+        {
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+        }
     }
 }

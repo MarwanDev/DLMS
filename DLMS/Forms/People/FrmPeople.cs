@@ -51,16 +51,8 @@ namespace DLMS.Forms
             dgvPeople.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             AdjustTableColumWidths();
-            DisableDGVColumnSorting();
+            Utils.DisableDGVColumnSorting(dgvPeople);
             cbFilter.Text = "None";
-        }
-
-        private void DisableDGVColumnSorting()
-        {
-            foreach (DataGridViewColumn column in dgvPeople.Columns)
-            {
-                column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            }
         }
 
         private void AdjustTableColumWidths()

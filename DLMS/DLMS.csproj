@@ -70,6 +70,12 @@
     <Compile Include="Forms\People\FrmShowPersonDetails.Designer.cs">
       <DependentUpon>FrmShowPersonDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Users\FrmManageUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Users\FrmManageUsers.Designer.cs">
+      <DependentUpon>FrmManageUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Forms\TestForm.cs">
@@ -102,6 +108,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\People\FrmShowPersonDetails.resx">
       <DependentUpon>FrmShowPersonDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Users\FrmManageUsers.resx">
+      <DependentUpon>FrmManageUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -270,5 +279,6 @@
     <Content Include="Resources\Written Test 32.png" />
     <Content Include="Resources\Written Test 512.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

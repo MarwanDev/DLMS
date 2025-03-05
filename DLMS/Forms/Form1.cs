@@ -1,4 +1,5 @@
 ﻿using DLMS.Forms;
+using DLMS.Forms.Users;
 using System;
 using System.Windows.Forms;
 
@@ -20,6 +21,12 @@ namespace DLMS
         private void FrmMain_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void ManageUsersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmManageUsers frmManageUsers = new FrmManageUsers();
+            frmManageUsers.ShowDialog();
         }
     }
 }
