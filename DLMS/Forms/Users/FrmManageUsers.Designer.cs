@@ -44,6 +44,7 @@
             this.viewUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rdbAll = new System.Windows.Forms.RadioButton();
             this.ucHeader1 = new DLMS.UcHeader();
             this.pnlActivationStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
@@ -72,11 +73,12 @@
             // 
             // pnlActivationStatus
             // 
+            this.pnlActivationStatus.Controls.Add(this.rdbAll);
             this.pnlActivationStatus.Controls.Add(this.rdbInactive);
             this.pnlActivationStatus.Controls.Add(this.rdbActive);
             this.pnlActivationStatus.Location = new System.Drawing.Point(668, 270);
             this.pnlActivationStatus.Name = "pnlActivationStatus";
-            this.pnlActivationStatus.Size = new System.Drawing.Size(239, 48);
+            this.pnlActivationStatus.Size = new System.Drawing.Size(302, 48);
             this.pnlActivationStatus.TabIndex = 16;
             this.pnlActivationStatus.Visible = false;
             // 
@@ -84,7 +86,7 @@
             // 
             this.rdbInactive.AutoSize = true;
             this.rdbInactive.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbInactive.Location = new System.Drawing.Point(125, 14);
+            this.rdbInactive.Location = new System.Drawing.Point(88, 16);
             this.rdbInactive.Name = "rdbInactive";
             this.rdbInactive.Size = new System.Drawing.Size(91, 28);
             this.rdbInactive.TabIndex = 1;
@@ -97,7 +99,7 @@
             // 
             this.rdbActive.AutoSize = true;
             this.rdbActive.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbActive.Location = new System.Drawing.Point(3, 13);
+            this.rdbActive.Location = new System.Drawing.Point(3, 17);
             this.rdbActive.Name = "rdbActive";
             this.rdbActive.Size = new System.Drawing.Size(79, 28);
             this.rdbActive.TabIndex = 0;
@@ -163,6 +165,7 @@
             this.btnAddUser.TabIndex = 11;
             this.btnAddUser.Text = "Add User";
             this.btnAddUser.UseVisualStyleBackColor = true;
+            this.btnAddUser.Click += new System.EventHandler(this.BtnAddUser_Click);
             // 
             // dgvUsers
             // 
@@ -205,6 +208,19 @@
             this.deleteUserToolStripMenuItem.Name = "deleteUserToolStripMenuItem";
             this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.deleteUserToolStripMenuItem.Text = "Delete User";
+            // 
+            // rdbAll
+            // 
+            this.rdbAll.AutoSize = true;
+            this.rdbAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbAll.Location = new System.Drawing.Point(185, 16);
+            this.rdbAll.Name = "rdbAll";
+            this.rdbAll.Size = new System.Drawing.Size(49, 28);
+            this.rdbAll.TabIndex = 2;
+            this.rdbAll.TabStop = true;
+            this.rdbAll.Text = "All";
+            this.rdbAll.UseVisualStyleBackColor = true;
+            this.rdbAll.CheckedChanged += new System.EventHandler(this.RdbACtivation_CheckedChanged);
             // 
             // ucHeader1
             // 
@@ -260,5 +276,6 @@
         private System.Windows.Forms.ToolStripMenuItem viewUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteUserToolStripMenuItem;
+        private System.Windows.Forms.RadioButton rdbAll;
     }
 }

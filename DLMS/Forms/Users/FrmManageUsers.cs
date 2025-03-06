@@ -154,8 +154,15 @@ namespace DLMS.Forms.Users
 
         private void FilterWithActivationStatus()
         {
-            string searchKeyWord = rdbActive.Checked ? "1" : "0";
-            FilterUsers(searchKeyWord);
+            if (!rdbAll.Checked)
+            {
+                string searchKeyWord = rdbActive.Checked ? "1" : "0";
+                FilterUsers(searchKeyWord);
+            }
+            else
+            {
+                GetAllUsersInDGV();
+            }
         }
 
         private void ReloadData()
@@ -212,6 +219,12 @@ namespace DLMS.Forms.Users
         private void ViewUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(SelectedUserId.ToString());
+        }
+
+        private void BtnAddUser_Click(object sender, EventArgs e)
+        {
+            FrmAddEditUser frmAddEditUser = new FrmAddEditUser();
+            frmAddEditUser.ShowDialog();
         }
     }
 }
