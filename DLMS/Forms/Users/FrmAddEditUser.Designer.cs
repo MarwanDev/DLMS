@@ -31,6 +31,8 @@
             this.lblFormHeader = new System.Windows.Forms.Label();
             this.tbUserInfo = new System.Windows.Forms.TabControl();
             this.tbPersonalInfo = new System.Windows.Forms.TabPage();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.ucPersonInfo1 = new DLMS.UserControls.UcPersonInfo();
             this.gbPersonSearch = new System.Windows.Forms.GroupBox();
             this.btnAddNewPerson = new System.Windows.Forms.Button();
             this.btnPersonSearch = new System.Windows.Forms.Button();
@@ -38,7 +40,6 @@
             this.cbFilter = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tbLoginInfo = new System.Windows.Forms.TabPage();
-            this.ucPersonInfo1 = new DLMS.UserControls.UcPersonInfo();
             this.tbUserInfo.SuspendLayout();
             this.tbPersonalInfo.SuspendLayout();
             this.gbPersonSearch.SuspendLayout();
@@ -67,6 +68,7 @@
             // 
             // tbPersonalInfo
             // 
+            this.tbPersonalInfo.Controls.Add(this.btnNext);
             this.tbPersonalInfo.Controls.Add(this.ucPersonInfo1);
             this.tbPersonalInfo.Controls.Add(this.gbPersonSearch);
             this.tbPersonalInfo.Location = new System.Drawing.Point(4, 22);
@@ -77,6 +79,25 @@
             this.tbPersonalInfo.Text = "Personal Info";
             this.tbPersonalInfo.UseVisualStyleBackColor = true;
             this.tbPersonalInfo.Click += new System.EventHandler(this.TbPersonalInfo_Click);
+            // 
+            // btnNext
+            // 
+            this.btnNext.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext.Location = new System.Drawing.Point(693, 556);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(89, 41);
+            this.btnNext.TabIndex = 5;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = true;
+            this.btnNext.Click += new System.EventHandler(this.BtnNext_Click);
+            // 
+            // ucPersonInfo1
+            // 
+            this.ucPersonInfo1.CurrentPerson = null;
+            this.ucPersonInfo1.Location = new System.Drawing.Point(13, 89);
+            this.ucPersonInfo1.Name = "ucPersonInfo1";
+            this.ucPersonInfo1.Size = new System.Drawing.Size(781, 461);
+            this.ucPersonInfo1.TabIndex = 1;
             // 
             // gbPersonSearch
             // 
@@ -156,14 +177,6 @@
             this.tbLoginInfo.Text = "Login Info";
             this.tbLoginInfo.UseVisualStyleBackColor = true;
             // 
-            // ucPersonInfo1
-            // 
-            this.ucPersonInfo1.CurrentPerson = null;
-            this.ucPersonInfo1.Location = new System.Drawing.Point(13, 89);
-            this.ucPersonInfo1.Name = "ucPersonInfo1";
-            this.ucPersonInfo1.Size = new System.Drawing.Size(781, 461);
-            this.ucPersonInfo1.TabIndex = 1;
-            // 
             // FrmAddEditUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -195,5 +208,6 @@
         private System.Windows.Forms.Button btnPersonSearch;
         private System.Windows.Forms.Button btnAddNewPerson;
         private UserControls.UcPersonInfo ucPersonInfo1;
+        private System.Windows.Forms.Button btnNext;
     }
 }
