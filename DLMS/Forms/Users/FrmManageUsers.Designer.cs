@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblCount = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pnlActivationStatus = new System.Windows.Forms.Panel();
@@ -39,9 +40,14 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
+            this.ctmsUser = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.viewUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ucHeader1 = new DLMS.UcHeader();
             this.pnlActivationStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
+            this.ctmsUser.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblCount
@@ -141,7 +147,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(1014, 624);
+            this.btnClose.Location = new System.Drawing.Point(999, 624);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(113, 36);
             this.btnClose.TabIndex = 12;
@@ -151,7 +157,7 @@
             // 
             // btnAddUser
             // 
-            this.btnAddUser.Location = new System.Drawing.Point(1014, 277);
+            this.btnAddUser.Location = new System.Drawing.Point(996, 277);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(113, 36);
             this.btnAddUser.TabIndex = 11;
@@ -163,6 +169,7 @@
             this.dgvUsers.AllowUserToAddRows = false;
             this.dgvUsers.AllowUserToDeleteRows = false;
             this.dgvUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUsers.ContextMenuStrip = this.ctmsUser;
             this.dgvUsers.Location = new System.Drawing.Point(-1, 329);
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ReadOnly = true;
@@ -170,6 +177,34 @@
             this.dgvUsers.TabIndex = 10;
             this.dgvUsers.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvUsers_CellMouseDown);
             this.dgvUsers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvUsers_ColumnHeaderMouseClick);
+            // 
+            // ctmsUser
+            // 
+            this.ctmsUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.viewUserToolStripMenuItem,
+            this.editUserToolStripMenuItem,
+            this.deleteUserToolStripMenuItem});
+            this.ctmsUser.Name = "ctmsUser";
+            this.ctmsUser.Size = new System.Drawing.Size(134, 70);
+            // 
+            // viewUserToolStripMenuItem
+            // 
+            this.viewUserToolStripMenuItem.Name = "viewUserToolStripMenuItem";
+            this.viewUserToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.viewUserToolStripMenuItem.Text = "View User";
+            this.viewUserToolStripMenuItem.Click += new System.EventHandler(this.ViewUserToolStripMenuItem_Click);
+            // 
+            // editUserToolStripMenuItem
+            // 
+            this.editUserToolStripMenuItem.Name = "editUserToolStripMenuItem";
+            this.editUserToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.editUserToolStripMenuItem.Text = "Edit User";
+            // 
+            // deleteUserToolStripMenuItem
+            // 
+            this.deleteUserToolStripMenuItem.Name = "deleteUserToolStripMenuItem";
+            this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.deleteUserToolStripMenuItem.Text = "Delete User";
             // 
             // ucHeader1
             // 
@@ -201,6 +236,7 @@
             this.pnlActivationStatus.ResumeLayout(false);
             this.pnlActivationStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
+            this.ctmsUser.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,5 +256,9 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnAddUser;
         private System.Windows.Forms.DataGridView dgvUsers;
+        private System.Windows.Forms.ContextMenuStrip ctmsUser;
+        private System.Windows.Forms.ToolStripMenuItem viewUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteUserToolStripMenuItem;
     }
 }

@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows.Forms;
 using DLMS_Business;
+using System;
 
 namespace DLMS.Forms.Users
 {
@@ -173,6 +174,8 @@ namespace DLMS.Forms.Users
             }
         }
 
+        private int SelectedUserId { get; set; }
+
         private void DgvUsers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.ColumnIndex >= 0)
@@ -185,12 +188,30 @@ namespace DLMS.Forms.Users
 
         private void DgvUsers_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-
+            if (e.RowIndex < 0)
+                dgvUsers.ContextMenuStrip = null;
+            else
+            {
+                dgvUsers.ContextMenuStrip = ctmsUser;
+                SelectedUserId = Int32.Parse(dgvUsers.Rows[e.RowIndex].Cells[0].Value?.ToString());
+                DataGridView.HitTestInfo hit = dgvUsers.HitTest(e.X, e.Y);
+                if (hit.RowIndex >= 0)
+                {
+                    dgvUsers.ClearSelection();
+                    dgvUsers.Rows[hit.RowIndex].Selected = true;
+                    dgvUsers.CurrentCell = dgvUsers.Rows[hit.RowIndex].Cells[0];
+                }
+            }
         }
 
         private void RdbACtivation_CheckedChanged(object sender, System.EventArgs e)
         {
             FilterWithActivationStatus();
+        }
+
+        private void ViewUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(SelectedUserId.ToString());
         }
     }
 }

@@ -219,8 +219,11 @@ namespace DLMS.Forms
 
         private void DgvPeople_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            if (e.RowIndex < 0)
+                dgvPeople.ContextMenuStrip = null;
+            else
             {
+                dgvPeople.ContextMenuStrip = cmsPerson;
                 SelectedPersonId = Int32.Parse(dgvPeople.Rows[e.RowIndex].Cells[0].Value?.ToString());
                 DataGridView.HitTestInfo hit = dgvPeople.HitTest(e.X, e.Y);
                 if (hit.RowIndex >= 0)
