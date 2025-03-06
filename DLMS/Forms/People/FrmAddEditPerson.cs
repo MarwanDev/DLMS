@@ -331,12 +331,7 @@ namespace DLMS.Forms
                 //    !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
                 //    File.Exists(CurrentPerson.ImagePath) &&
                 //    IsImageRemoved ? null : NewImagePath : null
-                ImagePath = pbPersonImage.Image != Resources.Male_512 &&
-                    pbPersonImage.Image != Resources.Female_512 &&
-                    pbPersonImage.Image != Resources.question_mark_96 &&
-                    pbPersonImage.Image != null ?
-                    !string.IsNullOrEmpty(NewImagePath) ?
-                    NewImagePath : null : null
+                ImagePath = GetToBeSavedPersonImagePath()
             };
             if (Person.Save())
             {
