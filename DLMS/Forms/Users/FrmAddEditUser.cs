@@ -1,4 +1,5 @@
-﻿using DLMS_Business;
+﻿using DLMS.Properties;
+using DLMS_Business;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace DLMS.Forms.Users
 {
@@ -26,6 +28,33 @@ namespace DLMS.Forms.Users
         private Person CurrentPerson { get; set; }
         private User CurrentUser { get; set; }
 
+        private void ShowPersonData()
+        {
+            ucPersonInfo1.SetPerson(CurrentPerson);
+            ucPersonInfo1.SetPersonId(CurrentPerson.ID.ToString());
+            ucPersonInfo1.SetAddress(CurrentPerson.Address);
+            ucPersonInfo1.SetPersonName(CurrentPerson.FirstName + " " +
+                CurrentPerson.SecondName + " " +
+                CurrentPerson.ThirdName + " " +
+                CurrentPerson.LastName);
+            ucPersonInfo1.SetNationalNo(CurrentPerson.NationalNo);
+            ucPersonInfo1.SetGender(CurrentPerson.Gender == 0 ? "Female" : "Male");
+            ucPersonInfo1.SetEmail(CurrentPerson.Email);
+            ucPersonInfo1.SetCountry(CurrentPerson.Country);
+            ucPersonInfo1.SetDateOfBirth(CurrentPerson.DateOfBirth.Date.ToString());
+            ucPersonInfo1.SetPhone(CurrentPerson.Phone);
+            if (!string.IsNullOrEmpty(CurrentPerson.ImagePath) && File.Exists(CurrentPerson.ImagePath))
+            {
+                ucPersonInfo1.SetImage(CurrentPerson.ImagePath);
+                ucPersonInfo1.RefreshImageBox();
+            }
+            else
+            {
+                ucPersonInfo1.SetImageForNoImageUser();
+            }
+            ucPersonInfo1.Refresh();
+        }
+
         private void BtnPersonSearch_Click(object sender, EventArgs e)
         {
             if (cbFilter.SelectedIndex == 0)
@@ -34,6 +63,7 @@ namespace DLMS.Forms.Users
                 CurrentPerson = Person.Find(Int32.Parse(tbSearch.Text.Trim()));
             if (CurrentPerson != null)
             {
+                ShowPersonData();
                 CurrentUser = User.FindByPersonId(CurrentPerson.ID);
                 if (CurrentUser != null)
                 {

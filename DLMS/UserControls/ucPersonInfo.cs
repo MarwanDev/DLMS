@@ -98,6 +98,16 @@ namespace DLMS.UserControls
             }
         }
 
+        public void SetImageForNoImageUser()
+        {
+            pbPersonImage.Image = CurrentPerson.Gender == 0 ? Resources.Female_512 : Resources.Male_512;
+        }
+
+        public void RefreshImageBox()
+        {
+            pbPersonImage.Refresh();
+        }
+
         private void ReloadData()
         {
             SetPerson(Person.Find(Convert.ToInt32(GetPersonId())));
