@@ -68,10 +68,12 @@ namespace DLMS.Forms.Users
                         MessageBox.Show($"A user with person Id {CurrentPerson.ID} already exists",
                             "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                btnNext.Enabled = true;
             }
             else
             {
                 ClearPersonData();
+                btnNext.Enabled = false;
                 if (cbFilter.SelectedIndex == 0)
                     MessageBox.Show($"No person was found with national number {tbSearch.Text.Trim()}!",
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -101,6 +103,7 @@ namespace DLMS.Forms.Users
         {
             cbFilter.SelectedIndex = 0;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            lblFormHeader.Text = CurrentMode == Mode.Add ? "Add New User" : "Update User";
         }
 
         private void CbFilter_SelectedIndexChanged(object sender, EventArgs e)
@@ -111,7 +114,7 @@ namespace DLMS.Forms.Users
         private void TbSearch_TextChanged(object sender, EventArgs e)
         {
             btnPersonSearch.Enabled = !string.IsNullOrEmpty(tbSearch.Text.Trim());
-            if(cbFilter.SelectedIndex == 1)
+            if (cbFilter.SelectedIndex == 1)
                 tbSearch.Text = System.Text.RegularExpressions.Regex.Replace(tbSearch.Text, "[^0-9]", "");
         }
 
@@ -120,9 +123,50 @@ namespace DLMS.Forms.Users
             tbSearch.Text = tbSearch.Text.Trim();
         }
 
+        public enum Mode { Add, Edit };
+
+        public Mode CurrentMode { get; set; }
+
         private void BtnNext_Click(object sender, EventArgs e)
         {
+            if (CurrentPerson != null && CurrentUser == null && CurrentMode == Mode.Add)
+            {
+                tcUserInfo.SelectedIndex = 1;
+            }
+            else if (CurrentUser != null && CurrentMode == Mode.Add)
+            {
+                if (
+                MessageBox.Show("A user exists under the current person. Do you wanna update user details?",
+                    "Warning",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning) == DialogResult.Yes
+                    )
+                {
+                    CurrentMode = Mode.Edit;
+                    lblFormHeader.Text = "Update User";
+                    tcUserInfo.SelectedIndex = 1;
+                    UpdateUserLoginInfo();
+                }
+            } else if (CurrentMode == Mode.Edit && CurrentUser != null)
+            {
+                tcUserInfo.SelectedIndex = 1;
+            }
+        }
 
+        private void UpdateUserLoginInfo()
+        {
+            lblUserId.Text = CurrentUser.ID.ToString();
+            tbbUserName.Text = CurrentUser.UserName.ToString();
+            tbPassword.Text = CurrentUser.Password;
+            tbConfirmPassword.Text = CurrentUser.Password;
+        }
+
+        private void ClearUserLoginInfo()
+        {
+            lblUserId.Text = "???";
+            tbbUserName.Clear();
+            tbPassword.Clear();
+            tbConfirmPassword.Clear();
         }
 
         private void TbSearch_KeyPress(object sender, KeyPressEventArgs e)
@@ -134,6 +178,11 @@ namespace DLMS.Forms.Users
                     e.Handled = true;
                 }
             }
+        }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

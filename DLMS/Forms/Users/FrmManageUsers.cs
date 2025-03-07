@@ -223,7 +223,10 @@ namespace DLMS.Forms.Users
 
         private void BtnAddUser_Click(object sender, EventArgs e)
         {
-            FrmAddEditUser frmAddEditUser = new FrmAddEditUser();
+            FrmAddEditUser frmAddEditUser = new FrmAddEditUser
+            {
+                CurrentMode = FrmAddEditUser.Mode.Add
+            };
             frmAddEditUser.ShowDialog();
         }
     }
