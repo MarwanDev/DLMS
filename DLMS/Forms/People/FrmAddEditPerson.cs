@@ -299,7 +299,10 @@ namespace DLMS.Forms
                     pbPersonImage.Image != Resources.question_mark_96 &&
                     pbPersonImage.Image != null ?
                     !string.IsNullOrEmpty(NewImagePath) ?
-                    NewImagePath : null : null;
+                    NewImagePath :
+                    CurrentPerson != null &&
+                    !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
+                    File.Exists(CurrentPerson.ImagePath) ? CurrentPerson.ImagePath : null : null;
         }
 
         private bool IsImageRemoved { get; set; }
@@ -369,7 +372,8 @@ namespace DLMS.Forms
                 MessageBox.Show($"Person updated succesfully", "Success",
                     MessageBoxButtons.OK,
                     icon: MessageBoxIcon.Information);
-                DeleteOldImage();
+                if (CurrentPerson.ImagePath != OldImagePath)
+                    DeleteOldImage();
                 SaveNewImageFile();
             }
             else
@@ -394,15 +398,15 @@ namespace DLMS.Forms
         {
             if (File.Exists(OldImagePath))
             {
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
                 try
                 {
+                    GC.Collect();
+                    GC.WaitForPendingFinalizers();
                     File.Delete(OldImagePath);
                 }
-                catch
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Something went wrong. Please try again!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show($"Something went wrong. Please try again! {ex}", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }

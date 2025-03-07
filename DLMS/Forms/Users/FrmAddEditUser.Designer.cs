@@ -141,6 +141,7 @@
             this.tbSearch.Size = new System.Drawing.Size(158, 24);
             this.tbSearch.TabIndex = 2;
             this.tbSearch.TextChanged += new System.EventHandler(this.TbSearch_TextChanged);
+            this.tbSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbSearch_KeyPress);
             this.tbSearch.MouseLeave += new System.EventHandler(this.TbSearch_MouseLeave);
             // 
             // cbFilter
@@ -185,6 +186,7 @@
             this.Controls.Add(this.tbUserInfo);
             this.Controls.Add(this.lblFormHeader);
             this.Name = "FrmAddEditUser";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAddEditUser";
             this.Load += new System.EventHandler(this.FrmAddEditUser_Load);
             this.tbUserInfo.ResumeLayout(false);

@@ -10,6 +10,8 @@ namespace DLMS.Forms.Users
         public FrmAddEditUser()
         {
             InitializeComponent();
+            MinimizeBox = false;
+            MaximizeBox = false;
         }
 
         private void TbPersonalInfo_Click(object sender, EventArgs e)
@@ -69,6 +71,7 @@ namespace DLMS.Forms.Users
             }
             else
             {
+                ClearPersonData();
                 if (cbFilter.SelectedIndex == 0)
                     MessageBox.Show($"No person was found with national number {tbSearch.Text.Trim()}!",
                         "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -78,9 +81,26 @@ namespace DLMS.Forms.Users
             }
         }
 
+        private void ClearPersonData()
+        {
+            ucPersonInfo1.SetPerson(null);
+            ucPersonInfo1.SetPersonId("???");
+            ucPersonInfo1.SetAddress("???");
+            ucPersonInfo1.SetPersonName("???");
+            ucPersonInfo1.SetNationalNo("???");
+            ucPersonInfo1.SetGender("???");
+            ucPersonInfo1.SetEmail("???");
+            ucPersonInfo1.SetCountry("???");
+            ucPersonInfo1.SetDateOfBirth("???");
+            ucPersonInfo1.SetPhone("???");
+            ucPersonInfo1.SetImageForNoData();
+            ucPersonInfo1.Refresh();
+        }
+
         private void FrmAddEditUser_Load(object sender, EventArgs e)
         {
             cbFilter.SelectedIndex = 0;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void CbFilter_SelectedIndexChanged(object sender, EventArgs e)
@@ -91,6 +111,8 @@ namespace DLMS.Forms.Users
         private void TbSearch_TextChanged(object sender, EventArgs e)
         {
             btnPersonSearch.Enabled = !string.IsNullOrEmpty(tbSearch.Text.Trim());
+            if(cbFilter.SelectedIndex == 1)
+                tbSearch.Text = System.Text.RegularExpressions.Regex.Replace(tbSearch.Text, "[^0-9]", "");
         }
 
         private void TbSearch_MouseLeave(object sender, EventArgs e)
@@ -101,6 +123,17 @@ namespace DLMS.Forms.Users
         private void BtnNext_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void TbSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cbFilter.SelectedIndex == 1)
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
         }
     }
 }

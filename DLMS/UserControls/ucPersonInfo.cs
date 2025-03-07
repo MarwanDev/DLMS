@@ -103,6 +103,11 @@ namespace DLMS.UserControls
             pbPersonImage.Image = CurrentPerson.Gender == 0 ? Resources.Female_512 : Resources.Male_512;
         }
 
+        public void SetImageForNoData()
+        {
+            pbPersonImage.Image = Resources.question_mark_96;
+        }
+
         public void RefreshImageBox()
         {
             pbPersonImage.Refresh();
