@@ -322,18 +322,6 @@ namespace DLMS.Forms
                 DateOfBirth = dtpDOB.Value.Date,
                 NationalityCountryID = cbCountry.SelectedIndex + 1,
                 Gender = (byte)(rdbFemale.Checked ? 0 : 1),
-                //ImagePath = pbPersonImage.Image != Resources.Male_512 &&
-                //    pbPersonImage.Image != Resources.Female_512 &&
-                //    pbPersonImage.Image != Resources.question_mark_96 &&
-                //    pbPersonImage.Image != null ?
-                //    !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
-                //    File.Exists(CurrentPerson.ImagePath) &&
-                //    !string.IsNullOrEmpty(NewImagePath) &&
-                //    File.Exists(NewImagePath) &&
-                //    !IsImageRemoved ? CurrentPerson.ImagePath :
-                //    !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
-                //    File.Exists(CurrentPerson.ImagePath) &&
-                //    IsImageRemoved ? null : NewImagePath : null
                 ImagePath = GetToBeSavedPersonImagePath()
             };
             if (Person.Save())
