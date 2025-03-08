@@ -227,6 +227,7 @@ namespace DLMS.Forms.Users
             {
                 CurrentMode = FrmAddEditUser.Mode.Add
             };
+            frmAddEditUser.OnFormClosed += ReloadData;
             frmAddEditUser.ShowDialog();
         }
     }

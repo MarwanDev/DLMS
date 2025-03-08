@@ -13,6 +13,9 @@ namespace DLMS.UserControls
         public UcPersonInfo()
         {
             InitializeComponent();
+            llEdit.Visible = CurrentPerson != null;
+            FrmAddEditPerson frmAddEditPerson1 = new FrmAddEditPerson();
+            frmAddEditPerson1.OnFormClosed += ReloadData;
         }
 
         public string GetPersonId() => lblPersonId.Text;
@@ -95,7 +98,18 @@ namespace DLMS.UserControls
                 {
                     pbPersonImage.Image = CurrentPerson.Gender == 0 ? Resources.Female_512 : Resources.Male_512;
                 }
+                llEdit.Visible = false;
             }
+        }
+
+        public void HideEditLinkLabel()
+        {
+            llEdit.Visible = false;
+        }
+
+        public void ShowEditLinkLabel()
+        {
+            llEdit.Visible = true;
         }
 
         public void SetImageForNoImageUser()

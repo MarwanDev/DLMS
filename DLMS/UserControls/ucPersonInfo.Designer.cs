@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.gbPersonInfo = new System.Windows.Forms.GroupBox();
-            this.lblEdit = new System.Windows.Forms.LinkLabel();
+            this.llEdit = new System.Windows.Forms.LinkLabel();
             this.pbPersonImage = new System.Windows.Forms.PictureBox();
             this.lblCountry = new System.Windows.Forms.Label();
             this.lblPhone = new System.Windows.Forms.Label();
@@ -55,7 +55,7 @@
             // 
             // gbPersonInfo
             // 
-            this.gbPersonInfo.Controls.Add(this.lblEdit);
+            this.gbPersonInfo.Controls.Add(this.llEdit);
             this.gbPersonInfo.Controls.Add(this.pbPersonImage);
             this.gbPersonInfo.Controls.Add(this.lblCountry);
             this.gbPersonInfo.Controls.Add(this.lblPhone);
@@ -82,18 +82,18 @@
             this.gbPersonInfo.TabStop = false;
             this.gbPersonInfo.Text = "Person Information";
             // 
-            // lblEdit
+            // llEdit
             // 
-            this.lblEdit.AutoSize = true;
-            this.lblEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEdit.Location = new System.Drawing.Point(590, 116);
-            this.lblEdit.Name = "lblEdit";
-            this.lblEdit.Size = new System.Drawing.Size(123, 20);
-            this.lblEdit.TabIndex = 19;
-            this.lblEdit.TabStop = true;
-            this.lblEdit.Text = "Edit Person Info";
-            this.lblEdit.VisitedLinkColor = System.Drawing.Color.Blue;
-            this.lblEdit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LblEdit_LinkClicked);
+            this.llEdit.AutoSize = true;
+            this.llEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llEdit.Location = new System.Drawing.Point(590, 116);
+            this.llEdit.Name = "llEdit";
+            this.llEdit.Size = new System.Drawing.Size(123, 20);
+            this.llEdit.TabIndex = 19;
+            this.llEdit.TabStop = true;
+            this.llEdit.Text = "Edit Person Info";
+            this.llEdit.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.llEdit.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LblEdit_LinkClicked);
             // 
             // pbPersonImage
             // 
@@ -323,6 +323,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.PictureBox pbPersonImage;
-        private System.Windows.Forms.LinkLabel lblEdit;
+        private System.Windows.Forms.LinkLabel llEdit;
     }
 }

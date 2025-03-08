@@ -2,6 +2,8 @@
 using System;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace DLMS.Forms.Users
 {
@@ -19,8 +21,8 @@ namespace DLMS.Forms.Users
 
         }
 
-        private Person CurrentPerson { get; set; }
-        private User CurrentUser { get; set; }
+        private static Person CurrentPerson { get; set; }
+        private static User CurrentUser { get; set; }
 
         private void ShowPersonData()
         {
@@ -46,6 +48,7 @@ namespace DLMS.Forms.Users
             {
                 ucPersonInfo1.SetImageForNoImageUser();
             }
+            ucPersonInfo1.ShowEditLinkLabel();
             ucPersonInfo1.Refresh();
         }
 
@@ -59,6 +62,8 @@ namespace DLMS.Forms.Users
             {
                 ShowPersonData();
                 CurrentUser = User.FindByPersonId(CurrentPerson.ID);
+                FrmAddEditPerson frmAddEditPerson1 = new FrmAddEditPerson(CurrentPerson);
+                frmAddEditPerson1.OnFormClosed += ReloadData;
                 if (CurrentUser != null)
                 {
                     if (cbFilter.SelectedIndex == 0)
@@ -96,6 +101,7 @@ namespace DLMS.Forms.Users
             ucPersonInfo1.SetDateOfBirth("???");
             ucPersonInfo1.SetPhone("???");
             ucPersonInfo1.SetImageForNoData();
+            ucPersonInfo1.HideEditLinkLabel();
             ucPersonInfo1.Refresh();
         }
 
@@ -125,6 +131,14 @@ namespace DLMS.Forms.Users
 
         public enum Mode { Add, Edit };
 
+        private bool IsValidUserName(string userName)
+        {
+            if (string.IsNullOrWhiteSpace(userName))
+                return false;
+            string userNamePattern = @"^(?=[a-zA-Z])[-\w.]{0,23}([a-zA-Z\d]|(?<![-.])_)$";
+            return Regex.IsMatch(userName, userNamePattern) || !string.IsNullOrEmpty(userName);
+        }
+
         public Mode CurrentMode { get; set; }
 
         private void BtnNext_Click(object sender, EventArgs e)
@@ -147,7 +161,8 @@ namespace DLMS.Forms.Users
                     tcUserInfo.SelectedIndex = 1;
                     UpdateUserLoginInfo();
                 }
-            } else if (CurrentMode == Mode.Edit && CurrentUser != null)
+            }
+            else if (CurrentMode == Mode.Edit && CurrentUser != null)
             {
                 tcUserInfo.SelectedIndex = 1;
             }
@@ -156,7 +171,7 @@ namespace DLMS.Forms.Users
         private void UpdateUserLoginInfo()
         {
             lblUserId.Text = CurrentUser.ID.ToString();
-            tbbUserName.Text = CurrentUser.UserName.ToString();
+            tbUserName.Text = CurrentUser.UserName.ToString();
             tbPassword.Text = CurrentUser.Password;
             tbConfirmPassword.Text = CurrentUser.Password;
         }
@@ -164,9 +179,16 @@ namespace DLMS.Forms.Users
         private void ClearUserLoginInfo()
         {
             lblUserId.Text = "???";
-            tbbUserName.Clear();
+            tbUserName.Clear();
             tbPassword.Clear();
             tbConfirmPassword.Clear();
+        }
+
+        private void DsiableUserLoginInfo()
+        {
+            tbUserName.Enabled = false;
+            tbPassword.Enabled = false;
+            tbConfirmPassword.Enabled = false;
         }
 
         private void TbSearch_KeyPress(object sender, KeyPressEventArgs e)
@@ -183,6 +205,152 @@ namespace DLMS.Forms.Users
         private void BtnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void TcUserInfo_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (e.TabPage == tabLoginInfo)
+            {
+                if (CurrentPerson == null || (CurrentPerson != null && CurrentUser != null && CurrentMode == Mode.Add))
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void TbUserName_Leave(object sender, EventArgs e)
+        {
+            tbUserName.Text = tbUserName.Text.Trim();
+            if (!IsValidUserName(tbUserName.Text))
+            {
+                SetError(tbUserName, "Please enter a valid username!");
+            }
+            else
+            {
+                SetError(tbUserName, "");
+            }
+            ChangeSaveBtnAbilityIfPossible();
+        }
+
+        private void ChangeSaveBtnAbilityIfPossible()
+        {
+            if (ShouldSaveBtnBeEnabled())
+                btnSave.Enabled = true;
+            else
+                btnSave.Enabled = false;
+        }
+
+        private bool ShouldSaveBtnBeEnabled()
+        {
+            return GetActiveErrorCount() == 0 &&
+                tbUserName.Text.Trim() != "" &&
+                tbPassword.Text.Trim() != "" &&
+                tbConfirmPassword.Text.Trim() != "";
+        }
+
+        private readonly Dictionary<Control, string> errorTracker = new Dictionary<Control, string>();
+
+        private void SetError(Control control, string errorMessage)
+        {
+            errorProvider1.SetError(control, errorMessage);
+
+            if (!string.IsNullOrEmpty(errorMessage))
+                errorTracker[control] = errorMessage;
+            else
+                errorTracker.Remove(control);
+        }
+
+        private int GetActiveErrorCount()
+        {
+            return errorTracker.Count;
+        }
+
+        private void TbPassword_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(tbPassword.Text))
+                SetError(tbPassword, "Please enter a valid password!");
+            else
+                SetError(tbPassword, "");
+            ChangeSaveBtnAbilityIfPossible();
+        }
+
+        private void TbConfirmPassword_Leave(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(tbPassword.Text) && tbConfirmPassword.Text != tbPassword.Text)
+                SetError(tbConfirmPassword, "Password must match password confirmation!");
+            else
+                SetError(tbConfirmPassword, "");
+            ChangeSaveBtnAbilityIfPossible();
+        }
+
+        private void SaveUpdate()
+        {
+            CurrentUser.PersonID = CurrentPerson.ID;
+            CurrentUser.UserName = tbUserName.Text;
+            CurrentUser.Password = tbPassword.Text;
+            CurrentUser.IsActive = cbIsActive.Checked;
+            if (CurrentUser.Save())
+                MessageBox.Show($"User Updated Successfully", "Success",
+                    MessageBoxButtons.OK,
+                    icon: MessageBoxIcon.Information);
+        }
+
+        private User User { get; set; }
+
+        private void SaveAddition()
+        {
+            User = new User
+            {
+                PersonID = CurrentPerson.ID,
+                UserName = tbUserName.Text,
+                Password = tbPassword.Text,
+                IsActive = cbIsActive.Checked
+            };
+            if (User.Save())
+            {
+                MessageBox.Show($"User added Successfully with UserId {User.ID}", "Success",
+                    MessageBoxButtons.OK,
+                    icon: MessageBoxIcon.Information);
+                lblUserId.Text = User.ID.ToString();
+                CurrentUser = User;
+                CurrentMode = Mode.Edit;
+                lblFormHeader.Text = "Update User";
+            }
+            else
+                MessageBox.Show($"Something wrong happened", "Error",
+                    MessageBoxButtons.OK,
+                    icon: MessageBoxIcon.Error);
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            if (CurrentMode == Mode.Add)
+                SaveAddition();
+            else
+                SaveUpdate();
+        }
+
+        private void ReloadData()
+        {
+            CurrentPerson = ucPersonInfo1.CurrentPerson;
+            CurrentUser = User.FindByPersonId(Int32.Parse(ucPersonInfo1.GetPersonId()));
+        }
+
+        private void BtnAddNewPerson_Click(object sender, EventArgs e)
+        {
+            FrmAddEditPerson frmAddEditPerson = new FrmAddEditPerson
+            {
+                CurrentMode = FrmAddEditPerson.Mode.Add
+            };
+            frmAddEditPerson.OnFormClosed += ReloadData;
+            frmAddEditPerson.ShowDialog();
+        }
+
+        public new event Action OnFormClosed;
+
+        private void FrmAddEditUser_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            OnFormClosed?.Invoke();
         }
     }
 }

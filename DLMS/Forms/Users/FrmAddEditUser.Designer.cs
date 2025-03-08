@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblFormHeader = new System.Windows.Forms.Label();
             this.tcUserInfo = new System.Windows.Forms.TabControl();
             this.tabPersonalInfo = new System.Windows.Forms.TabPage();
             this.btnNext = new System.Windows.Forms.Button();
-            this.ucPersonInfo1 = new DLMS.UserControls.UcPersonInfo();
             this.gbPersonSearch = new System.Windows.Forms.GroupBox();
             this.btnAddNewPerson = new System.Windows.Forms.Button();
             this.btnPersonSearch = new System.Windows.Forms.Button();
@@ -44,16 +44,21 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.tbbUserName = new System.Windows.Forms.TextBox();
+            this.tbUserName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.lblUserId = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cbIsActive = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.ucPersonInfo1 = new DLMS.UserControls.UcPersonInfo();
             this.tcUserInfo.SuspendLayout();
             this.tabPersonalInfo.SuspendLayout();
             this.gbPersonSearch.SuspendLayout();
             this.tabLoginInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFormHeader
@@ -76,6 +81,7 @@
             this.tcUserInfo.SelectedIndex = 0;
             this.tcUserInfo.Size = new System.Drawing.Size(818, 629);
             this.tcUserInfo.TabIndex = 2;
+            this.tcUserInfo.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TcUserInfo_Selecting);
             // 
             // tabPersonalInfo
             // 
@@ -102,14 +108,6 @@
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.BtnNext_Click);
             // 
-            // ucPersonInfo1
-            // 
-            this.ucPersonInfo1.CurrentPerson = null;
-            this.ucPersonInfo1.Location = new System.Drawing.Point(13, 89);
-            this.ucPersonInfo1.Name = "ucPersonInfo1";
-            this.ucPersonInfo1.Size = new System.Drawing.Size(781, 461);
-            this.ucPersonInfo1.TabIndex = 1;
-            // 
             // gbPersonSearch
             // 
             this.gbPersonSearch.Controls.Add(this.btnAddNewPerson);
@@ -132,6 +130,7 @@
             this.btnAddNewPerson.TabIndex = 4;
             this.btnAddNewPerson.Text = "Add New Person";
             this.btnAddNewPerson.UseVisualStyleBackColor = true;
+            this.btnAddNewPerson.Click += new System.EventHandler(this.BtnAddNewPerson_Click);
             // 
             // btnPersonSearch
             // 
@@ -181,11 +180,13 @@
             // 
             // tabLoginInfo
             // 
+            this.tabLoginInfo.Controls.Add(this.label6);
+            this.tabLoginInfo.Controls.Add(this.cbIsActive);
             this.tabLoginInfo.Controls.Add(this.tbConfirmPassword);
             this.tabLoginInfo.Controls.Add(this.label5);
             this.tabLoginInfo.Controls.Add(this.tbPassword);
             this.tabLoginInfo.Controls.Add(this.label3);
-            this.tabLoginInfo.Controls.Add(this.tbbUserName);
+            this.tabLoginInfo.Controls.Add(this.tbUserName);
             this.tabLoginInfo.Controls.Add(this.label4);
             this.tabLoginInfo.Controls.Add(this.lblUserId);
             this.tabLoginInfo.Controls.Add(this.label2);
@@ -206,6 +207,7 @@
             this.tbConfirmPassword.PasswordChar = '*';
             this.tbConfirmPassword.Size = new System.Drawing.Size(173, 26);
             this.tbConfirmPassword.TabIndex = 7;
+            this.tbConfirmPassword.Leave += new System.EventHandler(this.TbConfirmPassword_Leave);
             // 
             // label5
             // 
@@ -226,6 +228,7 @@
             this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(173, 26);
             this.tbPassword.TabIndex = 5;
+            this.tbPassword.Leave += new System.EventHandler(this.TbPassword_Leave);
             // 
             // label3
             // 
@@ -237,13 +240,15 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "Password:";
             // 
-            // tbbUserName
+            // tbUserName
             // 
-            this.tbbUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbbUserName.Location = new System.Drawing.Point(232, 174);
-            this.tbbUserName.Name = "tbbUserName";
-            this.tbbUserName.Size = new System.Drawing.Size(173, 26);
-            this.tbbUserName.TabIndex = 3;
+            this.tbUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbUserName.Location = new System.Drawing.Point(232, 174);
+            this.tbUserName.MaxLength = 30;
+            this.tbUserName.Name = "tbUserName";
+            this.tbUserName.Size = new System.Drawing.Size(173, 26);
+            this.tbUserName.TabIndex = 3;
+            this.tbUserName.Leave += new System.EventHandler(this.TbUserName_Leave);
             // 
             // label4
             // 
@@ -295,6 +300,38 @@
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // cbIsActive
+            // 
+            this.cbIsActive.AutoSize = true;
+            this.cbIsActive.Location = new System.Drawing.Point(232, 326);
+            this.cbIsActive.Name = "cbIsActive";
+            this.cbIsActive.Size = new System.Drawing.Size(15, 14);
+            this.cbIsActive.TabIndex = 8;
+            this.cbIsActive.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(119, 320);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(83, 20);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Is Active:";
+            // 
+            // ucPersonInfo1
+            // 
+            this.ucPersonInfo1.CurrentPerson = null;
+            this.ucPersonInfo1.Location = new System.Drawing.Point(13, 89);
+            this.ucPersonInfo1.Name = "ucPersonInfo1";
+            this.ucPersonInfo1.Size = new System.Drawing.Size(781, 461);
+            this.ucPersonInfo1.TabIndex = 1;
             // 
             // FrmAddEditUser
             // 
@@ -308,6 +345,7 @@
             this.Name = "FrmAddEditUser";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmAddEditUser";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmAddEditUser_FormClosed);
             this.Load += new System.EventHandler(this.FrmAddEditUser_Load);
             this.tcUserInfo.ResumeLayout(false);
             this.tabPersonalInfo.ResumeLayout(false);
@@ -315,6 +353,7 @@
             this.gbPersonSearch.PerformLayout();
             this.tabLoginInfo.ResumeLayout(false);
             this.tabLoginInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -336,12 +375,15 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblUserId;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tbbUserName;
+        private System.Windows.Forms.TextBox tbUserName;
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbConfirmPassword;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.CheckBox cbIsActive;
+        private System.Windows.Forms.Label label6;
     }
 }
