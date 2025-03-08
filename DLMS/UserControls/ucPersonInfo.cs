@@ -127,7 +127,7 @@ namespace DLMS.UserControls
             pbPersonImage.Refresh();
         }
 
-        private void ReloadData()
+        public void ReloadData()
         {
             SetPerson(Person.Find(Convert.ToInt32(GetPersonId())));
             SetAddress(CurrentPerson.Address);

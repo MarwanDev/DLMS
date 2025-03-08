@@ -307,6 +307,10 @@ namespace DLMS.Forms
 
         private bool IsImageRemoved { get; set; }
 
+        public delegate void DataBackEventHandler(object sender, int PersonID);
+
+        public event DataBackEventHandler DataBack;
+
         private void SaveAddition()
         {
             Person = new Person
@@ -334,6 +338,7 @@ namespace DLMS.Forms
                 CurrentMode = Mode.Edit;
                 CurrentPerson = Person;
                 lblHeader.Text = "Edit Person";
+                DataBack?.Invoke(this, CurrentPerson.ID);
             }
             else
                 MessageBox.Show($"Something wrong happened", "Error",

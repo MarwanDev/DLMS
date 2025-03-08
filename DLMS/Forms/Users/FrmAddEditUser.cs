@@ -330,10 +330,50 @@ namespace DLMS.Forms.Users
                 SaveUpdate();
         }
 
+        private void ReloadCurrentPersonData()
+        {
+            ucPersonInfo1.SetPerson(CurrentPerson);
+            ucPersonInfo1.SetAddress(CurrentPerson.Address);
+            ucPersonInfo1.SetPersonId(CurrentPerson.ID.ToString());
+            ucPersonInfo1.SetPersonName(CurrentPerson.FirstName + " " +
+                CurrentPerson.SecondName + " " +
+                CurrentPerson.ThirdName + " " +
+                CurrentPerson.LastName);
+            ucPersonInfo1.SetNationalNo(CurrentPerson.NationalNo);
+            ucPersonInfo1.SetGender(CurrentPerson.Gender == 0 ? "Female" : "Male");
+            ucPersonInfo1.SetEmail(CurrentPerson.Email);
+            ucPersonInfo1.SetCountry(CurrentPerson.Country);
+            ucPersonInfo1.SetDateOfBirth(CurrentPerson.DateOfBirth.Date.ToString());
+            ucPersonInfo1.SetPhone(CurrentPerson.Phone);
+            if (!string.IsNullOrEmpty(CurrentPerson.ImagePath) && File.Exists(CurrentPerson.ImagePath))
+            {
+                ucPersonInfo1.SetImage(CurrentPerson.ImagePath);
+                ucPersonInfo1.RefreshImageBox();
+            }
+            else
+            {
+                ucPersonInfo1.SetImageForNoImageUser();
+            }
+            this.Refresh();
+        }
+
         private void ReloadData()
         {
             CurrentPerson = ucPersonInfo1.CurrentPerson;
-            CurrentUser = User.FindByPersonId(Int32.Parse(ucPersonInfo1.GetPersonId()));
+            ReloadCurrentPersonData();
+            User user = User.FindByPersonId(Int32.Parse(ucPersonInfo1.GetPersonId()));
+            if (user != null)
+                CurrentUser = user;
+        }
+
+        private void FromAddEditPerson_DataBack(object sender, int PersonID)
+        {
+            CurrentPerson = Person.Find(PersonID);
+            if (CurrentPerson != null)
+            {
+                ucPersonInfo1.SetPersonId(PersonID.ToString());
+                ucPersonInfo1.ReloadData();
+            }
         }
 
         private void BtnAddNewPerson_Click(object sender, EventArgs e)
@@ -342,7 +382,7 @@ namespace DLMS.Forms.Users
             {
                 CurrentMode = FrmAddEditPerson.Mode.Add
             };
-            frmAddEditPerson.OnFormClosed += ReloadData;
+            frmAddEditPerson.DataBack += FromAddEditPerson_DataBack;
             frmAddEditPerson.ShowDialog();
         }
 
