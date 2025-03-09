@@ -84,9 +84,9 @@ namespace DLMS.Forms.Users
         private bool ShouldSaveBtnBeEnabled()
         {
             return GetActiveErrorCount() == 0 &&
-                tbNewPassword.Text.Trim() != "" &&
-                tbConfirmPassword.Text.Trim() != "" &&
-                tbCurrentPassword.Text.Trim() != "";
+                tbNewPassword.Text != "" &&
+                tbConfirmPassword.Text != "" &&
+                tbCurrentPassword.Text != "";
         }
 
         private readonly Dictionary<Control, string> errorTracker = new Dictionary<Control, string>();
@@ -133,6 +133,7 @@ namespace DLMS.Forms.Users
 
         private void TbNewPassword_Leave(object sender, EventArgs e)
         {
+            ChangeSaveBtnAbilityIfPossible();
         }
 
         private void TbConfirmPassword_Leave(object sender, EventArgs e)
@@ -141,6 +142,7 @@ namespace DLMS.Forms.Users
                 SetError(tbConfirmPassword, "New password and confirmation must match!");
             else
                 SetError(tbConfirmPassword, "");
+            ChangeSaveBtnAbilityIfPossible();
         }
 
         private void FrmChangePassword_Load(object sender, EventArgs e)
