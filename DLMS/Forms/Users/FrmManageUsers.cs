@@ -3,6 +3,7 @@ using System.Data;
 using System.Windows.Forms;
 using DLMS_Business;
 using System;
+using System.Drawing;
 
 namespace DLMS.Forms.Users
 {
@@ -229,6 +230,34 @@ namespace DLMS.Forms.Users
             };
             frmAddEditUser.OnFormClosed += ReloadData;
             frmAddEditUser.ShowDialog();
+        }
+
+        private void EditUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmAddEditUser frmAddEditUser = new FrmAddEditUser(SelectedUserId);
+            frmAddEditUser.OnFormClosed += ReloadData;
+            frmAddEditUser.ShowDialog();
+        }
+
+        private void DeleteUser()
+        {
+            if(User.DeleteUser(SelectedUserId))
+                MessageBox.Show($"User Deleted Successfully!", "Sucecess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show($"Couldn't delet person {SelectedUserId} as they're connected with other part(s) in the system",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            ReloadData();
+        }
+
+        private void DeleteUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show($"Are you wure you want to delete the user {SelectedUserId}?",
+                "Delete Confirmation",
+                MessageBoxButtons.YesNo,
+                icon: MessageBoxIcon.Information) == DialogResult.Yes)
+                DeleteUser();
         }
     }
 }

@@ -32,6 +32,7 @@
             this.lblCount = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pnlActivationStatus = new System.Windows.Forms.Panel();
+            this.rdbAll = new System.Windows.Forms.RadioButton();
             this.rdbInactive = new System.Windows.Forms.RadioButton();
             this.rdbActive = new System.Windows.Forms.RadioButton();
             this.tbSearch = new System.Windows.Forms.TextBox();
@@ -44,7 +45,6 @@
             this.viewUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rdbAll = new System.Windows.Forms.RadioButton();
             this.ucHeader1 = new DLMS.UcHeader();
             this.pnlActivationStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
@@ -81,6 +81,19 @@
             this.pnlActivationStatus.Size = new System.Drawing.Size(302, 48);
             this.pnlActivationStatus.TabIndex = 16;
             this.pnlActivationStatus.Visible = false;
+            // 
+            // rdbAll
+            // 
+            this.rdbAll.AutoSize = true;
+            this.rdbAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbAll.Location = new System.Drawing.Point(185, 16);
+            this.rdbAll.Name = "rdbAll";
+            this.rdbAll.Size = new System.Drawing.Size(49, 28);
+            this.rdbAll.TabIndex = 2;
+            this.rdbAll.TabStop = true;
+            this.rdbAll.Text = "All";
+            this.rdbAll.UseVisualStyleBackColor = true;
+            this.rdbAll.CheckedChanged += new System.EventHandler(this.RdbACtivation_CheckedChanged);
             // 
             // rdbInactive
             // 
@@ -202,25 +215,14 @@
             this.editUserToolStripMenuItem.Name = "editUserToolStripMenuItem";
             this.editUserToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.editUserToolStripMenuItem.Text = "Edit User";
+            this.editUserToolStripMenuItem.Click += new System.EventHandler(this.EditUserToolStripMenuItem_Click);
             // 
             // deleteUserToolStripMenuItem
             // 
             this.deleteUserToolStripMenuItem.Name = "deleteUserToolStripMenuItem";
             this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.deleteUserToolStripMenuItem.Text = "Delete User";
-            // 
-            // rdbAll
-            // 
-            this.rdbAll.AutoSize = true;
-            this.rdbAll.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbAll.Location = new System.Drawing.Point(185, 16);
-            this.rdbAll.Name = "rdbAll";
-            this.rdbAll.Size = new System.Drawing.Size(49, 28);
-            this.rdbAll.TabIndex = 2;
-            this.rdbAll.TabStop = true;
-            this.rdbAll.Text = "All";
-            this.rdbAll.UseVisualStyleBackColor = true;
-            this.rdbAll.CheckedChanged += new System.EventHandler(this.RdbACtivation_CheckedChanged);
+            this.deleteUserToolStripMenuItem.Click += new System.EventHandler(this.DeleteUserToolStripMenuItem_Click);
             // 
             // ucHeader1
             // 

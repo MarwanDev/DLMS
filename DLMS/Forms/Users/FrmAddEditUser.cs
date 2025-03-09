@@ -16,6 +16,20 @@ namespace DLMS.Forms.Users
             MaximizeBox = false;
         }
 
+        public FrmAddEditUser(int userId)
+        {
+            InitializeComponent();
+            MinimizeBox = false;
+            MaximizeBox = false;
+            gbPersonSearch.Enabled = false;
+            CurrentMode = Mode.Edit;
+            User user = User.Find(userId);
+            CurrentUser = user;
+            CurrentPerson = Person.Find(CurrentUser.PersonID);
+            ShowPersonData();
+            UpdateUserLoginInfo();
+        }
+
         private void TbPersonalInfo_Click(object sender, EventArgs e)
         {
 
@@ -174,21 +188,7 @@ namespace DLMS.Forms.Users
             tbUserName.Text = CurrentUser.UserName.ToString();
             tbPassword.Text = CurrentUser.Password;
             tbConfirmPassword.Text = CurrentUser.Password;
-        }
-
-        private void ClearUserLoginInfo()
-        {
-            lblUserId.Text = "???";
-            tbUserName.Clear();
-            tbPassword.Clear();
-            tbConfirmPassword.Clear();
-        }
-
-        private void DsiableUserLoginInfo()
-        {
-            tbUserName.Enabled = false;
-            tbPassword.Enabled = false;
-            tbConfirmPassword.Enabled = false;
+            cbIsActive.Checked = CurrentUser.IsActive;
         }
 
         private void TbSearch_KeyPress(object sender, KeyPressEventArgs e)
@@ -293,6 +293,10 @@ namespace DLMS.Forms.Users
                 MessageBox.Show($"User Updated Successfully", "Success",
                     MessageBoxButtons.OK,
                     icon: MessageBoxIcon.Information);
+            else
+                MessageBox.Show($"Something Went Wrong", "Error",
+                    MessageBoxButtons.OK,
+                    icon: MessageBoxIcon.Error);
         }
 
         private User User { get; set; }

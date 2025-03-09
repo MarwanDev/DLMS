@@ -98,7 +98,7 @@ namespace DLMS.UserControls
                 {
                     pbPersonImage.Image = CurrentPerson.Gender == 0 ? Resources.Female_512 : Resources.Male_512;
                 }
-                llEdit.Visible = false;
+                //llEdit.Visible = false;
             }
         }
 
