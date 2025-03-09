@@ -3,7 +3,6 @@ using System.Data;
 using System.Windows.Forms;
 using DLMS_Business;
 using System;
-using System.Drawing;
 
 namespace DLMS.Forms.Users
 {
@@ -219,7 +218,8 @@ namespace DLMS.Forms.Users
 
         private void ViewUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(SelectedUserId.ToString());
+            FrmShowUserDetails frmShowUserDetails = new FrmShowUserDetails(SelectedUserId);
+            frmShowUserDetails.ShowDialog();
         }
 
         private void BtnAddUser_Click(object sender, EventArgs e)
