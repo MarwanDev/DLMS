@@ -46,6 +46,7 @@
             this.editUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ucHeader1 = new DLMS.UcHeader();
+            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlActivationStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.ctmsUser.SuspendLayout();
@@ -199,28 +200,29 @@
             this.ctmsUser.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.viewUserToolStripMenuItem,
             this.editUserToolStripMenuItem,
-            this.deleteUserToolStripMenuItem});
+            this.deleteUserToolStripMenuItem,
+            this.changePasswordToolStripMenuItem});
             this.ctmsUser.Name = "ctmsUser";
-            this.ctmsUser.Size = new System.Drawing.Size(134, 70);
+            this.ctmsUser.Size = new System.Drawing.Size(181, 114);
             // 
             // viewUserToolStripMenuItem
             // 
             this.viewUserToolStripMenuItem.Name = "viewUserToolStripMenuItem";
-            this.viewUserToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.viewUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewUserToolStripMenuItem.Text = "View User";
             this.viewUserToolStripMenuItem.Click += new System.EventHandler(this.ViewUserToolStripMenuItem_Click);
             // 
             // editUserToolStripMenuItem
             // 
             this.editUserToolStripMenuItem.Name = "editUserToolStripMenuItem";
-            this.editUserToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.editUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.editUserToolStripMenuItem.Text = "Edit User";
             this.editUserToolStripMenuItem.Click += new System.EventHandler(this.EditUserToolStripMenuItem_Click);
             // 
             // deleteUserToolStripMenuItem
             // 
             this.deleteUserToolStripMenuItem.Name = "deleteUserToolStripMenuItem";
-            this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteUserToolStripMenuItem.Text = "Delete User";
             this.deleteUserToolStripMenuItem.Click += new System.EventHandler(this.DeleteUserToolStripMenuItem_Click);
             // 
@@ -231,6 +233,13 @@
             this.ucHeader1.Name = "ucHeader1";
             this.ucHeader1.Size = new System.Drawing.Size(258, 219);
             this.ucHeader1.TabIndex = 0;
+            // 
+            // changePasswordToolStripMenuItem
+            // 
+            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.changePasswordToolStripMenuItem.Text = "Change Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.ChangePasswordToolStripMenuItem_Click);
             // 
             // FrmManageUsers
             // 
@@ -279,5 +288,6 @@
         private System.Windows.Forms.ToolStripMenuItem editUserToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteUserToolStripMenuItem;
         private System.Windows.Forms.RadioButton rdbAll;
+        private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
     }
 }

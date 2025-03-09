@@ -259,5 +259,11 @@ namespace DLMS.Forms.Users
                 icon: MessageBoxIcon.Information) == DialogResult.Yes)
                 DeleteUser();
         }
+
+        private void ChangePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmChangePassword frmChangePassword = new FrmChangePassword(SelectedUserId);
+            frmChangePassword.ShowDialog();
+        }
     }
 }
