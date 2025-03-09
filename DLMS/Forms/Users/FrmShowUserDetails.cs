@@ -23,9 +23,9 @@ namespace DLMS.Forms.Users
             {
                 ucPersonInfo1.SetPersonId(CurrentUser.PersonID.ToString());
                 ucPersonInfo1.ReloadData();
-                lblUserId.Text = CurrentUser.ID.ToString();
-                lblUserName.Text = CurrentUser.UserName.ToString();
-                lblIsActive.Text = CurrentUser.IsActive ? "Yes" : "No";
+                ucLoginInfo1.SetUserId(CurrentUser.ID);
+                ucLoginInfo1.SetUserName(CurrentUser.UserName);
+                ucLoginInfo1.SetIsActive(CurrentUser.IsActive);
             }
         }
 

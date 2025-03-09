@@ -102,6 +102,12 @@
     <Compile Include="UserControls\ucHeader.Designer.cs">
       <DependentUpon>ucHeader.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcLoginInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcLoginInfo.Designer.cs">
+      <DependentUpon>UcLoginInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ucPersonInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -145,6 +151,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucHeader.resx">
       <DependentUpon>ucHeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcLoginInfo.resx">
+      <DependentUpon>UcLoginInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucPersonInfo.resx">
       <DependentUpon>ucPersonInfo.cs</DependentUpon>
