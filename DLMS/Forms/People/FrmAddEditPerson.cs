@@ -117,7 +117,7 @@ namespace DLMS.Forms
             }
             else
             {
-                cbCountry.SelectedIndex = CountryID - 1;
+                cbCountry.SelectedValue = CountryID;
             }
             lblHeader.Text = CurrentMode == Mode.Add ? "Add New Person" : "Edit Person";
             timer1.Enabled = true;
@@ -357,7 +357,7 @@ namespace DLMS.Forms
             CurrentPerson.Phone = tbPhone.Text;
             CurrentPerson.Address = rtbAddress.Text;
             CurrentPerson.DateOfBirth = dtpDOB.Value.Date;
-            CurrentPerson.NationalityCountryID = cbCountry.SelectedIndex + 1;
+            CurrentPerson.NationalityCountryID = Int32.Parse(cbCountry.SelectedValue.ToString());
             CurrentPerson.Gender = (byte)(rdbFemale.Checked ? 0 : 1);
             CurrentPerson.ImagePath = GetToBeSavedPersonImagePath();
             if (CurrentPerson.Save())
