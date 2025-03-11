@@ -10,7 +10,6 @@ namespace DLMS
             if (!Person.DoesPersonExist(id))
             {
                 timer.Stop();
-                timer.Enabled = false;
                 if (MessageBox.Show($"Person with id {id} is not there any more!",
                      "Heads up!", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
                     form.Close();
@@ -22,7 +21,6 @@ namespace DLMS
             if (!User.DoesUserExist(id))
             {
                 timer.Stop();
-                timer.Enabled = false;
                 if (MessageBox.Show($"User with id {id} is not there any more!",
                      "Heads up!", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
                     form.Close();

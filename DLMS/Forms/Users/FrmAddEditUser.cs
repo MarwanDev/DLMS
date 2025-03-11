@@ -124,7 +124,6 @@ namespace DLMS.Forms.Users
             cbFilter.SelectedIndex = 0;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             lblFormHeader.Text = CurrentMode == Mode.Add ? "Add New User" : "Update User";
-            timer1.Enabled = true;
             timer1.Start();
         }
 

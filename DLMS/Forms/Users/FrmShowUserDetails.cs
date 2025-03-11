@@ -36,7 +36,6 @@ namespace DLMS.Forms.Users
         private void FrmShowUserDetails_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            timer1.Enabled = true;
             timer1.Start();
         }
 
