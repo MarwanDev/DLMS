@@ -29,6 +29,8 @@ namespace DLMS.Forms.Users
             }
         }
 
+        public new event Action OnFormClosed;
+
         private User CurrentUser { get; set; }
 
         private void FrmShowUserDetails_Load(object sender, EventArgs e)
@@ -39,6 +41,11 @@ namespace DLMS.Forms.Users
         private void BtnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FrmShowUserDetails_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            OnFormClosed?.Invoke();
         }
     }
 }

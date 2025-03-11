@@ -65,6 +65,8 @@ namespace DLMS.Forms.Users
             ucPersonInfo1.Refresh();
         }
 
+        public new event Action OnFormClosed;
+
         private static Person CurrentPerson { get; set; }
         private static User CurrentUser { get; set; }
 
@@ -108,11 +110,7 @@ namespace DLMS.Forms.Users
 
         private void BtnSave_Click(object sender, EventArgs e)
         {
-            CurrentUser.PersonID = CurrentUser.PersonID;
-            CurrentUser.UserName = CurrentUser.UserName;
-            CurrentUser.Password = tbNewPassword.Text;
-            CurrentUser.IsActive = CurrentUser.IsActive;
-            if (CurrentUser.Save())
+            if (User.ChangePassword(CurrentUser.ID, tbNewPassword.Text))
                 MessageBox.Show($"User Password Updated Successfully", "Success",
                     MessageBoxButtons.OK,
                     icon: MessageBoxIcon.Information);
@@ -148,6 +146,11 @@ namespace DLMS.Forms.Users
         private void FrmChangePassword_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        }
+
+        private void FrmChangePassword_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            OnFormClosed?.Invoke();
         }
     }
 }

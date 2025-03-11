@@ -219,6 +219,7 @@ namespace DLMS.Forms.Users
         private void ViewUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmShowUserDetails frmShowUserDetails = new FrmShowUserDetails(SelectedUserId);
+            frmShowUserDetails.OnFormClosed += ReloadData;
             frmShowUserDetails.ShowDialog();
         }
 
@@ -263,6 +264,7 @@ namespace DLMS.Forms.Users
         private void ChangePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmChangePassword frmChangePassword = new FrmChangePassword(SelectedUserId);
+            frmChangePassword.OnFormClosed += ReloadData;
             frmChangePassword.ShowDialog();
         }
     }
