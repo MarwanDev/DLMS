@@ -17,6 +17,18 @@ namespace DLMS
             }
         }
 
+        public static void CheckUserAvailabilityWithTimer(Timer timer, int id, Form form)
+        {
+            if (!User.DoesUserExist(id))
+            {
+                timer.Stop();
+                timer.Enabled = false;
+                if (MessageBox.Show($"User with id {id} is not there any more!",
+                     "Heads up!", MessageBoxButtons.OK, MessageBoxIcon.Information) == DialogResult.OK)
+                    form.Close();
+            }
+        }
+
         public static void DisableDGVColumnSorting(DataGridView dataGridView)
         {
             foreach (DataGridViewColumn column in dataGridView.Columns)

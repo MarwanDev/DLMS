@@ -121,6 +121,7 @@ namespace DLMS.Forms
             }
             lblHeader.Text = CurrentMode == Mode.Add ? "Add New Person" : "Edit Person";
             timer1.Enabled = true;
+            timer1.Start();
         }
 
         private void FillCountriesCb()

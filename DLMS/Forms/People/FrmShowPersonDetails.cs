@@ -38,6 +38,7 @@ namespace DLMS.Forms.People
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             timer1.Enabled = true;
+            timer1.Start();
         }
 
         public new event Action OnFormClosed;

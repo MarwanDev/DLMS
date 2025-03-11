@@ -36,6 +36,8 @@ namespace DLMS.Forms.Users
         private void FrmShowUserDetails_Load(object sender, EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            timer1.Enabled = true;
+            timer1.Start();
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
@@ -46,6 +48,12 @@ namespace DLMS.Forms.Users
         private void FrmShowUserDetails_FormClosed(object sender, FormClosedEventArgs e)
         {
             OnFormClosed?.Invoke();
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            if (CurrentUser != null)
+                Utils.CheckUserAvailabilityWithTimer(timer1, CurrentUser.ID, this);
         }
     }
 }

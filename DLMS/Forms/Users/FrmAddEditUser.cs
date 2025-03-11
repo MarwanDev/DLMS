@@ -124,6 +124,8 @@ namespace DLMS.Forms.Users
             cbFilter.SelectedIndex = 0;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             lblFormHeader.Text = CurrentMode == Mode.Add ? "Add New User" : "Update User";
+            timer1.Enabled = true;
+            timer1.Start();
         }
 
         private void CbFilter_SelectedIndexChanged(object sender, EventArgs e)
@@ -395,6 +397,12 @@ namespace DLMS.Forms.Users
         private void FrmAddEditUser_FormClosed(object sender, FormClosedEventArgs e)
         {
             OnFormClosed?.Invoke();
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            if (CurrentUser != null)
+                Utils.CheckUserAvailabilityWithTimer(timer1, CurrentUser.ID, this);
         }
     }
 }

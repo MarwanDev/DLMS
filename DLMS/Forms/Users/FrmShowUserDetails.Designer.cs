@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ucPersonInfo1 = new DLMS.UserControls.UcPersonInfo();
             this.btnClose = new System.Windows.Forms.Button();
             this.ucLoginInfo1 = new DLMS.UserControls.UcLoginInfo();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // ucPersonInfo1
@@ -58,6 +60,11 @@
             this.ucLoginInfo1.Size = new System.Drawing.Size(778, 87);
             this.ucLoginInfo1.TabIndex = 3;
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 10000;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
             // FrmShowUserDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -80,5 +87,6 @@
         private UserControls.UcPersonInfo ucPersonInfo1;
         private System.Windows.Forms.Button btnClose;
         private UserControls.UcLoginInfo ucLoginInfo1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

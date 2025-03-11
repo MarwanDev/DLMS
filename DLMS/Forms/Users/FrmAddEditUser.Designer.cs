@@ -33,6 +33,7 @@
             this.tcUserInfo = new System.Windows.Forms.TabControl();
             this.tabPersonalInfo = new System.Windows.Forms.TabPage();
             this.btnNext = new System.Windows.Forms.Button();
+            this.ucPersonInfo1 = new DLMS.UserControls.UcPersonInfo();
             this.gbPersonSearch = new System.Windows.Forms.GroupBox();
             this.btnAddNewPerson = new System.Windows.Forms.Button();
             this.btnPersonSearch = new System.Windows.Forms.Button();
@@ -40,6 +41,8 @@
             this.cbFilter = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabLoginInfo = new System.Windows.Forms.TabPage();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbIsActive = new System.Windows.Forms.CheckBox();
             this.tbConfirmPassword = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.tbPassword = new System.Windows.Forms.TextBox();
@@ -51,9 +54,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.cbIsActive = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.ucPersonInfo1 = new DLMS.UserControls.UcPersonInfo();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tcUserInfo.SuspendLayout();
             this.tabPersonalInfo.SuspendLayout();
             this.gbPersonSearch.SuspendLayout();
@@ -107,6 +108,14 @@
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.BtnNext_Click);
+            // 
+            // ucPersonInfo1
+            // 
+            this.ucPersonInfo1.CurrentPerson = null;
+            this.ucPersonInfo1.Location = new System.Drawing.Point(13, 89);
+            this.ucPersonInfo1.Name = "ucPersonInfo1";
+            this.ucPersonInfo1.Size = new System.Drawing.Size(781, 461);
+            this.ucPersonInfo1.TabIndex = 1;
             // 
             // gbPersonSearch
             // 
@@ -197,6 +206,25 @@
             this.tabLoginInfo.TabIndex = 1;
             this.tabLoginInfo.Text = "Login Info";
             this.tabLoginInfo.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(119, 320);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(83, 20);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Is Active:";
+            // 
+            // cbIsActive
+            // 
+            this.cbIsActive.AutoSize = true;
+            this.cbIsActive.Location = new System.Drawing.Point(232, 326);
+            this.cbIsActive.Name = "cbIsActive";
+            this.cbIsActive.Size = new System.Drawing.Size(15, 14);
+            this.cbIsActive.TabIndex = 8;
+            this.cbIsActive.UseVisualStyleBackColor = true;
             // 
             // tbConfirmPassword
             // 
@@ -307,32 +335,10 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // cbIsActive
+            // timer1
             // 
-            this.cbIsActive.AutoSize = true;
-            this.cbIsActive.Location = new System.Drawing.Point(232, 326);
-            this.cbIsActive.Name = "cbIsActive";
-            this.cbIsActive.Size = new System.Drawing.Size(15, 14);
-            this.cbIsActive.TabIndex = 8;
-            this.cbIsActive.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(119, 320);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(83, 20);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Is Active:";
-            // 
-            // ucPersonInfo1
-            // 
-            this.ucPersonInfo1.CurrentPerson = null;
-            this.ucPersonInfo1.Location = new System.Drawing.Point(13, 89);
-            this.ucPersonInfo1.Name = "ucPersonInfo1";
-            this.ucPersonInfo1.Size = new System.Drawing.Size(781, 461);
-            this.ucPersonInfo1.TabIndex = 1;
+            this.timer1.Interval = 10000;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // FrmAddEditUser
             // 
@@ -386,5 +392,6 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.CheckBox cbIsActive;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Timer timer1;
     }
 }
