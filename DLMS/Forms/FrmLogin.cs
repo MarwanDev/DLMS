@@ -72,8 +72,6 @@ namespace DLMS.Forms
         private void BtnLogin_Click(object sender, EventArgs e)
         {
             User user = User.FindByAuth(tbUsername.Text.Trim(), tbPassword.Text);
-            MessageBox.Show(tbUsername.Text.Trim() + "\n" + tbPassword.Text);
-            MessageBox.Show(user.UserName + "\n" + user.Password);
             if (user != null)
             {
                 if (user.IsActive)
