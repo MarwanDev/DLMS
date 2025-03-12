@@ -32,6 +32,7 @@ namespace DLMS.Forms
         {
             if (!IsLoggedInUser())
             {
+                this.Controls.Clear();
                 InitializeComponent();
                 this.Show();
             }
@@ -57,8 +58,8 @@ namespace DLMS.Forms
         {
             FrmMain frmMain = new FrmMain();
             frmMain.OnFormClosed += HandleMainFormClose;
-            this.Hide();
             frmMain.Show();
+            this.Hide();
         }
 
         private void SaveLoginDataInSettings(User user)
@@ -70,19 +71,24 @@ namespace DLMS.Forms
 
         private void BtnLogin_Click(object sender, EventArgs e)
         {
-            User user = User.FindByAuth(tbUsername.Text.Trim(), tbPassword.Text.Trim());
-            if (user != null && user.IsActive)
+            User user = User.FindByAuth(tbUsername.Text.Trim(), tbPassword.Text);
+            MessageBox.Show(tbUsername.Text.Trim() + "\n" + tbPassword.Text);
+            MessageBox.Show(user.UserName + "\n" + user.Password);
+            if (user != null)
             {
-                SaveLoggedInUserData(user);
-                ShowMainForm();
-                SaveLoginDataInSettings(user);
-            }
-            else if (!user.IsActive)
-            {
-                MessageBox.Show("Please make sure that the user you're trying to login with is activated!",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    icon: MessageBoxIcon.Error);
+                if (user.IsActive)
+                {
+                    SaveLoggedInUserData(user);
+                    ShowMainForm();
+                    SaveLoginDataInSettings(user);
+                }
+                else
+                {
+                    MessageBox.Show("Please make sure that the user you're trying to login with is activated!",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        icon: MessageBoxIcon.Error);
+                }
             }
             else
             {

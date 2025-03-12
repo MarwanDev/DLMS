@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace DLMS
 {
-    public partial class FrmMain: Form
+    public partial class FrmMain : Form
     {
         public FrmMain()
         {
@@ -54,8 +54,18 @@ namespace DLMS
             ClearSavedUserData();
             ClearUserSession();
             this.Close();
-            //FrmLogin frmLogin = new FrmLogin();
-            //frmLogin.ShowDialog();
+        }
+
+        private void CurrentUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmShowUserDetails frmShowUserDetails = new FrmShowUserDetails(UserSession.LoggedInUser.ID);
+            frmShowUserDetails.ShowDialog();
+        }
+
+        private void ChangeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmChangePassword frmChangePassword = new FrmChangePassword(UserSession.LoggedInUser.ID);
+            frmChangePassword.ShowDialog();
         }
     }
 }
