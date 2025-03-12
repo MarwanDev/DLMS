@@ -95,6 +95,7 @@
             this.cbRememberMe.TabIndex = 5;
             this.cbRememberMe.Text = "Remember Me";
             this.cbRememberMe.UseVisualStyleBackColor = true;
+            this.cbRememberMe.CheckedChanged += new System.EventHandler(this.CbRememberMe_CheckedChanged);
             // 
             // btnLogin
             // 
@@ -105,6 +106,7 @@
             this.btnLogin.TabIndex = 6;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
             // 
             // btnClose
             // 
@@ -134,6 +136,7 @@
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmLogin";
+            this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

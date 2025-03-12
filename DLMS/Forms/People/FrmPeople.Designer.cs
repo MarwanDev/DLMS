@@ -190,26 +190,26 @@
             this.editPersonToolStripMenuItem1,
             this.deletePersonToolStripMenuItem});
             this.cmsPerson.Name = "cmsPerson";
-            this.cmsPerson.Size = new System.Drawing.Size(181, 92);
+            this.cmsPerson.Size = new System.Drawing.Size(147, 70);
             // 
             // viewPersonToolStripMenuItem
             // 
             this.viewPersonToolStripMenuItem.Name = "viewPersonToolStripMenuItem";
-            this.viewPersonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewPersonToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.viewPersonToolStripMenuItem.Text = "View Person";
             this.viewPersonToolStripMenuItem.Click += new System.EventHandler(this.ViewPersonToolStripMenuItem_Click);
             // 
             // editPersonToolStripMenuItem1
             // 
             this.editPersonToolStripMenuItem1.Name = "editPersonToolStripMenuItem1";
-            this.editPersonToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.editPersonToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
             this.editPersonToolStripMenuItem1.Text = "Edit Person";
             this.editPersonToolStripMenuItem1.Click += new System.EventHandler(this.EditPersonToolStripMenuItem_Click);
             // 
             // deletePersonToolStripMenuItem
             // 
             this.deletePersonToolStripMenuItem.Name = "deletePersonToolStripMenuItem";
-            this.deletePersonToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deletePersonToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.deletePersonToolStripMenuItem.Text = "Delete Person";
             this.deletePersonToolStripMenuItem.Click += new System.EventHandler(this.DeletePersonToolStripMenuItem_Click);
             // 
