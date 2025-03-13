@@ -1,4 +1,5 @@
 ﻿using DLMS.Forms;
+using DLMS.Forms.Applications.ApplicationTypes;
 using DLMS.Forms.Users;
 using System;
 using System.Linq;
@@ -66,6 +67,12 @@ namespace DLMS
         {
             FrmChangePassword frmChangePassword = new FrmChangePassword(UserSession.LoggedInUser.ID);
             frmChangePassword.ShowDialog();
+        }
+
+        private void ManageApplicationTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmManageApplicationTypes frmManageApplicationTypes = new FrmManageApplicationTypes();
+            frmManageApplicationTypes.ShowDialog();
         }
     }
 }

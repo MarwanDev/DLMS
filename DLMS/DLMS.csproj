@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\Applications\ApplicationTypes\FrmManageApplicationTypes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Applications\ApplicationTypes\FrmManageApplicationTypes.Designer.cs">
+      <DependentUpon>FrmManageApplicationTypes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,9 @@
     </Compile>
     <Compile Include="UserSession.cs" />
     <Compile Include="Utils.cs" />
+    <EmbeddedResource Include="Forms\Applications\ApplicationTypes\FrmManageApplicationTypes.resx">
+      <DependentUpon>FrmManageApplicationTypes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
