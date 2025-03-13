@@ -1,17 +1,12 @@
 ﻿using DLMS.Properties;
+using DLMS_Business;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DLMS.Forms.Applications.ApplicationTypes
 {
-    public partial class FrmManageApplicationTypes: Form
+    public partial class FrmManageApplicationTypes : Form
     {
         public FrmManageApplicationTypes()
         {
@@ -23,6 +18,21 @@ namespace DLMS.Forms.Applications.ApplicationTypes
             MaximizeBox = false;
         }
 
+        private void GetAllApplicationTypesInGDV()
+        {
+            DataTable applicationTypes = ApplicationType.GetAllApplicationTypes();
+            dgvApplicationTypes.DataSource = applicationTypes;
+            Utils.DisableDGVColumnSorting(dgvApplicationTypes);
+            dgvApplicationTypes.Refresh();
+            UpdateCountLabel();
+        }
+
+        private void UpdateCountLabel()
+        {
+            lblCount.Text = ApplicationType.GetAllApplicationTypesCount().ToString();
+            lblCount.Refresh();
+        }
+
         private void BtnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -30,8 +40,59 @@ namespace DLMS.Forms.Applications.ApplicationTypes
 
         private void FrmManageApplicationTypes_Load(object sender, EventArgs e)
         {
+            GetAllApplicationTypesInGDV();
             dgvApplicationTypes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        }
+
+        private void EditApplicationTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private int SelectedApplicationTypeId { get; set; }
+
+        private void DgvApplicationTypes_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                dgvApplicationTypes.ContextMenuStrip = null;
+            else
+            {
+                dgvApplicationTypes.ContextMenuStrip = cmsApplicationTypes;
+                SelectedApplicationTypeId = Int32.Parse(dgvApplicationTypes.Rows[e.RowIndex].Cells[0].Value?.ToString());
+                DataGridView.HitTestInfo hit = dgvApplicationTypes.HitTest(e.X, e.Y);
+                if (hit.RowIndex >= 0)
+                {
+                    dgvApplicationTypes.ClearSelection();
+                    dgvApplicationTypes.Rows[hit.RowIndex].Selected = true;
+                    dgvApplicationTypes.CurrentCell = dgvApplicationTypes.Rows[hit.RowIndex].Cells[0];
+                }
+            }
+        }
+
+        private string GetSortingParameter(string sortingParameter)
+        {
+            switch (sortingParameter)
+            {
+                case "ID":
+                    return "ApplicationTypeID";
+                case "Title":
+                    return "ApplicationTypeTitle";
+                case "Fees":
+                    return "ApplicationFees";
+                default:
+                    return sortingParameter;
+            }
+        }
+
+        private void DgvApplicationTypes_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex >= 0)
+            {
+                string headerText = dgvApplicationTypes.Columns[e.ColumnIndex].HeaderText;
+                ApplicationType.ApplySorting(GetSortingParameter(headerText));
+                GetAllApplicationTypesInGDV();
+            }
         }
     }
 }

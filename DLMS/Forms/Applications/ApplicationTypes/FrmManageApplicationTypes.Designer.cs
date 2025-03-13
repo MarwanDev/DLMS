@@ -28,12 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ucHeader1 = new DLMS.UcHeader();
             this.dgvApplicationTypes = new System.Windows.Forms.DataGridView();
+            this.cmsApplicationTypes = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.editApplicationTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.lblCount = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvApplicationTypes)).BeginInit();
+            this.cmsApplicationTypes.SuspendLayout();
             this.SuspendLayout();
             // 
             // ucHeader1
@@ -47,10 +51,27 @@
             // dgvApplicationTypes
             // 
             this.dgvApplicationTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvApplicationTypes.ContextMenuStrip = this.cmsApplicationTypes;
             this.dgvApplicationTypes.Location = new System.Drawing.Point(5, 269);
             this.dgvApplicationTypes.Name = "dgvApplicationTypes";
             this.dgvApplicationTypes.Size = new System.Drawing.Size(794, 268);
             this.dgvApplicationTypes.TabIndex = 1;
+            this.dgvApplicationTypes.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvApplicationTypes_CellMouseDown);
+            this.dgvApplicationTypes.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvApplicationTypes_ColumnHeaderMouseClick);
+            // 
+            // cmsApplicationTypes
+            // 
+            this.cmsApplicationTypes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editApplicationTypeToolStripMenuItem});
+            this.cmsApplicationTypes.Name = "contextMenuStrip1";
+            this.cmsApplicationTypes.Size = new System.Drawing.Size(186, 48);
+            // 
+            // editApplicationTypeToolStripMenuItem
+            // 
+            this.editApplicationTypeToolStripMenuItem.Name = "editApplicationTypeToolStripMenuItem";
+            this.editApplicationTypeToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.editApplicationTypeToolStripMenuItem.Text = "Edit Application Type";
+            this.editApplicationTypeToolStripMenuItem.Click += new System.EventHandler(this.EditApplicationTypeToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -97,6 +118,7 @@
             this.Text = "FrmManageApplicationTypes";
             this.Load += new System.EventHandler(this.FrmManageApplicationTypes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvApplicationTypes)).EndInit();
+            this.cmsApplicationTypes.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -109,5 +131,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblCount;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ContextMenuStrip cmsApplicationTypes;
+        private System.Windows.Forms.ToolStripMenuItem editApplicationTypeToolStripMenuItem;
     }
 }
