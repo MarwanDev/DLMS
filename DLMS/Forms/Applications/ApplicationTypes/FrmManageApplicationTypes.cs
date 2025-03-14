@@ -41,13 +41,21 @@ namespace DLMS.Forms.Applications.ApplicationTypes
         private void FrmManageApplicationTypes_Load(object sender, EventArgs e)
         {
             GetAllApplicationTypesInGDV();
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
             dgvApplicationTypes.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         private void EditApplicationTypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            //MessageBox.Show(SelectedApplicationTypeId.ToString());
+            ApplicationType applicationType = ApplicationType.Find(SelectedApplicationTypeId);
+            if (applicationType != null)
+            {
+                FrmUpdateApplicationType frmUpdateApplicationType = new FrmUpdateApplicationType(applicationType);
+                frmUpdateApplicationType.OnFormClosed += GetAllApplicationTypesInGDV;
+                frmUpdateApplicationType.ShowDialog();
+            }
         }
 
         private int SelectedApplicationTypeId { get; set; }
