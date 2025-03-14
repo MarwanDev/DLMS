@@ -44,7 +44,7 @@ namespace DLMS.Forms
                     Properties.Settings.Default.SavedPassword = "";
                     Properties.Settings.Default.Save();
                 }
-                this.Close();
+                Application.Exit();
             }
         }
 
