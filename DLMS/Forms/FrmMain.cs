@@ -1,5 +1,6 @@
 ﻿using DLMS.Forms;
 using DLMS.Forms.Applications.ApplicationTypes;
+using DLMS.Forms.Tests.TestTypes;
 using DLMS.Forms.Users;
 using System;
 using System.Linq;
@@ -73,6 +74,12 @@ namespace DLMS
         {
             FrmManageApplicationTypes frmManageApplicationTypes = new FrmManageApplicationTypes();
             frmManageApplicationTypes.ShowDialog();
+        }
+
+        private void ManageTestTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmManageTestType frmManageTestType = new FrmManageTestType();
+            frmManageTestType.ShowDialog();
         }
     }
 }
