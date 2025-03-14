@@ -50,6 +50,7 @@
             // 
             // dgvTestTypes
             // 
+            this.dgvTestTypes.AllowUserToAddRows = false;
             this.dgvTestTypes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTestTypes.ContextMenuStrip = this.cmsTestType;
             this.dgvTestTypes.Location = new System.Drawing.Point(3, 252);

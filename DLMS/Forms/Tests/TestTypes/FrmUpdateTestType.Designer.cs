@@ -167,6 +167,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblHeader);
             this.Name = "FrmUpdateTestType";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Update Test Type";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmUpdateTestType_FormClosed);
             this.Load += new System.EventHandler(this.FrmUpdateTestType_Load);

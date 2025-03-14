@@ -78,6 +78,8 @@ namespace DLMS.Forms.Tests.TestTypes
 
         private void DgvTestTypes_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
+            if (dgvTestTypes.Rows[e.RowIndex].Cells[0].Value?.ToString() == null)
+                return;
             if (e.RowIndex < 0)
                 dgvTestTypes.ContextMenuStrip = null;
             else
