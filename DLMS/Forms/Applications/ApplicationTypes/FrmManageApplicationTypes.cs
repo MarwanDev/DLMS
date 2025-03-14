@@ -48,7 +48,6 @@ namespace DLMS.Forms.Applications.ApplicationTypes
 
         private void EditApplicationTypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show(SelectedApplicationTypeId.ToString());
             ApplicationType applicationType = ApplicationType.Find(SelectedApplicationTypeId);
             if (applicationType != null)
             {
