@@ -1,6 +1,5 @@
 ﻿using DLMS_Business;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace DLMS.Forms.Applications.ApplicationTypes
@@ -25,7 +24,7 @@ namespace DLMS.Forms.Applications.ApplicationTypes
         {
             lblId.Text = applicationType.ID.ToString();
             tbFees.Text = applicationType.Fees.ToString();
-            tbTitle.Text = applicationType.Title.ToString();
+            tbTitle.Text = applicationType.Title;
         }
 
         private void FrmUpdateApplicationType_Load(object sender, EventArgs e)
@@ -47,44 +46,12 @@ namespace DLMS.Forms.Applications.ApplicationTypes
 
         private void TbFees_TextChanged(object sender, EventArgs e)
         {
-            string text = tbFees.Text;
-
-            text = System.Text.RegularExpressions.Regex.Replace(text, "[^0-9.]", "");
-
-            int dotCount = text.Count(c => c == '.');
-            if (dotCount > 1)
-            {
-                int firstDotIndex = text.IndexOf('.');
-                text = text.Substring(0, firstDotIndex + 1) + text.Substring(firstDotIndex + 1).Replace(".", "");
-            }
-
-            if (text == ".")
-            {
-                text = "0.";
-            }
-
-            tbFees.Text = text;
-            tbFees.SelectionStart = text.Length;
+            Utils.HandleTbMoneyTextChanged(tbFees);
         }
 
         private void TbFees_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsControl(e.KeyChar))
-            {
-                return;
-            }
-
-            if (char.IsDigit(e.KeyChar))
-            {
-                return;
-            }
-
-            if (e.KeyChar == '.' && (sender is TextBox textBox && !textBox.Text.Contains(".")))
-            {
-                return;
-            }
-
-            e.Handled = true;
+            Utils.HandleTbMoneyKeyPress(tbFees, e);
         }
 
         ApplicationType CurrentApplicationType { get; set; }

@@ -50,6 +50,7 @@
             this.btnSave.TabIndex = 66;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // btnClose
             // 
@@ -69,6 +70,8 @@
             this.tbFees.Name = "tbFees";
             this.tbFees.Size = new System.Drawing.Size(294, 29);
             this.tbFees.TabIndex = 64;
+            this.tbFees.TextChanged += new System.EventHandler(this.TbFees_TextChanged);
+            this.tbFees.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbFees_KeyPress);
             // 
             // label3
             // 
@@ -165,6 +168,7 @@
             this.Controls.Add(this.lblHeader);
             this.Name = "FrmUpdateTestType";
             this.Text = "Update Test Type";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmUpdateTestType_FormClosed);
             this.Load += new System.EventHandler(this.FrmUpdateTestType_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

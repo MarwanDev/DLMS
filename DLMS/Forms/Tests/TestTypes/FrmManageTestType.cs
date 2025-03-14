@@ -67,7 +67,13 @@ namespace DLMS.Forms.Tests.TestTypes
 
         private void EditTestTypeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(SelectedTestTypeId.ToString());
+            TestType testType = TestType.Find(SelectedTestTypeId);
+            if (testType != null)
+            {
+                FrmUpdateTestType frmUpdateTestType = new FrmUpdateTestType(testType);
+                frmUpdateTestType.OnFormClosed += GetAllTestTypesInGDV;
+                frmUpdateTestType.ShowDialog();
+            }
         }
 
         private void DgvTestTypes_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
