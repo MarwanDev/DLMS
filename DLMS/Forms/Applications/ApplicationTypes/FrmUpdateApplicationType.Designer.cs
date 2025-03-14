@@ -146,7 +146,7 @@
             this.Controls.Add(this.lblHeader);
             this.Name = "FrmUpdateApplicationType";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmUpdateApplicationType";
+            this.Text = "Update Application Type";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmUpdateApplicationType_FormClosed);
             this.Load += new System.EventHandler(this.FrmUpdateApplicationType_Load);
             this.ResumeLayout(false);

@@ -45,8 +45,8 @@
             this.viewUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ucHeader1 = new DLMS.UcHeader();
             this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ucHeader1 = new DLMS.UcHeader();
             this.pnlActivationStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.ctmsUser.SuspendLayout();
@@ -203,28 +203,35 @@
             this.deleteUserToolStripMenuItem,
             this.changePasswordToolStripMenuItem});
             this.ctmsUser.Name = "ctmsUser";
-            this.ctmsUser.Size = new System.Drawing.Size(181, 114);
+            this.ctmsUser.Size = new System.Drawing.Size(169, 92);
             // 
             // viewUserToolStripMenuItem
             // 
             this.viewUserToolStripMenuItem.Name = "viewUserToolStripMenuItem";
-            this.viewUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewUserToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.viewUserToolStripMenuItem.Text = "View User";
             this.viewUserToolStripMenuItem.Click += new System.EventHandler(this.ViewUserToolStripMenuItem_Click);
             // 
             // editUserToolStripMenuItem
             // 
             this.editUserToolStripMenuItem.Name = "editUserToolStripMenuItem";
-            this.editUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editUserToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.editUserToolStripMenuItem.Text = "Edit User";
             this.editUserToolStripMenuItem.Click += new System.EventHandler(this.EditUserToolStripMenuItem_Click);
             // 
             // deleteUserToolStripMenuItem
             // 
             this.deleteUserToolStripMenuItem.Name = "deleteUserToolStripMenuItem";
-            this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.deleteUserToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
             this.deleteUserToolStripMenuItem.Text = "Delete User";
             this.deleteUserToolStripMenuItem.Click += new System.EventHandler(this.DeleteUserToolStripMenuItem_Click);
+            // 
+            // changePasswordToolStripMenuItem
+            // 
+            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.changePasswordToolStripMenuItem.Text = "Change Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.ChangePasswordToolStripMenuItem_Click);
             // 
             // ucHeader1
             // 
@@ -233,13 +240,6 @@
             this.ucHeader1.Name = "ucHeader1";
             this.ucHeader1.Size = new System.Drawing.Size(258, 219);
             this.ucHeader1.TabIndex = 0;
-            // 
-            // changePasswordToolStripMenuItem
-            // 
-            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
-            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.changePasswordToolStripMenuItem.Text = "Change Password";
-            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.ChangePasswordToolStripMenuItem_Click);
             // 
             // FrmManageUsers
             // 
@@ -258,7 +258,7 @@
             this.Controls.Add(this.ucHeader1);
             this.Name = "FrmManageUsers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmManageUsers";
+            this.Text = "Manage Users";
             this.Load += new System.EventHandler(this.FrmManageUsers_Load);
             this.pnlActivationStatus.ResumeLayout(false);
             this.pnlActivationStatus.PerformLayout();

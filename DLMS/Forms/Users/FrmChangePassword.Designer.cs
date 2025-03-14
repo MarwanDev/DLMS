@@ -168,7 +168,7 @@
             this.Controls.Add(this.ucPersonInfo1);
             this.Name = "FrmChangePassword";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmChangePassword";
+            this.Text = "Change Password";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmChangePassword_FormClosed);
             this.Load += new System.EventHandler(this.FrmChangePassword_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

@@ -11,7 +11,7 @@ namespace DLMS.Forms.Applications.ApplicationTypes
         public FrmManageApplicationTypes()
         {
             InitializeComponent();
-            ucHeader1.SetText("Manage Application Types");
+            ucHeader1.SetText("Application Types");
             ucHeader1.SetImage(Resources.Application_Types_512);
             ucHeader1.SetColor(System.Drawing.Color.Red);
             MinimizeBox = false;

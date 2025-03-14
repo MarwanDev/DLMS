@@ -116,7 +116,7 @@
             this.Controls.Add(this.ucHeader1);
             this.Name = "FrmManageApplicationTypes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmManageApplicationTypes";
+            this.Text = "Manage Application Types";
             this.Load += new System.EventHandler(this.FrmManageApplicationTypes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvApplicationTypes)).EndInit();
             this.cmsApplicationTypes.ResumeLayout(false);

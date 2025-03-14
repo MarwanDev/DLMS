@@ -116,7 +116,7 @@
             this.Controls.Add(this.ucHeader1);
             this.Name = "FrmManageTestType";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmManageTestType";
+            this.Text = "Manage Test Types";
             this.Load += new System.EventHandler(this.FrmManageTestType_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestTypes)).EndInit();
             this.cmsTestType.ResumeLayout(false);
