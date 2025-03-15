@@ -78,8 +78,6 @@ namespace DLMS.Forms.Tests.TestTypes
 
         private void DgvTestTypes_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (dgvTestTypes.Rows[e.RowIndex].Cells[0].Value?.ToString() == null)
-                return;
             if (e.RowIndex < 0)
                 dgvTestTypes.ContextMenuStrip = null;
             else
@@ -101,7 +99,7 @@ namespace DLMS.Forms.Tests.TestTypes
             if (e.ColumnIndex >= 0)
             {
                 string headerText = dgvTestTypes.Columns[e.ColumnIndex].HeaderText;
-                ApplicationType.ApplySorting(GetSortingParameter(headerText));
+                TestType.ApplySorting(GetSortingParameter(headerText));
                 GetAllTestTypesInGDV();
             }
         }
