@@ -293,5 +293,12 @@ namespace DLMS.Forms
                 "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 DeletePerson();
         }
+
+        public new event Action OnFormClosed;
+
+        private void FrmPeople_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            OnFormClosed?.Invoke();
+        }
     }
 }

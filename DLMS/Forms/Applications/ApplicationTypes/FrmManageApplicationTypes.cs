@@ -101,5 +101,12 @@ namespace DLMS.Forms.Applications.ApplicationTypes
                 GetAllApplicationTypesInGDV();
             }
         }
+
+        public new event Action OnFormClosed;
+
+        private void FrmManageApplicationTypes_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            OnFormClosed?.Invoke();
+        }
     }
 }

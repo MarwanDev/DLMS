@@ -259,6 +259,7 @@
             this.Name = "FrmManageUsers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Users";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmManageUsers_FormClosed);
             this.Load += new System.EventHandler(this.FrmManageUsers_Load);
             this.pnlActivationStatus.ResumeLayout(false);
             this.pnlActivationStatus.PerformLayout();

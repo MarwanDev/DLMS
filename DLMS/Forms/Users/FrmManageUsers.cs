@@ -267,5 +267,12 @@ namespace DLMS.Forms.Users
             frmChangePassword.OnFormClosed += ReloadData;
             frmChangePassword.ShowDialog();
         }
+
+        public new event Action OnFormClosed;
+
+        private void FrmManageUsers_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            OnFormClosed?.Invoke();
+        }
     }
 }

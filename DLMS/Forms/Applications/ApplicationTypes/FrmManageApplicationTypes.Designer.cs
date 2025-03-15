@@ -117,6 +117,7 @@
             this.Name = "FrmManageApplicationTypes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Application Types";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmManageApplicationTypes_FormClosed);
             this.Load += new System.EventHandler(this.FrmManageApplicationTypes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvApplicationTypes)).EndInit();
             this.cmsApplicationTypes.ResumeLayout(false);

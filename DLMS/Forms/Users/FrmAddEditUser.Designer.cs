@@ -124,7 +124,7 @@
             this.gbPersonSearch.Controls.Add(this.tbSearch);
             this.gbPersonSearch.Controls.Add(this.cbFilter);
             this.gbPersonSearch.Controls.Add(this.label1);
-            this.gbPersonSearch.Location = new System.Drawing.Point(13, 13);
+            this.gbPersonSearch.Location = new System.Drawing.Point(15, 13);
             this.gbPersonSearch.Name = "gbPersonSearch";
             this.gbPersonSearch.Size = new System.Drawing.Size(769, 61);
             this.gbPersonSearch.TabIndex = 0;
@@ -133,7 +133,7 @@
             // 
             // btnAddNewPerson
             // 
-            this.btnAddNewPerson.Location = new System.Drawing.Point(623, 25);
+            this.btnAddNewPerson.Location = new System.Drawing.Point(648, 28);
             this.btnAddNewPerson.Name = "btnAddNewPerson";
             this.btnAddNewPerson.Size = new System.Drawing.Size(104, 21);
             this.btnAddNewPerson.TabIndex = 4;
@@ -144,7 +144,7 @@
             // btnPersonSearch
             // 
             this.btnPersonSearch.Enabled = false;
-            this.btnPersonSearch.Location = new System.Drawing.Point(497, 24);
+            this.btnPersonSearch.Location = new System.Drawing.Point(516, 25);
             this.btnPersonSearch.Name = "btnPersonSearch";
             this.btnPersonSearch.Size = new System.Drawing.Size(104, 21);
             this.btnPersonSearch.TabIndex = 3;

@@ -2,6 +2,7 @@
 using DLMS.Forms.Applications.ApplicationTypes;
 using DLMS.Forms.Tests.TestTypes;
 using DLMS.Forms.Users;
+using DLMS_Business;
 using System;
 using System.Linq;
 using System.Windows.Forms;
@@ -18,6 +19,7 @@ namespace DLMS
         private void PeopleToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmPeople frmPeople = new FrmPeople();
+            frmPeople.OnFormClosed += HandleManagementFormClose;
             frmPeople.ShowDialog();
         }
 
@@ -28,6 +30,7 @@ namespace DLMS
         private void ManageUsersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmManageUsers frmManageUsers = new FrmManageUsers();
+            frmManageUsers.OnFormClosed += HandleManagementFormClose;
             frmManageUsers.ShowDialog();
         }
 
@@ -70,15 +73,22 @@ namespace DLMS
             frmChangePassword.ShowDialog();
         }
 
+        private void HandleManagementFormClose()
+        {
+            Business.DisableSorting();
+        }
+
         private void ManageApplicationTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmManageApplicationTypes frmManageApplicationTypes = new FrmManageApplicationTypes();
+            frmManageApplicationTypes.OnFormClosed += HandleManagementFormClose;
             frmManageApplicationTypes.ShowDialog();
         }
 
         private void ManageTestTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmManageTestType frmManageTestType = new FrmManageTestType();
+            frmManageTestType.OnFormClosed += HandleManagementFormClose;
             frmManageTestType.ShowDialog();
         }
     }

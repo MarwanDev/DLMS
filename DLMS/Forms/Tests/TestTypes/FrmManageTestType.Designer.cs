@@ -118,6 +118,7 @@
             this.Name = "FrmManageTestType";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Test Types";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmManageTestType_FormClosed);
             this.Load += new System.EventHandler(this.FrmManageTestType_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestTypes)).EndInit();
             this.cmsTestType.ResumeLayout(false);

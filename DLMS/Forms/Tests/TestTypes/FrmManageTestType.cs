@@ -103,5 +103,12 @@ namespace DLMS.Forms.Tests.TestTypes
                 GetAllTestTypesInGDV();
             }
         }
+
+        public new event Action OnFormClosed;
+
+        private void FrmManageTestType_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            OnFormClosed?.Invoke();
+        }
     }
 }

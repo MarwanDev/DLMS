@@ -239,6 +239,7 @@
             this.Name = "FrmPeople";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage People";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmPeople_FormClosed);
             this.Load += new System.EventHandler(this.FrmPeople_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeople)).EndInit();
             this.pnlGender.ResumeLayout(false);
