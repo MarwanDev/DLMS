@@ -44,23 +44,11 @@ namespace DLMS.UserControls
                 FrmAddEditPerson frmAddEditPerson = new FrmAddEditPerson(CurrentPerson);
                 frmAddEditPerson.OnFormClosed += ReloadData;
                 HandlePersonShow();
-                //CurrentUser = User.FindByPersonId(CurrentPerson.ID);
-                //if (CurrentUser != null)
-                //{
-                //    if (cbFilter.SelectedIndex == 0)
-                //        MessageBox.Show($"A user with national number {CurrentPerson.NationalNo} already exists",
-                //            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    else
-                //        MessageBox.Show($"A user with person Id {CurrentPerson.ID} already exists",
-                //            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-                //btnNext.Enabled = true;
                 ChangeNextButtonAbility();
             }
             else
             {
                 ClearPersonData();
-                //btnNext.Enabled = false;
                 ChangeNextButtonAbility(false);
                 if (cbFilter.SelectedIndex == 0)
                     MessageBox.Show($"No person was found with national number {tbSearch.Text.Trim()}!",
@@ -127,9 +115,6 @@ namespace DLMS.UserControls
         {
             CurrentPerson = ucPersonInfo1.CurrentPerson;
             ReloadCurrentPersonData();
-            //User user = User.FindByPersonId(Int32.Parse(ucPersonInfo1.GetPersonId()));
-            //if (user != null)
-            //    CurrentUser = user;
             if (int.TryParse(ucPersonInfo1.GetPersonId(), out int personId))
             {
                 OnPersonDataReloaded?.Invoke(personId);
