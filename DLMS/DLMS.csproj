@@ -150,6 +150,12 @@
     <Compile Include="UserControls\ucPersonInfo.Designer.cs">
       <DependentUpon>ucPersonInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcPersonSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcPersonSearch.Designer.cs">
+      <DependentUpon>UcPersonSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserSession.cs" />
     <Compile Include="Utils.cs" />
     <EmbeddedResource Include="Forms\Applications\ApplicationTypes\FrmManageApplicationTypes.resx">
@@ -213,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucPersonInfo.resx">
       <DependentUpon>ucPersonInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcPersonSearch.resx">
+      <DependentUpon>UcPersonSearch.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
