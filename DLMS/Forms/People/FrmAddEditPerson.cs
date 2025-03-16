@@ -87,12 +87,6 @@ namespace DLMS.Forms
 
         private void ChangeSetImageLinkLabelText(bool isOnLoad = true)
         {
-            //llSetImage.Text = CurrentPerson != null &&
-            //    !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
-            //    File.Exists(CurrentPerson.ImagePath) &&
-            //    !string.IsNullOrEmpty(NewImagePath) &&
-            //    File.Exists(NewImagePath) && !string.IsNullOrEmpty(TempImagePath) &&
-            //    File.Exists(TempImagePath) ? "Change Image" : "Set Image";
             if (isOnLoad)
                 llSetImage.Text = CurrentPerson != null &&
                     !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
@@ -283,19 +277,6 @@ namespace DLMS.Forms
         {
             if (IsImageRemoved)
                 return null;
-            //return pbPersonImage.Image != Resources.Male_512 &&
-            //    pbPersonImage.Image != Resources.Female_512 &&
-            //    pbPersonImage.Image != Resources.question_mark_96 &&
-            //    pbPersonImage.Image != null ?
-            //    !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
-            //    File.Exists(CurrentPerson.ImagePath) &&
-            //    //!string.IsNullOrEmpty(NewImagePath) &&
-            //    //File.Exists(NewImagePath) &&
-            //    !IsImageRemoved ? CurrentPerson.ImagePath :
-            //    !string.IsNullOrEmpty(CurrentPerson.ImagePath) &&
-            //    File.Exists(CurrentPerson.ImagePath) &&
-            //    IsImageRemoved ? null : !string.IsNullOrEmpty(NewImagePath) && 
-            //    File.Exists(NewImagePath) ? NewImagePath : null : null;
             return pbPersonImage.Image != Resources.Male_512 &&
                     pbPersonImage.Image != Resources.Female_512 &&
                     pbPersonImage.Image != Resources.question_mark_96 &&
