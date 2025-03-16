@@ -465,7 +465,35 @@ namespace DLMS.Forms
 
         private void FrmAddEditPerson_FormClosed(object sender, FormClosedEventArgs e)
         {
+            DeleteAllTempFiles();
             OnFormClosed?.Invoke();
+        }
+
+        private void DeleteAllTempFiles()
+        {
+            string folderPath = @"C:\dlms-people\temp";
+            try
+            {
+                if (Directory.Exists(folderPath))
+                {
+                    string[] files = Directory.GetFiles(folderPath);
+
+                    foreach (string file in files)
+                    {
+                        File.Delete(file);
+                    }
+
+                    Console.WriteLine("All files deleted successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("Directory does not exist.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting files: {ex.Message}");
+            }
         }
 
         private void ChangePictureBoxImageWithNoImageSet()
