@@ -1,5 +1,6 @@
 ﻿using DLMS.Forms;
 using DLMS.Forms.Applications.ApplicationTypes;
+using DLMS.Forms.Applications.LocalDrivingLicenceApplications;
 using DLMS.Forms.Tests.TestTypes;
 using DLMS.Forms.Users;
 using DLMS_Business;
@@ -90,6 +91,12 @@ namespace DLMS
             FrmManageTestType frmManageTestType = new FrmManageTestType();
             frmManageTestType.OnFormClosed += HandleManagementFormClose;
             frmManageTestType.ShowDialog();
+        }
+
+        private void LocalLicenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmAddEditLocalDrivingLicenceApplication frmAddEditLocalDrivingLicenceApplication = new FrmAddEditLocalDrivingLicenceApplication();
+            frmAddEditLocalDrivingLicenceApplication.ShowDialog();
         }
     }
 }

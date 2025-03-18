@@ -307,7 +307,7 @@ namespace DLMS.Forms
                 Phone = tbPhone.Text,
                 Address = rtbAddress.Text,
                 DateOfBirth = dtpDOB.Value.Date,
-                NationalityCountryID = cbCountry.SelectedIndex + 1,
+                NationalityCountryID = Int32.Parse(cbCountry.SelectedValue.ToString()),
                 Gender = (byte)(rdbFemale.Checked ? 0 : 1),
                 ImagePath = GetToBeSavedPersonImagePath()
             };

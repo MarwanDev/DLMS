@@ -84,7 +84,6 @@ namespace DLMS.Forms.Users
 
         private void FrmAddEditUser_Load(object sender, EventArgs e)
         {
-            //cbFilter.SelectedIndex = 0;
             ucPersonSearch1.InitializeFilterComboBox();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             lblFormHeader.Text = CurrentMode == Mode.Add ? "Add New User" : "Update User";
@@ -238,24 +237,22 @@ namespace DLMS.Forms.Users
                     icon: MessageBoxIcon.Error);
         }
 
-        private User User { get; set; }
-
         private void SaveAddition()
         {
-            User = new User
+            User user = new User
             {
                 PersonID = CurrentPerson.ID,
                 UserName = tbUserName.Text,
                 Password = tbPassword.Text,
                 IsActive = cbIsActive.Checked
             };
-            if (User.Save())
+            if (user.Save())
             {
-                MessageBox.Show($"User added Successfully with UserId {User.ID}", "Success",
+                MessageBox.Show($"User added Successfully with UserId {user.ID}", "Success",
                     MessageBoxButtons.OK,
                     icon: MessageBoxIcon.Information);
-                lblUserId.Text = User.ID.ToString();
-                CurrentUser = User;
+                lblUserId.Text = user.ID.ToString();
+                CurrentUser = user;
                 CurrentMode = Mode.Edit;
                 lblFormHeader.Text = "Update User";
             }
