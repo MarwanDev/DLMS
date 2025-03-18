@@ -28,7 +28,14 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
 
         private void BtnNext_Click(object sender, EventArgs e)
         {
-            tcApplicationInfo.SelectedIndex = 1;
+            if (CurrentPerson != null && CurrentDLApplication == null && CurrentMode == Mode.Add)
+            {
+                tcApplicationInfo.SelectedIndex = 1;
+            }
+            else if (CurrentMode == Mode.Edit && CurrentDLApplication != null)
+            {
+                tcApplicationInfo.SelectedIndex = 1;
+            }
         }
 
         private void FillLicenceClassesCb()
@@ -57,9 +64,6 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
 
         private void HandlePersonDataReloaded(int personId)
         {
-            //User user = User.FindByPersonId(personId);
-            //if (user != null)
-            //    CurrentUser = user;
         }
 
         private void UcPersonSearch1_OnNextButtonAbilityChanged(bool isEnabled)
@@ -75,17 +79,6 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
             if (isSuccessful)
             {
                 CurrentPerson = UcPersonSearch.CurrentPerson;
-                //CurrentUser = User.FindByPersonId(CurrentPerson.ID);
-                //if (CurrentUser != null)
-                //{
-                //    if (ucPersonSearch1.GetFilterIndex() == 0)
-                //        MessageBox.Show($"A user with national number {CurrentPerson.NationalNo} already exists",
-                //            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //    else
-                //        MessageBox.Show($"A user with person Id {CurrentPerson.ID} already exists",
-                //            "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-                //ChangeSaveBtnAbilityIfPossible();
             }
         }
 
@@ -97,8 +90,12 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
         {
             ucPersonSearch1.InitializeFilterComboBox();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            lblFormHeader.Text = CurrentMode == Mode.Add ? "New Local Driving Licence Appllication" : "Update Local Driving Licence Appllication";
-            this.Text = CurrentMode == Mode.Add ? "New Local Driving Licence Appllication" : "Update Local Driving Licence Appllication";
+            lblFormHeader.Text = CurrentMode == Mode.Add ?
+                "New Local Driving Licence Appllication" :
+                "Update Local Driving Licence Appllication";
+            this.Text = CurrentMode == Mode.Add ?
+                "New Local Driving Licence Appllication" :
+                "Update Local Driving Licence Appllication";
             ChangeSaveBtnAbilityIfPossible();
         }
 
@@ -174,6 +171,17 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
         private void BtnSave_Click(object sender, EventArgs e)
         {
             SaveLocalDLApplication();
+        }
+
+        private void TcApplicationInfo_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (e.TabPage == tabApplicationInfo)
+            {
+                if (CurrentPerson == null || (CurrentPerson != null && CurrentDLApplication != null && CurrentMode == Mode.Add))
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }

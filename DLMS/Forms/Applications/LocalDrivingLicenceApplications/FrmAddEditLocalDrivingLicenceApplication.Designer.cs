@@ -83,6 +83,7 @@
             this.tcApplicationInfo.SelectedIndex = 0;
             this.tcApplicationInfo.Size = new System.Drawing.Size(818, 629);
             this.tcApplicationInfo.TabIndex = 9;
+            this.tcApplicationInfo.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.TcApplicationInfo_Selecting);
             // 
             // tabPersonalInfo
             // 
