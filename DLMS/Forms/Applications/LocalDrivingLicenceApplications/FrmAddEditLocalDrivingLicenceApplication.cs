@@ -1,6 +1,7 @@
 ﻿using DLMS.UserControls;
 using DLMS_Business;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -79,13 +80,55 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
             if (isSuccessful)
             {
                 CurrentPerson = UcPersonSearch.CurrentPerson;
-                ChangeSaveBtnAbilityIfPossible();
+                HandleSelectIndexChangeForLicenceClassComboBoc();
             }
         }
 
         public enum Mode { Add, Edit };
 
         public Mode CurrentMode { get; set; }
+
+        private bool IsApplicationDuplicated()
+        {
+            return LocalDLApplication.
+                GetApplicationIdForSamePersonAndLicenceClass(
+                Int32.Parse(cbLicenceClass.SelectedValue.ToString()),
+                CurrentPerson.ID) != 0;
+        }
+
+        private void CheckIfApplicationIsDuplicated()
+        {
+            if (!string.IsNullOrEmpty(cbLicenceClass.SelectedValue.ToString()))
+            {
+                if (IsApplicationDuplicated())
+                {
+                    int duplicateDLApplicationId = LocalDLApplication.
+                    GetApplicationIdForSamePersonAndLicenceClass(
+                    Int32.Parse(cbLicenceClass.SelectedValue.ToString()),
+                    CurrentPerson.ID);
+                    SetError(cbLicenceClass, $"An active application with the same licence class is still active for the same person with ID {duplicateDLApplicationId}");
+                }
+                else
+                    SetError(cbLicenceClass, "");
+            }
+        }
+
+        private readonly Dictionary<Control, string> errorTracker = new Dictionary<Control, string>();
+
+        private void SetError(Control control, string errorMessage)
+        {
+            errorProvider1.SetError(control, errorMessage);
+
+            if (!string.IsNullOrEmpty(errorMessage))
+                errorTracker[control] = errorMessage;
+            else
+                errorTracker.Remove(control);
+        }
+
+        private int GetActiveErrorCount()
+        {
+            return errorTracker.Count;
+        }
 
         private void FrmAddEditLocalDrivingLicenceApplication_Load(object sender, EventArgs e)
         {
@@ -110,7 +153,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
 
         private bool ShouldSaveBtnBeEnabled()
         {
-            return CurrentPerson != null;
+            return CurrentPerson != null && GetActiveErrorCount() == 0;
         }
 
         private void FrmAddEditLocalDrivingLicenceApplication_FormClosed(object sender, FormClosedEventArgs e)
@@ -179,6 +222,20 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                     e.Cancel = true;
                 }
             }
+        }
+
+        private void HandleSelectIndexChangeForLicenceClassComboBoc()
+        {
+            if (CurrentPerson != null)
+            {
+                CheckIfApplicationIsDuplicated();
+                ChangeSaveBtnAbilityIfPossible();
+            }
+        }
+
+        private void CbLicenceClass_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            HandleSelectIndexChangeForLicenceClassComboBoc();
         }
     }
 }

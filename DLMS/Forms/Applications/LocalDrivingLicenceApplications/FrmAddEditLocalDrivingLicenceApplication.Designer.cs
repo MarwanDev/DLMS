@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.tcApplicationInfo = new System.Windows.Forms.TabControl();
@@ -46,9 +47,11 @@
             this.lblApplicationId = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblFormHeader = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tcApplicationInfo.SuspendLayout();
             this.tabPersonalInfo.SuspendLayout();
             this.tabApplicationInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSave
@@ -144,6 +147,7 @@
             this.cbLicenceClass.Name = "cbLicenceClass";
             this.cbLicenceClass.Size = new System.Drawing.Size(513, 32);
             this.cbLicenceClass.TabIndex = 17;
+            this.cbLicenceClass.SelectedIndexChanged += new System.EventHandler(this.CbLicenceClass_SelectedIndexChanged);
             // 
             // lblCreatedBy
             // 
@@ -246,6 +250,10 @@
             this.lblFormHeader.TabIndex = 8;
             this.lblFormHeader.Text = "New Local Driving Licence Appllication";
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // FrmAddEditLocalDrivingLicenceApplication
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -264,6 +272,7 @@
             this.tabPersonalInfo.ResumeLayout(false);
             this.tabApplicationInfo.ResumeLayout(false);
             this.tabApplicationInfo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -289,5 +298,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ComboBox cbLicenceClass;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }
