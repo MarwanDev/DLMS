@@ -79,6 +79,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
             if (isSuccessful)
             {
                 CurrentPerson = UcPersonSearch.CurrentPerson;
+                ChangeSaveBtnAbilityIfPossible();
             }
         }
 
@@ -109,11 +110,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
 
         private bool ShouldSaveBtnBeEnabled()
         {
-            //return GetActiveErrorCount() == 0 &&
-            //    tbUserName.Text.Trim() != "" &&
-            //    tbPassword.Text.Trim() != "" &&
-            //    tbConfirmPassword.Text.Trim() != "";
-            return true;
+            return CurrentPerson != null;
         }
 
         private void FrmAddEditLocalDrivingLicenceApplication_FormClosed(object sender, FormClosedEventArgs e)
