@@ -22,7 +22,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
             FillLicenceClassesCb();
             lblApplicationDate.Text = DateTime.Now.ToShortDateString();
             lblApplicationFees.Text = LocalApplicationTypeFees.ToString();
-            lblCreatedBy.Text = UserSession.LoggedInUser.ID.ToString();
+            lblCreatedBy.Text = UserSession.LoggedInUser.UserName;
             cbLicenceClass.SelectedIndex = 0;
         }
 
