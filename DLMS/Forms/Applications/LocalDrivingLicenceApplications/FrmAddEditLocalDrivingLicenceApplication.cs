@@ -106,7 +106,8 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                     GetApplicationIdForSamePersonAndLicenceClass(
                     Int32.Parse(cbLicenceClass.SelectedValue.ToString()),
                     CurrentPerson.ID);
-                    SetError(cbLicenceClass, $"An active application with the same licence class is still active for the same person with ID {duplicateDLApplicationId}");
+                    SetError(cbLicenceClass, $"An active application with the same licence class is " +
+                        $"mstill active for the same person with ID {duplicateDLApplicationId}");
                 }
                 else
                     SetError(cbLicenceClass, "");

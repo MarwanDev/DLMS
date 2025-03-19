@@ -98,5 +98,11 @@ namespace DLMS
             FrmAddEditLocalDrivingLicenceApplication frmAddEditLocalDrivingLicenceApplication = new FrmAddEditLocalDrivingLicenceApplication();
             frmAddEditLocalDrivingLicenceApplication.ShowDialog();
         }
+
+        private void LocalDrivingLicenceApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmManageLocalDLApplications frmManageLocalDLApplications = new FrmManageLocalDLApplications();
+            frmManageLocalDLApplications.ShowDialog();
+        }
     }
 }
