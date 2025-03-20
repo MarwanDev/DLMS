@@ -37,6 +37,18 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
             UpdateCountLabel();
         }
 
+        private void FilterLocalDLApplications(string searchKeyWord)
+        {
+            DataTable filteredLocalDLApplications = tbSearch.Text != "" ?
+                LocalDLApplication.FilterLocalDLApplications(cbFilter.Text, searchKeyWord) :
+                LocalDLApplication.FilterLocalDLApplications("Status", searchKeyWord);
+            dgvLocalDLApplications.DataSource = filteredLocalDLApplications;
+            Utils.DisableDGVColumnSorting(dgvLocalDLApplications);
+            dgvLocalDLApplications.Refresh();
+            CurrentMode = Mode.Filter;
+            UpdateCountLabel(searchKeyWord);
+        }
+
         private void UpdateCountLabel(string searchQuery = "")
         {
             //lblCount.Text = CurrentMode == Mode.All ?
@@ -53,24 +65,25 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
         {
             tbSearch.Visible = cbFilter.SelectedIndex != 0 && cbFilter.SelectedIndex != 4;
             cbStatus.Visible = cbFilter.SelectedIndex == 4;
+            cbStatus.SelectedIndex = 0;
+            tbSearch.Text = "";
         }
 
         private void CbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
             ManageFilterControlsUI();
             Business.DisableSorting();
-            tbSearch.Text = "";
             GetAllLocalDLApplicationsInDGV();
         }
 
         private void TbSearch_TextChanged(object sender, EventArgs e)
         {
             if (tbSearch.Text == "\u007f")
-            {
                 tbSearch.Clear();
+            if (tbSearch.Text == "")
                 GetAllLocalDLApplicationsInDGV();
-            }
-            //FilterPeople(tbSearch.Text.Trim());
+            else
+                FilterLocalDLApplications(tbSearch.Text.Trim());
         }
 
         private void CbStatus_VisibleChanged(object sender, EventArgs e)
@@ -79,6 +92,14 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
             {
                 cbStatus.Location = new Point(359, 245);
             }
+        }
+
+        private void CbStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbStatus.SelectedIndex != 0)
+                FilterLocalDLApplications(cbStatus.Text);
+            else
+                GetAllLocalDLApplicationsInDGV();
         }
     }
 }

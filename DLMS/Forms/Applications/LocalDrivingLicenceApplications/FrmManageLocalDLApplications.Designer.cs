@@ -48,7 +48,7 @@
             this.lblHeader.AutoSize = true;
             this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeader.ForeColor = System.Drawing.Color.IndianRed;
-            this.lblHeader.Location = new System.Drawing.Point(191, 162);
+            this.lblHeader.Location = new System.Drawing.Point(296, 160);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(466, 25);
             this.lblHeader.TabIndex = 3;
@@ -57,7 +57,7 @@
             // pbHeader
             // 
             this.pbHeader.Image = global::DLMS.Properties.Resources.Local_Driving_License_512;
-            this.pbHeader.Location = new System.Drawing.Point(340, 12);
+            this.pbHeader.Location = new System.Drawing.Point(462, 12);
             this.pbHeader.Name = "pbHeader";
             this.pbHeader.Size = new System.Drawing.Size(154, 135);
             this.pbHeader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -111,7 +111,7 @@
             this.cbFilter.FormattingEnabled = true;
             this.cbFilter.Items.AddRange(new object[] {
             "None",
-            "L.D.L.AppID",
+            "L.D.L.APP.ID",
             "National No.",
             "First Name",
             "Status"});
@@ -166,6 +166,7 @@
             this.cbStatus.Size = new System.Drawing.Size(210, 32);
             this.cbStatus.TabIndex = 19;
             this.cbStatus.Visible = false;
+            this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.CbStatus_SelectedIndexChanged);
             this.cbStatus.VisibleChanged += new System.EventHandler(this.CbStatus_VisibleChanged);
             // 
             // FrmManageLocalDLApplications
