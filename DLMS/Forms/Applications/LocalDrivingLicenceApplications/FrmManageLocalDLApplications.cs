@@ -101,5 +101,36 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
             else
                 GetAllLocalDLApplicationsInDGV();
         }
+
+        private void DgvLocalDLApplications_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+
+        }
+
+        private void DgvLocalDLApplications_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex >= 0)
+            {
+                string headerText = dgvLocalDLApplications.Columns[e.ColumnIndex].HeaderText;
+                Person.ApplySorting(headerText);
+                ReloadData();
+            }
+        }
+
+        private void ReloadData()
+        {
+            if (tbSearch.Visible && tbSearch.Text.Trim() != "")
+            {
+                FilterLocalDLApplications(tbSearch.Text.Trim());
+            }
+            else if (cbStatus.Visible && cbStatus.SelectedIndex != 0)
+            {
+                FilterLocalDLApplications(cbStatus.Text);
+            }
+            else
+            {
+                GetAllLocalDLApplicationsInDGV();
+            }
+        }
     }
 }

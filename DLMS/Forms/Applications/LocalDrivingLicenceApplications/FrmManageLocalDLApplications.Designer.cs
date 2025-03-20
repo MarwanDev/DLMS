@@ -150,6 +150,8 @@
             this.dgvLocalDLApplications.ReadOnly = true;
             this.dgvLocalDLApplications.Size = new System.Drawing.Size(1081, 289);
             this.dgvLocalDLApplications.TabIndex = 10;
+            this.dgvLocalDLApplications.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvLocalDLApplications_CellMouseDown);
+            this.dgvLocalDLApplications.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvLocalDLApplications_ColumnHeaderMouseClick);
             // 
             // cbStatus
             // 
