@@ -51,9 +51,9 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
 
         private void UpdateCountLabel(string searchQuery = "")
         {
-            //lblCount.Text = CurrentMode == Mode.All ?
-            //    Person.GetAllPeopleCount().ToString() :
-            //    Person.GetFilteredPeopleCount(searchQuery).ToString();
+            lblCount.Text = CurrentMode == Mode.All ?
+                LocalDLApplication.GetAllLocalDLApplicationsCount().ToString() :
+                LocalDLApplication.GetFilteredLocalDLApplicationsCount(searchQuery).ToString();
         }
 
         private void BtnClose_Click(object sender, EventArgs e)

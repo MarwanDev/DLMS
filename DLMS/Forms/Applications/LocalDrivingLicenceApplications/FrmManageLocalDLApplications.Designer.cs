@@ -113,7 +113,7 @@
             "None",
             "L.D.L.APP.ID",
             "National No.",
-            "First Name",
+            "Full Name",
             "Status"});
             this.cbFilter.Location = new System.Drawing.Point(110, 244);
             this.cbFilter.Name = "cbFilter";
