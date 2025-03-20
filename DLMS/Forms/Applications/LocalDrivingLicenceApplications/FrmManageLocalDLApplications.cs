@@ -102,9 +102,23 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                 GetAllLocalDLApplicationsInDGV();
         }
 
+        private int SelectedLocalDLApplication { get; set; }
+
         private void DgvLocalDLApplications_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
-
+            if (e.RowIndex < 0)
+                dgvLocalDLApplications.ContextMenuStrip = null;
+            else
+            {
+                SelectedLocalDLApplication = Int32.Parse(dgvLocalDLApplications.Rows[e.RowIndex].Cells[0].Value?.ToString());
+                DataGridView.HitTestInfo hit = dgvLocalDLApplications.HitTest(e.X, e.Y);
+                if (hit.RowIndex >= 0)
+                {
+                    dgvLocalDLApplications.ClearSelection();
+                    dgvLocalDLApplications.Rows[hit.RowIndex].Selected = true;
+                    dgvLocalDLApplications.CurrentCell = dgvLocalDLApplications.Rows[hit.RowIndex].Cells[0];
+                }
+            }
         }
 
         private void DgvLocalDLApplications_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
