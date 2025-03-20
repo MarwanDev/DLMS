@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblHeader = new System.Windows.Forms.Label();
             this.pbHeader = new System.Windows.Forms.PictureBox();
             this.lblCount = new System.Windows.Forms.Label();
@@ -39,8 +40,15 @@
             this.btnAddLocalDLApp = new System.Windows.Forms.Button();
             this.dgvLocalDLApplications = new System.Windows.Forms.DataGridView();
             this.cbStatus = new System.Windows.Forms.ComboBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showApplicationDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.editApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
+            this.cancelApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalDLApplications)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblHeader
@@ -146,6 +154,7 @@
             this.dgvLocalDLApplications.AllowUserToAddRows = false;
             this.dgvLocalDLApplications.AllowUserToDeleteRows = false;
             this.dgvLocalDLApplications.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLocalDLApplications.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvLocalDLApplications.Location = new System.Drawing.Point(0, 287);
             this.dgvLocalDLApplications.Name = "dgvLocalDLApplications";
             this.dgvLocalDLApplications.ReadOnly = true;
@@ -172,6 +181,45 @@
             this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.CbStatus_SelectedIndexChanged);
             this.cbStatus.VisibleChanged += new System.EventHandler(this.CbStatus_VisibleChanged);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showApplicationDetailsToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.editApplicationToolStripMenuItem,
+            this.toolStripMenuItem2,
+            this.cancelApplicationToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(206, 82);
+            // 
+            // showApplicationDetailsToolStripMenuItem
+            // 
+            this.showApplicationDetailsToolStripMenuItem.Name = "showApplicationDetailsToolStripMenuItem";
+            this.showApplicationDetailsToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.showApplicationDetailsToolStripMenuItem.Text = "Show Application Details";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(202, 6);
+            // 
+            // editApplicationToolStripMenuItem
+            // 
+            this.editApplicationToolStripMenuItem.Name = "editApplicationToolStripMenuItem";
+            this.editApplicationToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.editApplicationToolStripMenuItem.Text = "Edit Application";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(202, 6);
+            // 
+            // cancelApplicationToolStripMenuItem
+            // 
+            this.cancelApplicationToolStripMenuItem.Name = "cancelApplicationToolStripMenuItem";
+            this.cancelApplicationToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.cancelApplicationToolStripMenuItem.Text = "Cancel Application";
+            // 
             // FrmManageLocalDLApplications
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -194,6 +242,7 @@
             this.Load += new System.EventHandler(this.FrmManageLocalDLApplications_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbHeader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalDLApplications)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -212,5 +261,11 @@
         private System.Windows.Forms.Button btnAddLocalDLApp;
         private System.Windows.Forms.DataGridView dgvLocalDLApplications;
         private System.Windows.Forms.ComboBox cbStatus;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem showApplicationDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem editApplicationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem cancelApplicationToolStripMenuItem;
     }
 }
