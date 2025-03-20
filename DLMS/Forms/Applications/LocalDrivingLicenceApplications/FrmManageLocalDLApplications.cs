@@ -132,5 +132,12 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                 GetAllLocalDLApplicationsInDGV();
             }
         }
+
+        private void BtnAddLocalDLApp_Click(object sender, EventArgs e)
+        {
+            FrmAddEditLocalDrivingLicenceApplication frmAddEditLocalDrivingLicenceApplication = new FrmAddEditLocalDrivingLicenceApplication();
+            frmAddEditLocalDrivingLicenceApplication.OnFormClosed += ReloadData;
+            frmAddEditLocalDrivingLicenceApplication.ShowDialog();
+        }
     }
 }

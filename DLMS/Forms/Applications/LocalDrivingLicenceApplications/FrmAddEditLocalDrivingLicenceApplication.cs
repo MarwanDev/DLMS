@@ -159,6 +159,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
 
         private void FrmAddEditLocalDrivingLicenceApplication_FormClosed(object sender, FormClosedEventArgs e)
         {
+            OnFormClosed?.Invoke();
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
@@ -238,5 +239,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
         {
             HandleSelectIndexChangeForLicenceClassComboBoc();
         }
+
+        public new event Action OnFormClosed;
     }
 }

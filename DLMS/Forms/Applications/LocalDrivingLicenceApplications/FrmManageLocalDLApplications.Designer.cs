@@ -139,6 +139,7 @@
             this.btnAddLocalDLApp.TabIndex = 11;
             this.btnAddLocalDLApp.Text = "Add Local DL Applications";
             this.btnAddLocalDLApp.UseVisualStyleBackColor = true;
+            this.btnAddLocalDLApp.Click += new System.EventHandler(this.BtnAddLocalDLApp_Click);
             // 
             // dgvLocalDLApplications
             // 
