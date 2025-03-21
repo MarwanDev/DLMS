@@ -160,6 +160,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                 "Confirm",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Information) == DialogResult.Yes)
+            {
                 if (LocalDLApplication.CancelLocalDLApplication(SelectedLocalDLApplicationId))
                 {
                     MessageBox.Show($"Local Application with id {SelectedLocalDLApplicationId} has been canceled successfully?",
@@ -168,6 +169,9 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                         MessageBoxIcon.Information);
                     ReloadData();
                 }
+                else
+                    MessageBox.Show("Something Wrong Happened", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
