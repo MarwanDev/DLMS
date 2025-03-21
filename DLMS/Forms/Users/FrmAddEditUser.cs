@@ -255,6 +255,8 @@ namespace DLMS.Forms.Users
                 CurrentUser = user;
                 CurrentMode = Mode.Edit;
                 lblFormHeader.Text = "Update User";
+                this.Text = "Update User";
+                ucPersonSearch1.ChangePersonSearchGroupBoxAbility(false);
             }
             else
                 MessageBox.Show($"Something wrong happened", "Error",
