@@ -115,7 +115,6 @@ namespace DLMS.Forms
             }
             lblHeader.Text = CurrentMode == Mode.Add ? "Add New Person" : "Edit Person";
             this.Text = CurrentMode == Mode.Add ? "Add New Person" : "Edit Person";
-            timer1.Enabled = true;
             timer1.Start();
         }
 
@@ -446,6 +445,8 @@ namespace DLMS.Forms
 
         private void FrmAddEditPerson_FormClosed(object sender, FormClosedEventArgs e)
         {
+            CurrentPerson = null;
+            timer1.Stop();
             DeleteAllTempFiles();
             OnFormClosed?.Invoke();
         }

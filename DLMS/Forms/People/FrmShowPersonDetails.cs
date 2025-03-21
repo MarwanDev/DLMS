@@ -37,7 +37,6 @@ namespace DLMS.Forms.People
         private void FrmShowPersonDetails_Load(object sender, System.EventArgs e)
         {
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            timer1.Enabled = true;
             timer1.Start();
         }
 
@@ -45,6 +44,8 @@ namespace DLMS.Forms.People
 
         private void FrmShowPersonDetails_FormClosed(object sender, FormClosedEventArgs e)
         {
+            ucPersonInfo2.SetPerson(null);
+            timer1.Stop();
             OnFormClosed?.Invoke();
         }
 

@@ -151,6 +151,8 @@ namespace DLMS.Forms.Users
 
         private void FrmChangePassword_FormClosed(object sender, FormClosedEventArgs e)
         {
+            CurrentUser = null;
+            timer1.Stop();
             OnFormClosed?.Invoke();
         }
 
