@@ -102,7 +102,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                 GetAllLocalDLApplicationsInDGV();
         }
 
-        private int SelectedLocalDLApplication { get; set; }
+        private int SelectedLocalDLApplicationId { get; set; }
 
         private void DgvLocalDLApplications_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -110,7 +110,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                 dgvLocalDLApplications.ContextMenuStrip = null;
             else
             {
-                SelectedLocalDLApplication = Int32.Parse(dgvLocalDLApplications.Rows[e.RowIndex].Cells[0].Value?.ToString());
+                SelectedLocalDLApplicationId = Int32.Parse(dgvLocalDLApplications.Rows[e.RowIndex].Cells[0].Value?.ToString());
                 DataGridView.HitTestInfo hit = dgvLocalDLApplications.HitTest(e.X, e.Y);
                 if (hit.RowIndex >= 0)
                 {
@@ -152,6 +152,22 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
             FrmAddEditLocalDrivingLicenceApplication frmAddEditLocalDrivingLicenceApplication = new FrmAddEditLocalDrivingLicenceApplication();
             frmAddEditLocalDrivingLicenceApplication.OnFormClosed += ReloadData;
             frmAddEditLocalDrivingLicenceApplication.ShowDialog();
+        }
+
+        private void CancelApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show($"Are you sure you want to delete the Local Application with id {SelectedLocalDLApplicationId}?",
+                "Confirm",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Information) == DialogResult.Yes)
+                if (LocalDLApplication.CancelLocalDLApplication(SelectedLocalDLApplicationId))
+                {
+                    MessageBox.Show($"Local Application with id {SelectedLocalDLApplicationId} has been canceled successfully?",
+                        "Confirm",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Information);
+                    ReloadData();
+                }
         }
     }
 }
