@@ -16,11 +16,34 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
             CurrentMode = Mode.Add;
         }
 
+        public FrmAddEditLocalDrivingLicenceApplication(LocalDLApplication localDLApplication)
+        {
+            InitializeForm();
+            CurrentLocalDLApplication = localDLApplication;
+            ModifyControlsAccordingToCurrentLocalDLAppication();
+            CurrentMode = Mode.Edit;
+        }
+
+        private void ModifyControlsAccordingToCurrentLocalDLAppication()
+        {
+            FillLicenceClassesCb();
+            CurrentPerson = Person.Find(CurrentLocalDLApplication.ApplicantPersonID);
+            ucPersonSearch1.SetPerson(CurrentPerson);
+            ucPersonSearch1.ShowPersonData();
+            ucPersonSearch1.ChangePersonSearchGroupBoxAbility(false);
+            lblApplicationId.Text = CurrentLocalDLApplication.ID.ToString();
+            lblApplicationDate.Text = CurrentLocalDLApplication.ApplicationDate.ToShortDateString();
+            lblApplicationFees.Text = CurrentLocalDLApplication.PaidFees.ToString();
+            lblCreatedBy.Text = CurrentLocalDLApplication.CreatedByUserName;
+            cbLicenceClass.SelectedValue = CurrentLocalDLApplication.LicenceClassID;
+        }
+
         private readonly decimal LocalApplicationTypeFees = ApplicationType.Find(1).Fees;
 
         private void ModifyControls()
         {
             FillLicenceClassesCb();
+            ucPersonSearch1.ChangePersonSearchGroupBoxAbility();
             lblApplicationDate.Text = DateTime.Now.ToShortDateString();
             lblApplicationFees.Text = LocalApplicationTypeFees.ToString();
             lblCreatedBy.Text = UserSession.LoggedInUser.UserName;
@@ -29,11 +52,11 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
 
         private void BtnNext_Click(object sender, EventArgs e)
         {
-            if (CurrentPerson != null && CurrentDLApplication == null && CurrentMode == Mode.Add)
+            if (CurrentPerson != null && CurrentLocalDLApplication == null && CurrentMode == Mode.Add)
             {
                 tcApplicationInfo.SelectedIndex = 1;
             }
-            else if (CurrentMode == Mode.Edit && CurrentDLApplication != null)
+            else if (CurrentMode == Mode.Edit && CurrentLocalDLApplication != null)
             {
                 tcApplicationInfo.SelectedIndex = 1;
             }
@@ -60,7 +83,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
 
         private void HandlePersonAdded(bool isPersonAdded = true)
         {
-            CurrentDLApplication = isPersonAdded ? null : CurrentDLApplication;
+            CurrentLocalDLApplication = isPersonAdded ? null : CurrentLocalDLApplication;
         }
 
         private void HandlePersonDataReloaded(int personId)
@@ -73,14 +96,14 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
         }
 
         private static Person CurrentPerson { get; set; }
-        private static LocalDLApplication CurrentDLApplication { get; set; }
+        private static LocalDLApplication CurrentLocalDLApplication { get; set; }
 
         private void UcPersonSearch1_OnPersonIsShown(bool isSuccessful = true)
         {
             if (isSuccessful)
             {
                 CurrentPerson = UcPersonSearch.CurrentPerson;
-                HandleSelectIndexChangeForLicenceClassComboBoc();
+                HandleSelectIndexChangeForLicenceClassComboBox();
             }
         }
 
@@ -96,19 +119,29 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                 CurrentPerson.ID) != 0;
         }
 
+        private void SetDuplicationErrorForComboBox()
+        {
+            if (IsApplicationDuplicated())
+            {
+                int duplicateDLApplicationId = LocalDLApplication.
+                GetApplicationIdForSamePersonAndLicenceClass(
+                Int32.Parse(cbLicenceClass.SelectedValue.ToString()),
+                CurrentPerson.ID);
+                SetError(cbLicenceClass, $"An active application with the same licence class is " +
+                    $"still active for the same person with ID {duplicateDLApplicationId}");
+            }
+            else
+                SetError(cbLicenceClass, "");
+        }
+
         private void CheckIfApplicationIsDuplicated()
         {
             if (!string.IsNullOrEmpty(cbLicenceClass.SelectedValue.ToString()))
             {
-                if (IsApplicationDuplicated())
-                {
-                    int duplicateDLApplicationId = LocalDLApplication.
-                    GetApplicationIdForSamePersonAndLicenceClass(
-                    Int32.Parse(cbLicenceClass.SelectedValue.ToString()),
-                    CurrentPerson.ID);
-                    SetError(cbLicenceClass, $"An active application with the same licence class is " +
-                        $"mstill active for the same person with ID {duplicateDLApplicationId}");
-                }
+                if (CurrentLocalDLApplication == null ||
+                    (CurrentLocalDLApplication != null &&
+                    CurrentLocalDLApplication.LicenceClassID != Int32.Parse(cbLicenceClass.SelectedValue.ToString())))
+                    SetDuplicationErrorForComboBox();
                 else
                     SetError(cbLicenceClass, "");
             }
@@ -154,12 +187,16 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
 
         private bool ShouldSaveBtnBeEnabled()
         {
-            return CurrentPerson != null && GetActiveErrorCount() == 0;
+            return CurrentLocalDLApplication == null ? CurrentPerson != null && GetActiveErrorCount() == 0 :
+                CurrentPerson != null && GetActiveErrorCount() == 0 &&
+                cbLicenceClass.SelectedValue.ToString() != CurrentLocalDLApplication.LicenceClassID.ToString();
         }
 
         private void FrmAddEditLocalDrivingLicenceApplication_FormClosed(object sender, FormClosedEventArgs e)
         {
             OnFormClosed?.Invoke();
+            CurrentLocalDLApplication = null;
+            CurrentPerson = null;
         }
 
         private void BtnClose_Click(object sender, EventArgs e)
@@ -195,7 +232,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                     MessageBoxButtons.OK,
                     icon: MessageBoxIcon.Information);
                 lblApplicationId.Text = localDLApplication.ID.ToString();
-                CurrentDLApplication = localDLApplication;
+                CurrentLocalDLApplication = localDLApplication;
                 CurrentMode = Mode.Edit;
                 lblFormHeader.Text = "Update Local Driving Licence Appllication";
             }
@@ -207,7 +244,18 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
 
         private void SaveUpdate()
         {
-
+            CurrentLocalDLApplication.LicenceClassID = Int32.Parse(cbLicenceClass.SelectedValue.ToString());
+            if (CurrentLocalDLApplication.Save())
+            {
+                MessageBox.Show("Local Driving Licence Applicatison is saved successfully!",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    icon: MessageBoxIcon.Information);
+            }
+            else
+                MessageBox.Show($"Something wrong happened", "Error",
+                    MessageBoxButtons.OK,
+                    icon: MessageBoxIcon.Error);
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
@@ -219,14 +267,14 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
         {
             if (e.TabPage == tabApplicationInfo)
             {
-                if (CurrentPerson == null || (CurrentPerson != null && CurrentDLApplication != null && CurrentMode == Mode.Add))
+                if (CurrentPerson == null || (CurrentPerson != null && CurrentLocalDLApplication != null && CurrentMode == Mode.Add))
                 {
                     e.Cancel = true;
                 }
             }
         }
 
-        private void HandleSelectIndexChangeForLicenceClassComboBoc()
+        private void HandleSelectIndexChangeForLicenceClassComboBox()
         {
             if (CurrentPerson != null)
             {
@@ -237,7 +285,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
 
         private void CbLicenceClass_SelectedIndexChanged(object sender, EventArgs e)
         {
-            HandleSelectIndexChangeForLicenceClassComboBoc();
+            HandleSelectIndexChangeForLicenceClassComboBox();
         }
 
         public new event Action OnFormClosed;

@@ -173,5 +173,16 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                     MessageBox.Show("Something Wrong Happened", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void EditApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LocalDLApplication localDLApplication = LocalDLApplication.Find(SelectedLocalDLApplicationId);
+            if (localDLApplication != null)
+            {
+                FrmAddEditLocalDrivingLicenceApplication frmAddEditLocalDrivingLicenceApplication = new FrmAddEditLocalDrivingLicenceApplication(localDLApplication);
+                frmAddEditLocalDrivingLicenceApplication.OnFormClosed += ReloadData;
+                frmAddEditLocalDrivingLicenceApplication.ShowDialog();
+            }
+        }
     }
 }

@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace DLMS.Forms.Users
 {
-    public partial class FrmShowUserDetails: Form
+    public partial class FrmShowUserDetails : Form
     {
         public FrmShowUserDetails()
         {
