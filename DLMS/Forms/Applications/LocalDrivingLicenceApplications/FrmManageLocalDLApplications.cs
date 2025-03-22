@@ -149,9 +149,9 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
 
         private void BtnAddLocalDLApp_Click(object sender, EventArgs e)
         {
-            FrmAddEditLocalDrivingLicenceApplication frmAddEditLocalDrivingLicenceApplication = new FrmAddEditLocalDrivingLicenceApplication();
-            frmAddEditLocalDrivingLicenceApplication.OnFormClosed += ReloadData;
-            frmAddEditLocalDrivingLicenceApplication.ShowDialog();
+            FrmAddEditLocalDrivingLicenceApplication frm = new FrmAddEditLocalDrivingLicenceApplication();
+            frm.OnFormClosed += ReloadData;
+            frm.ShowDialog();
         }
 
         private void CancelApplicationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -179,9 +179,20 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
             LocalDLApplication localDLApplication = LocalDLApplication.Find(SelectedLocalDLApplicationId);
             if (localDLApplication != null)
             {
-                FrmAddEditLocalDrivingLicenceApplication frmAddEditLocalDrivingLicenceApplication = new FrmAddEditLocalDrivingLicenceApplication(localDLApplication);
-                frmAddEditLocalDrivingLicenceApplication.OnFormClosed += ReloadData;
-                frmAddEditLocalDrivingLicenceApplication.ShowDialog();
+                FrmAddEditLocalDrivingLicenceApplication frm = new FrmAddEditLocalDrivingLicenceApplication(localDLApplication);
+                frm.OnFormClosed += ReloadData;
+                frm.ShowDialog();
+            }
+        }
+
+        private void ShowApplicationDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LocalDLApplication localDLApplication = LocalDLApplication.Find(SelectedLocalDLApplicationId);
+            if (localDLApplication != null)
+            {
+                FrmShowLocalDLApplicationDetails frm = new FrmShowLocalDLApplicationDetails(localDLApplication);
+                frm.OnFormClosed += ReloadData;
+                frm.ShowDialog();
             }
         }
     }
