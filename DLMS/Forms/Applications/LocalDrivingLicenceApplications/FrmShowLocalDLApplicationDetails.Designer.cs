@@ -29,29 +29,29 @@
         private void InitializeComponent()
         {
             this.gbLocalDLApplicationDetails = new System.Windows.Forms.GroupBox();
-            this.lblLicenceClass = new System.Windows.Forms.Label();
             this.lblCreatedBy = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lblApplicationFees = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.lblApplicationDate = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblApplicationId = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.ucPersonInfo1 = new DLMS.UserControls.UcPersonInfo();
+            this.lblLicenceClass = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.gbLocalDLApplicationDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbLocalDLApplicationDetails
             // 
             this.gbLocalDLApplicationDetails.Controls.Add(this.lblLicenceClass);
+            this.gbLocalDLApplicationDetails.Controls.Add(this.label10);
             this.gbLocalDLApplicationDetails.Controls.Add(this.lblCreatedBy);
             this.gbLocalDLApplicationDetails.Controls.Add(this.label12);
             this.gbLocalDLApplicationDetails.Controls.Add(this.lblApplicationFees);
             this.gbLocalDLApplicationDetails.Controls.Add(this.label8);
-            this.gbLocalDLApplicationDetails.Controls.Add(this.label10);
             this.gbLocalDLApplicationDetails.Controls.Add(this.lblApplicationDate);
             this.gbLocalDLApplicationDetails.Controls.Add(this.label4);
             this.gbLocalDLApplicationDetails.Controls.Add(this.lblApplicationId);
@@ -63,21 +63,11 @@
             this.gbLocalDLApplicationDetails.TabStop = false;
             this.gbLocalDLApplicationDetails.Text = "ApplicationDetails";
             // 
-            // lblLicenceClass
-            // 
-            this.lblLicenceClass.AutoSize = true;
-            this.lblLicenceClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLicenceClass.Location = new System.Drawing.Point(200, 90);
-            this.lblLicenceClass.Name = "lblLicenceClass";
-            this.lblLicenceClass.Size = new System.Drawing.Size(39, 20);
-            this.lblLicenceClass.TabIndex = 27;
-            this.lblLicenceClass.Text = "???";
-            // 
             // lblCreatedBy
             // 
             this.lblCreatedBy.AutoSize = true;
             this.lblCreatedBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCreatedBy.Location = new System.Drawing.Point(200, 141);
+            this.lblCreatedBy.Location = new System.Drawing.Point(200, 99);
             this.lblCreatedBy.Name = "lblCreatedBy";
             this.lblCreatedBy.Size = new System.Drawing.Size(39, 20);
             this.lblCreatedBy.TabIndex = 26;
@@ -87,7 +77,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(47, 141);
+            this.label12.Location = new System.Drawing.Point(47, 99);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(103, 20);
             this.label12.TabIndex = 25;
@@ -112,16 +102,6 @@
             this.label8.Size = new System.Drawing.Size(148, 20);
             this.label8.TabIndex = 23;
             this.label8.Text = "Application Fees:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(47, 90);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(125, 20);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "Licence Class:";
             // 
             // lblApplicationDate
             // 
@@ -182,6 +162,26 @@
             this.ucPersonInfo1.Size = new System.Drawing.Size(781, 461);
             this.ucPersonInfo1.TabIndex = 0;
             // 
+            // lblLicenceClass
+            // 
+            this.lblLicenceClass.AutoSize = true;
+            this.lblLicenceClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLicenceClass.Location = new System.Drawing.Point(200, 151);
+            this.lblLicenceClass.Name = "lblLicenceClass";
+            this.lblLicenceClass.Size = new System.Drawing.Size(39, 20);
+            this.lblLicenceClass.TabIndex = 29;
+            this.lblLicenceClass.Text = "???";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(47, 151);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(125, 20);
+            this.label10.TabIndex = 28;
+            this.label10.Text = "Licence Class:";
+            // 
             // FrmShowLocalDLApplicationDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -205,16 +205,16 @@
 
         private UserControls.UcPersonInfo ucPersonInfo1;
         private System.Windows.Forms.GroupBox gbLocalDLApplicationDetails;
-        private System.Windows.Forms.Label lblLicenceClass;
         private System.Windows.Forms.Label lblCreatedBy;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lblApplicationFees;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblApplicationDate;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblApplicationId;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label lblLicenceClass;
+        private System.Windows.Forms.Label label10;
     }
 }
