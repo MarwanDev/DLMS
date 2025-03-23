@@ -46,6 +46,11 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.cancelApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cbStatus = new System.Windows.Forms.ComboBox();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.scheduleTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visionTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.writtenTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.streetTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalDLApplications)).BeginInit();
             this.cmsLocalDLApplications.SuspendLayout();
@@ -170,9 +175,11 @@
             this.toolStripMenuItem1,
             this.editApplicationToolStripMenuItem,
             this.toolStripMenuItem2,
-            this.cancelApplicationToolStripMenuItem});
+            this.cancelApplicationToolStripMenuItem,
+            this.toolStripMenuItem3,
+            this.scheduleTestToolStripMenuItem});
             this.cmsLocalDLApplications.Name = "contextMenuStrip1";
-            this.cmsLocalDLApplications.Size = new System.Drawing.Size(206, 104);
+            this.cmsLocalDLApplications.Size = new System.Drawing.Size(206, 110);
             // 
             // showApplicationDetailsToolStripMenuItem
             // 
@@ -223,6 +230,39 @@
             this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.CbStatus_SelectedIndexChanged);
             this.cbStatus.VisibleChanged += new System.EventHandler(this.CbStatus_VisibleChanged);
             // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(202, 6);
+            // 
+            // scheduleTestToolStripMenuItem
+            // 
+            this.scheduleTestToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.visionTestToolStripMenuItem,
+            this.writtenTestToolStripMenuItem,
+            this.streetTestToolStripMenuItem});
+            this.scheduleTestToolStripMenuItem.Name = "scheduleTestToolStripMenuItem";
+            this.scheduleTestToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.scheduleTestToolStripMenuItem.Text = "Schedule Test";
+            // 
+            // visionTestToolStripMenuItem
+            // 
+            this.visionTestToolStripMenuItem.Name = "visionTestToolStripMenuItem";
+            this.visionTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.visionTestToolStripMenuItem.Text = "Vision Test";
+            // 
+            // writtenTestToolStripMenuItem
+            // 
+            this.writtenTestToolStripMenuItem.Name = "writtenTestToolStripMenuItem";
+            this.writtenTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.writtenTestToolStripMenuItem.Text = "Written Test";
+            // 
+            // streetTestToolStripMenuItem
+            // 
+            this.streetTestToolStripMenuItem.Name = "streetTestToolStripMenuItem";
+            this.streetTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.streetTestToolStripMenuItem.Text = "Street Test";
+            // 
             // FrmManageLocalDLApplications
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -270,5 +310,10 @@
         private System.Windows.Forms.ToolStripMenuItem editApplicationToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem cancelApplicationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem scheduleTestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem visionTestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem writtenTestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem streetTestToolStripMenuItem;
     }
 }
