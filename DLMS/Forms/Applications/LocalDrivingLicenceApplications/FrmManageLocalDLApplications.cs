@@ -1,4 +1,5 @@
 ﻿using DLMS_Business;
+using DLMS_Business.Application;
 using System;
 using System.Data;
 using System.Drawing;
@@ -213,6 +214,35 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                 frm.OnFormClosed += ReloadData;
                 frm.ShowDialog();
             }
+        }
+
+        private void DeleteApplication()
+        {
+            if (MessageBox.Show($"Are you sure you want to delete the application with id {SelectedLocalDLApplicationId}?",
+                "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                int applicationId = LocalDLApplication.GetApplicationId(SelectedLocalDLApplicationId);
+                if (LocalDLApplication.DeleteLocalDLApplication(SelectedLocalDLApplicationId))
+                {
+                    if (ApplicationModel.DeleteApplication(applicationId))
+                    {
+                        MessageBox.Show($"Application Deleted Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"Couldn't delete the application as there are tests attached to it",
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                }
+                ReloadData();
+            }
+        }
+
+        private void DeleteApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteApplication();
         }
     }
 }

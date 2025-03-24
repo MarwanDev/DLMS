@@ -16,7 +16,7 @@ namespace DLMS
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FrmLogin());
-            //Application.Run(new TestForm());
+            //ApplicationModel.Run(new TestForm());
         }
     }
 }

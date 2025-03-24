@@ -45,12 +45,14 @@
             this.editApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.cancelApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cbStatus = new System.Windows.Forms.ComboBox();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.scheduleTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visionTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.writtenTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.streetTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalDLApplications)).BeginInit();
             this.cmsLocalDLApplications.SuspendLayout();
@@ -177,9 +179,11 @@
             this.toolStripMenuItem2,
             this.cancelApplicationToolStripMenuItem,
             this.toolStripMenuItem3,
-            this.scheduleTestToolStripMenuItem});
+            this.scheduleTestToolStripMenuItem,
+            this.toolStripMenuItem4,
+            this.deleteApplicationToolStripMenuItem});
             this.cmsLocalDLApplications.Name = "contextMenuStrip1";
-            this.cmsLocalDLApplications.Size = new System.Drawing.Size(206, 110);
+            this.cmsLocalDLApplications.Size = new System.Drawing.Size(206, 160);
             // 
             // showApplicationDetailsToolStripMenuItem
             // 
@@ -212,24 +216,6 @@
             this.cancelApplicationToolStripMenuItem.Text = "Cancel Application";
             this.cancelApplicationToolStripMenuItem.Click += new System.EventHandler(this.CancelApplicationToolStripMenuItem_Click);
             // 
-            // cbStatus
-            // 
-            this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbStatus.FormattingEnabled = true;
-            this.cbStatus.Items.AddRange(new object[] {
-            "None",
-            "New",
-            "In Progress",
-            "Complete"});
-            this.cbStatus.Location = new System.Drawing.Point(636, 245);
-            this.cbStatus.Name = "cbStatus";
-            this.cbStatus.Size = new System.Drawing.Size(210, 32);
-            this.cbStatus.TabIndex = 19;
-            this.cbStatus.Visible = false;
-            this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.CbStatus_SelectedIndexChanged);
-            this.cbStatus.VisibleChanged += new System.EventHandler(this.CbStatus_VisibleChanged);
-            // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
@@ -248,20 +234,50 @@
             // visionTestToolStripMenuItem
             // 
             this.visionTestToolStripMenuItem.Name = "visionTestToolStripMenuItem";
-            this.visionTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.visionTestToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.visionTestToolStripMenuItem.Text = "Vision Test";
             // 
             // writtenTestToolStripMenuItem
             // 
             this.writtenTestToolStripMenuItem.Name = "writtenTestToolStripMenuItem";
-            this.writtenTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.writtenTestToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.writtenTestToolStripMenuItem.Text = "Written Test";
             // 
             // streetTestToolStripMenuItem
             // 
             this.streetTestToolStripMenuItem.Name = "streetTestToolStripMenuItem";
-            this.streetTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.streetTestToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.streetTestToolStripMenuItem.Text = "Street Test";
+            // 
+            // cbStatus
+            // 
+            this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbStatus.FormattingEnabled = true;
+            this.cbStatus.Items.AddRange(new object[] {
+            "None",
+            "New",
+            "In Progress",
+            "Complete"});
+            this.cbStatus.Location = new System.Drawing.Point(636, 245);
+            this.cbStatus.Name = "cbStatus";
+            this.cbStatus.Size = new System.Drawing.Size(210, 32);
+            this.cbStatus.TabIndex = 19;
+            this.cbStatus.Visible = false;
+            this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.CbStatus_SelectedIndexChanged);
+            this.cbStatus.VisibleChanged += new System.EventHandler(this.CbStatus_VisibleChanged);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(202, 6);
+            // 
+            // deleteApplicationToolStripMenuItem
+            // 
+            this.deleteApplicationToolStripMenuItem.Name = "deleteApplicationToolStripMenuItem";
+            this.deleteApplicationToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.deleteApplicationToolStripMenuItem.Text = "Delete Application";
+            this.deleteApplicationToolStripMenuItem.Click += new System.EventHandler(this.DeleteApplicationToolStripMenuItem_Click);
             // 
             // FrmManageLocalDLApplications
             // 
@@ -315,5 +331,7 @@
         private System.Windows.Forms.ToolStripMenuItem visionTestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem writtenTestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem streetTestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripMenuItem deleteApplicationToolStripMenuItem;
     }
 }
