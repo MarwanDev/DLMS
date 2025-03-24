@@ -104,6 +104,24 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
 
         private int SelectedLocalDLApplicationId { get; set; }
 
+        private void ModifyCMSOptionsAbilityAccordingToPassedTest()
+        {
+            if (LocalDLApplication.Find(SelectedLocalDLApplicationId).ApplicationStatus == 0 ||
+                LocalDLApplication.Find(SelectedLocalDLApplicationId).ApplicationStatus == 3)
+            {
+                visionTestToolStripMenuItem.Enabled = false;
+                writtenTestToolStripMenuItem.Enabled = false;
+                streetTestToolStripMenuItem.Enabled = false;
+            }
+            else
+            {
+                int passedTests = LocalDLApplication.GetPassedTestsCount(SelectedLocalDLApplicationId);
+                visionTestToolStripMenuItem.Enabled = passedTests == 0;
+                writtenTestToolStripMenuItem.Enabled = passedTests == 1;
+                streetTestToolStripMenuItem.Enabled = passedTests == 2;
+            }
+        }
+
         private void DgvLocalDLApplications_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -111,6 +129,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
             else
             {
                 SelectedLocalDLApplicationId = Int32.Parse(dgvLocalDLApplications.Rows[e.RowIndex].Cells[0].Value?.ToString());
+                ModifyCMSOptionsAbilityAccordingToPassedTest();
                 DataGridView.HitTestInfo hit = dgvLocalDLApplications.HitTest(e.X, e.Y);
                 if (hit.RowIndex >= 0)
                 {
