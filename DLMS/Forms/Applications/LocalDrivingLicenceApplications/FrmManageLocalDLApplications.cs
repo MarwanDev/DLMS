@@ -106,8 +106,8 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
 
         private void ModifyCMSOptionsAbilityAccordingToPassedTest()
         {
-            if (LocalDLApplication.Find(SelectedLocalDLApplicationId).ApplicationStatus == 0 ||
-                LocalDLApplication.Find(SelectedLocalDLApplicationId).ApplicationStatus == 3)
+            byte applicationStatus = LocalDLApplication.GetApplicationStatusById(SelectedLocalDLApplicationId);
+            if (applicationStatus == 0 || applicationStatus == 3)
             {
                 visionTestToolStripMenuItem.Enabled = false;
                 writtenTestToolStripMenuItem.Enabled = false;
