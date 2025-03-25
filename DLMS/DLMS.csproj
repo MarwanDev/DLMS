@@ -150,6 +150,12 @@
     <Compile Include="Forms\TestForm.Designer.cs">
       <DependentUpon>TestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcDLApplicationInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcDLApplicationInfo.Designer.cs">
+      <DependentUpon>UcDLApplicationInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ucHeader.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -237,6 +243,9 @@
     </Compile>
     <EmbeddedResource Include="Forms\TestForm.resx">
       <DependentUpon>TestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcDLApplicationInfo.resx">
+      <DependentUpon>UcDLApplicationInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucHeader.resx">
       <DependentUpon>ucHeader.cs</DependentUpon>
