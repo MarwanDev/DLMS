@@ -174,7 +174,9 @@ namespace DLMS.Forms
 
         private void TbNationalNumber_Leave(object sender, EventArgs e)
         {
-            if (Person.DoesPersonExist("NationalNo", tbNationalNumber.Text.Trim()) && tbNationalNumber.Text.Trim() != "")
+            if (Person.DoesPersonExist("NationalNo", tbNationalNumber.Text.Trim()) &&
+                tbNationalNumber.Text.Trim() != "" &&
+                CurrentPerson == null)
             {
                 SetError(tbNationalNumber, $"A person with the National Number {tbNationalNumber.Text} already exists");
             }
