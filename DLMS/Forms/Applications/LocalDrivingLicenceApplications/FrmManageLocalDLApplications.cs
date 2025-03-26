@@ -249,10 +249,16 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
         private void TestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LocalDLApplication localDLApplication = LocalDLApplication.FindInDetails(SelectedLocalDLApplicationId);
-            FrmTestAppointments.TestMode testMode = (ToolStripMenuItem)sender == visionTestToolStripMenuItem ? FrmTestAppointments.TestMode.Vision :
-                (ToolStripMenuItem)sender == writtenTestToolStripMenuItem ? FrmTestAppointments.TestMode.Written : FrmTestAppointments.TestMode.Street;
-            FrmTestAppointments frm = new FrmTestAppointments(testMode, localDLApplication);
-            frm.ShowDialog();
+            if (localDLApplication != null)
+            {
+                FrmTestAppointments.TestMode testMode = (ToolStripMenuItem)sender == visionTestToolStripMenuItem ?
+                    FrmTestAppointments.TestMode.Vision :
+                    (ToolStripMenuItem)sender == writtenTestToolStripMenuItem ? 
+                    FrmTestAppointments.TestMode.Written : 
+                    FrmTestAppointments.TestMode.Street;
+                FrmTestAppointments frm = new FrmTestAppointments(testMode, localDLApplication);
+                frm.ShowDialog();
+            }
         }
     }
 }

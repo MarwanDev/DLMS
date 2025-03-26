@@ -1,4 +1,5 @@
-﻿using DLMS_Business;
+﻿using DLMS.Properties;
+using DLMS_Business;
 using System.Windows.Forms;
 
 namespace DLMS.Forms.Tests
@@ -19,11 +20,31 @@ namespace DLMS.Forms.Tests
             InitializeComponent();
             CurrentTestMode = testMode;
             CurrentLocalDLApplication = localDLApplication;
+            ChangeHeaderText();
+            ChangeHeaderPictureBoxImage();
+        }
+
+        private void ChangeHeaderText()
+        {
+            string testType = CurrentTestMode == TestMode.Vision ? "Vision" :
+                CurrentTestMode == TestMode.Written ? "Written" : "Street";
+            lblHeader.Text = testType + " Test Appointments";
+        }
+
+        private void ChangeHeaderPictureBoxImage()
+        {
+            pbTestType.Image = CurrentTestMode == TestMode.Vision ? Resources.Vision_Test_Schdule :
+                CurrentTestMode == TestMode.Written ? Resources.Written_Test_32_Sechdule : Resources.Street_Test_32;
         }
 
         private void BtnClose_Click(object sender, System.EventArgs e)
         {
             this.Close();
+        }
+
+        private void FrmTestAppointments_Load(object sender, System.EventArgs e)
+        {
+
         }
     }
 }

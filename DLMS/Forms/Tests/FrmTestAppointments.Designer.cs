@@ -90,6 +90,7 @@
             this.pbTestType.Location = new System.Drawing.Point(435, 12);
             this.pbTestType.Name = "pbTestType";
             this.pbTestType.Size = new System.Drawing.Size(126, 85);
+            this.pbTestType.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbTestType.TabIndex = 30;
             this.pbTestType.TabStop = false;
             // 
@@ -134,6 +135,7 @@
             this.Name = "FrmTestAppointments";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmTestAppointment";
+            this.Load += new System.EventHandler(this.FrmTestAppointments_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestAppointments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTestType)).EndInit();
             this.ResumeLayout(false);
