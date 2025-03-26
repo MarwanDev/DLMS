@@ -29,35 +29,32 @@
         private void InitializeComponent()
         {
             this.label2 = new System.Windows.Forms.Label();
-            this.ucDLApplicationInfo1 = new DLMS.UserControls.UcDLApplicationInfo();
             this.label1 = new System.Windows.Forms.Label();
             this.lblCount = new System.Windows.Forms.Label();
             this.dgvTestAppointments = new System.Windows.Forms.DataGridView();
+            this.ucDLApplicationInfo1 = new DLMS.UserControls.UcDLApplicationInfo();
+            this.pbTestType = new System.Windows.Forms.PictureBox();
+            this.lblHeader = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestAppointments)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTestType)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 429);
+            this.label2.Location = new System.Drawing.Point(12, 580);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(125, 20);
             this.label2.TabIndex = 25;
             this.label2.Text = "Appointments:";
             // 
-            // ucDLApplicationInfo1
-            // 
-            this.ucDLApplicationInfo1.Location = new System.Drawing.Point(0, 2);
-            this.ucDLApplicationInfo1.Name = "ucDLApplicationInfo1";
-            this.ucDLApplicationInfo1.Size = new System.Drawing.Size(1047, 424);
-            this.ucDLApplicationInfo1.TabIndex = 26;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 667);
+            this.label1.Location = new System.Drawing.Point(10, 767);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(96, 20);
             this.label1.TabIndex = 27;
@@ -67,7 +64,7 @@
             // 
             this.lblCount.AutoSize = true;
             this.lblCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCount.Location = new System.Drawing.Point(126, 667);
+            this.lblCount.Location = new System.Drawing.Point(124, 767);
             this.lblCount.Name = "lblCount";
             this.lblCount.Size = new System.Drawing.Size(96, 20);
             this.lblCount.TabIndex = 28;
@@ -76,16 +73,56 @@
             // dgvTestAppointments
             // 
             this.dgvTestAppointments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTestAppointments.Location = new System.Drawing.Point(10, 475);
+            this.dgvTestAppointments.Location = new System.Drawing.Point(10, 626);
             this.dgvTestAppointments.Name = "dgvTestAppointments";
-            this.dgvTestAppointments.Size = new System.Drawing.Size(1026, 165);
+            this.dgvTestAppointments.Size = new System.Drawing.Size(1026, 123);
             this.dgvTestAppointments.TabIndex = 29;
             // 
-            // FrmTestAppointment
+            // ucDLApplicationInfo1
+            // 
+            this.ucDLApplicationInfo1.Location = new System.Drawing.Point(0, 153);
+            this.ucDLApplicationInfo1.Name = "ucDLApplicationInfo1";
+            this.ucDLApplicationInfo1.Size = new System.Drawing.Size(1047, 424);
+            this.ucDLApplicationInfo1.TabIndex = 26;
+            // 
+            // pbTestType
+            // 
+            this.pbTestType.Location = new System.Drawing.Point(435, 12);
+            this.pbTestType.Name = "pbTestType";
+            this.pbTestType.Size = new System.Drawing.Size(126, 85);
+            this.pbTestType.TabIndex = 30;
+            this.pbTestType.TabStop = false;
+            // 
+            // lblHeader
+            // 
+            this.lblHeader.AutoSize = true;
+            this.lblHeader.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHeader.ForeColor = System.Drawing.Color.IndianRed;
+            this.lblHeader.Location = new System.Drawing.Point(369, 116);
+            this.lblHeader.Name = "lblHeader";
+            this.lblHeader.Size = new System.Drawing.Size(255, 24);
+            this.lblHeader.TabIndex = 31;
+            this.lblHeader.Text = "Written Test Appointments";
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Location = new System.Drawing.Point(913, 754);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(123, 44);
+            this.btnClose.TabIndex = 32;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            // 
+            // FrmTestAppointments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1048, 726);
+            this.ClientSize = new System.Drawing.Size(1048, 804);
+            this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.lblHeader);
+            this.Controls.Add(this.pbTestType);
             this.Controls.Add(this.dgvTestAppointments);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.label1);
@@ -94,10 +131,11 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmTestAppointment";
+            this.Name = "FrmTestAppointments";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmTestAppointment";
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestAppointments)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTestType)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -110,5 +148,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblCount;
         private System.Windows.Forms.DataGridView dgvTestAppointments;
+        private System.Windows.Forms.PictureBox pbTestType;
+        private System.Windows.Forms.Label lblHeader;
+        private System.Windows.Forms.Button btnClose;
     }
 }

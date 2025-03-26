@@ -20,5 +20,10 @@ namespace DLMS.Forms.Tests
             CurrentTestMode = testMode;
             CurrentLocalDLApplication = localDLApplication;
         }
+
+        private void BtnClose_Click(object sender, System.EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
