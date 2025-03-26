@@ -106,6 +106,12 @@
     <Compile Include="Forms\People\FrmShowPersonDetails.Designer.cs">
       <DependentUpon>FrmShowPersonDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Tests\FrmTestAppointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tests\FrmTestAppointments.Designer.cs">
+      <DependentUpon>FrmTestAppointments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Tests\TestTypes\FrmManageTestType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,6 +217,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\People\FrmShowPersonDetails.resx">
       <DependentUpon>FrmShowPersonDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tests\FrmTestAppointments.resx">
+      <DependentUpon>FrmTestAppointments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tests\TestTypes\FrmManageTestType.resx">
       <DependentUpon>FrmManageTestType.cs</DependentUpon>
