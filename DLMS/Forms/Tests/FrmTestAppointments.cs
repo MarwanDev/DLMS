@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DLMS_Business;
 using System.Windows.Forms;
 
 namespace DLMS.Forms.Tests
@@ -15,6 +8,17 @@ namespace DLMS.Forms.Tests
         public FrmTestAppointments()
         {
             InitializeComponent();
+        }
+
+        public enum TestMode { Vision, Written, Street }
+        private TestMode CurrentTestMode {  get; set; }
+        private LocalDLApplication CurrentLocalDLApplication { get; set; }
+
+        public FrmTestAppointments(TestMode testMode, LocalDLApplication localDLApplication)
+        {
+            InitializeComponent();
+            CurrentTestMode = testMode;
+            CurrentLocalDLApplication = localDLApplication;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DLMS_Business;
+﻿using DLMS.Forms.Tests;
+using DLMS_Business;
 using DLMS_Business.Application;
 using System;
 using System.Data;
@@ -243,6 +244,15 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
         private void DeleteApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DeleteApplication();
+        }
+
+        private void TestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LocalDLApplication localDLApplication = LocalDLApplication.FindInDetails(SelectedLocalDLApplicationId);
+            FrmTestAppointments.TestMode testMode = (ToolStripMenuItem)sender == visionTestToolStripMenuItem ? FrmTestAppointments.TestMode.Vision :
+                (ToolStripMenuItem)sender == writtenTestToolStripMenuItem ? FrmTestAppointments.TestMode.Written : FrmTestAppointments.TestMode.Street;
+            FrmTestAppointments frm = new FrmTestAppointments(testMode, localDLApplication);
+            frm.ShowDialog();
         }
     }
 }

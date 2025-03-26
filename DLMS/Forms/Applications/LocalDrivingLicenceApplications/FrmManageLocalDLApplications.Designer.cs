@@ -50,9 +50,9 @@
             this.visionTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.writtenTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.streetTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cbStatus = new System.Windows.Forms.ComboBox();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalDLApplications)).BeginInit();
             this.cmsLocalDLApplications.SuspendLayout();
@@ -234,20 +234,35 @@
             // visionTestToolStripMenuItem
             // 
             this.visionTestToolStripMenuItem.Name = "visionTestToolStripMenuItem";
-            this.visionTestToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.visionTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.visionTestToolStripMenuItem.Text = "Vision Test";
+            this.visionTestToolStripMenuItem.Click += new System.EventHandler(this.TestToolStripMenuItem_Click);
             // 
             // writtenTestToolStripMenuItem
             // 
             this.writtenTestToolStripMenuItem.Name = "writtenTestToolStripMenuItem";
-            this.writtenTestToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.writtenTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.writtenTestToolStripMenuItem.Text = "Written Test";
+            this.writtenTestToolStripMenuItem.Click += new System.EventHandler(this.TestToolStripMenuItem_Click);
             // 
             // streetTestToolStripMenuItem
             // 
             this.streetTestToolStripMenuItem.Name = "streetTestToolStripMenuItem";
-            this.streetTestToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.streetTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.streetTestToolStripMenuItem.Text = "Street Test";
+            this.streetTestToolStripMenuItem.Click += new System.EventHandler(this.TestToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(202, 6);
+            // 
+            // deleteApplicationToolStripMenuItem
+            // 
+            this.deleteApplicationToolStripMenuItem.Name = "deleteApplicationToolStripMenuItem";
+            this.deleteApplicationToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.deleteApplicationToolStripMenuItem.Text = "Delete Application";
+            this.deleteApplicationToolStripMenuItem.Click += new System.EventHandler(this.DeleteApplicationToolStripMenuItem_Click);
             // 
             // cbStatus
             // 
@@ -266,18 +281,6 @@
             this.cbStatus.Visible = false;
             this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.CbStatus_SelectedIndexChanged);
             this.cbStatus.VisibleChanged += new System.EventHandler(this.CbStatus_VisibleChanged);
-            // 
-            // toolStripMenuItem4
-            // 
-            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(202, 6);
-            // 
-            // deleteApplicationToolStripMenuItem
-            // 
-            this.deleteApplicationToolStripMenuItem.Name = "deleteApplicationToolStripMenuItem";
-            this.deleteApplicationToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.deleteApplicationToolStripMenuItem.Text = "Delete Application";
-            this.deleteApplicationToolStripMenuItem.Click += new System.EventHandler(this.DeleteApplicationToolStripMenuItem_Click);
             // 
             // FrmManageLocalDLApplications
             // 
