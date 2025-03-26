@@ -22,6 +22,7 @@ namespace DLMS.Forms.Tests
             CurrentLocalDLApplication = localDLApplication;
             ChangeHeaderText();
             ChangeHeaderPictureBoxImage();
+            ucDLApplicationInfo1.SetLocalDLApplication(localDLApplication);
         }
 
         private void ChangeHeaderText()
