@@ -20,12 +20,12 @@ namespace DLMS.UserControls
 
         public void SetId(int value)
         {
-            lblApplicationId.Text = value.ToString();
+            lblDLApplicationId.Text = value.ToString();
         }
 
         public int GetId()
         {
-            return Int32.Parse(lblApplicationId.Text);
+            return Int32.Parse(lblDLApplicationId.Text);
         }
 
         public int GetLocalDLApplicationId()

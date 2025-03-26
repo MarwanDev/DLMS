@@ -22,7 +22,23 @@ namespace DLMS.Forms.Tests
             CurrentLocalDLApplication = localDLApplication;
             ChangeHeaderText();
             ChangeHeaderPictureBoxImage();
-            ucDLApplicationInfo1.SetLocalDLApplication(localDLApplication);
+            ModifyControlsAccordingToApplication();
+        }
+
+        private void ModifyControlsAccordingToApplication()
+        {
+            ucDLApplicationInfo1.SetLocalDLApplication(CurrentLocalDLApplication);
+            ucDLApplicationInfo1.SetApplicant(CurrentLocalDLApplication.PersonFullName);
+            ucDLApplicationInfo1.SetApplicationDate(CurrentLocalDLApplication.ApplicationDate);
+            ucDLApplicationInfo1.SetApplicationId(CurrentLocalDLApplication.ApplicationID);
+            ucDLApplicationInfo1.SetApplicationType(CurrentLocalDLApplication.ApplicationTypeTitle);
+            ucDLApplicationInfo1.SetCreatedByUserName(CurrentLocalDLApplication.CreatedByUserName);
+            ucDLApplicationInfo1.SetLastStatusDate(CurrentLocalDLApplication.LastStatusDate);
+            ucDLApplicationInfo1.SetLicence(CurrentLocalDLApplication.LicenceClassName);
+            ucDLApplicationInfo1.SetFees(CurrentLocalDLApplication.PaidFees);
+            ucDLApplicationInfo1.SetId(CurrentLocalDLApplication.ID);
+            ucDLApplicationInfo1.SetPassedTests(CurrentLocalDLApplication.PassedTests);
+            ucDLApplicationInfo1.SetStatus(CurrentLocalDLApplication.StatusText);
         }
 
         private void ChangeHeaderText()
