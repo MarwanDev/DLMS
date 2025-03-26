@@ -1,5 +1,6 @@
 ﻿using DLMS.Properties;
 using DLMS_Business;
+using System;
 using System.Windows.Forms;
 
 namespace DLMS.Forms.Tests
@@ -39,6 +40,7 @@ namespace DLMS.Forms.Tests
             ucDLApplicationInfo1.SetId(CurrentLocalDLApplication.ID);
             ucDLApplicationInfo1.SetPassedTests(CurrentLocalDLApplication.PassedTests);
             ucDLApplicationInfo1.SetStatus(CurrentLocalDLApplication.StatusText);
+            ucDLApplicationInfo1.ChangeShowPersonInfoLinkLabelsAbility();
         }
 
         private void ChangeHeaderText()
@@ -62,6 +64,13 @@ namespace DLMS.Forms.Tests
         private void FrmTestAppointments_Load(object sender, System.EventArgs e)
         {
 
+        }
+
+        public new event Action OnFormClosed;
+
+        private void FrmTestAppointments_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            OnFormClosed?.Invoke();
         }
     }
 }

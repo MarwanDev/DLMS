@@ -183,7 +183,7 @@
             this.toolStripMenuItem4,
             this.deleteApplicationToolStripMenuItem});
             this.cmsLocalDLApplications.Name = "contextMenuStrip1";
-            this.cmsLocalDLApplications.Size = new System.Drawing.Size(206, 160);
+            this.cmsLocalDLApplications.Size = new System.Drawing.Size(206, 138);
             // 
             // showApplicationDetailsToolStripMenuItem
             // 
@@ -301,6 +301,7 @@
             this.Name = "FrmManageLocalDLApplications";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Local Driving Licence Applications";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmManageLocalDLApplications_FormClosed);
             this.Load += new System.EventHandler(this.FrmManageLocalDLApplications_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbHeader)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalDLApplications)).EndInit();

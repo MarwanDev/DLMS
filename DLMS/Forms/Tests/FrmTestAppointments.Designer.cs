@@ -80,6 +80,7 @@
             // 
             // ucDLApplicationInfo1
             // 
+            this.ucDLApplicationInfo1.CurrentLocalDLApplication = null;
             this.ucDLApplicationInfo1.Location = new System.Drawing.Point(0, 153);
             this.ucDLApplicationInfo1.Name = "ucDLApplicationInfo1";
             this.ucDLApplicationInfo1.Size = new System.Drawing.Size(1047, 424);
@@ -135,6 +136,7 @@
             this.Name = "FrmTestAppointments";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmTestAppointment";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmTestAppointments_FormClosed);
             this.Load += new System.EventHandler(this.FrmTestAppointments_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestAppointments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTestType)).EndInit();

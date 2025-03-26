@@ -253,12 +253,18 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
             {
                 FrmTestAppointments.TestMode testMode = (ToolStripMenuItem)sender == visionTestToolStripMenuItem ?
                     FrmTestAppointments.TestMode.Vision :
-                    (ToolStripMenuItem)sender == writtenTestToolStripMenuItem ? 
-                    FrmTestAppointments.TestMode.Written : 
+                    (ToolStripMenuItem)sender == writtenTestToolStripMenuItem ?
+                    FrmTestAppointments.TestMode.Written :
                     FrmTestAppointments.TestMode.Street;
                 FrmTestAppointments frm = new FrmTestAppointments(testMode, localDLApplication);
+                frm.OnFormClosed += ReloadData;
                 frm.ShowDialog();
             }
+        }
+
+        private void FrmManageLocalDLApplications_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Business.DisableSorting();
         }
     }
 }

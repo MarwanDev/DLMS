@@ -1,4 +1,5 @@
-﻿using DLMS_Business;
+﻿using DLMS.Forms.People;
+using DLMS_Business;
 using System;
 using System.Windows.Forms;
 
@@ -131,6 +132,41 @@ namespace DLMS.UserControls
         public string GetApplicant()
         {
             return lblApplicantFullName.Text;
+        }
+
+        public void ChangeShowPersonInfoLinkLabelsAbility(bool isEnabled = true)
+        {
+            llViewPerson.Enabled = isEnabled;
+        }
+
+        private Person CurrentPerson { get; set; }
+
+        private void LlViewPerson_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            CurrentPerson = Person.Find(LocalDLApplication.GetPersonApplicantId(GetId()));
+            if (CurrentPerson != null)
+            {
+                FrmShowPersonDetails frm = new FrmShowPersonDetails(CurrentPerson);
+                frm.OnFormClosed += ReloadData;
+                frm.ShowDialog();
+            }
+        }
+
+        private void ReloadData()
+        {
+            CurrentPerson = Person.Find(LocalDLApplication.GetPersonApplicantId(GetId()));
+            if (CurrentPerson != null)
+            {
+                lblApplicantFullName.Text = CurrentPerson.FirstName + " " +
+                    CurrentPerson.SecondName + " " +
+                    CurrentPerson.ThirdName + " " +
+                    CurrentPerson.LastName;
+            }
+        }
+
+        private void LlShowLicenceInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }

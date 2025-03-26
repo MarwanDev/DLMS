@@ -13,7 +13,6 @@ namespace DLMS.UserControls
         public UcPersonInfo()
         {
             InitializeComponent();
-            llEdit.Visible = CurrentPerson != null;
             FrmAddEditPerson frmAddEditPerson1 = new FrmAddEditPerson();
             frmAddEditPerson1.OnFormClosed += ReloadData;
         }
@@ -88,6 +87,7 @@ namespace DLMS.UserControls
 
         private void UcPersonInfo_Load(object sender, System.EventArgs e)
         {
+            llEdit.Visible = CurrentPerson != null;
             if (CurrentPerson != null)
             {
                 if (!string.IsNullOrEmpty(CurrentPerson.ImagePath) && File.Exists(CurrentPerson.ImagePath))

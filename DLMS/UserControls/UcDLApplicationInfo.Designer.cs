@@ -37,7 +37,7 @@
             this.lblDLApplicationId = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gbApplicationInfo = new System.Windows.Forms.GroupBox();
-            this.lblViewPerson = new System.Windows.Forms.LinkLabel();
+            this.llViewPerson = new System.Windows.Forms.LinkLabel();
             this.lblCreatedBy = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -85,6 +85,7 @@
             this.llShowLicenceInfo.TabIndex = 17;
             this.llShowLicenceInfo.TabStop = true;
             this.llShowLicenceInfo.Text = "Show Licence Info";
+            this.llShowLicenceInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LlShowLicenceInfo_LinkClicked);
             // 
             // lblPassedTests
             // 
@@ -148,7 +149,7 @@
             // 
             // gbApplicationInfo
             // 
-            this.gbApplicationInfo.Controls.Add(this.lblViewPerson);
+            this.gbApplicationInfo.Controls.Add(this.llViewPerson);
             this.gbApplicationInfo.Controls.Add(this.lblCreatedBy);
             this.gbApplicationInfo.Controls.Add(this.label10);
             this.gbApplicationInfo.Controls.Add(this.label2);
@@ -172,17 +173,18 @@
             this.gbApplicationInfo.TabStop = false;
             this.gbApplicationInfo.Text = "Basic Application info.";
             // 
-            // lblViewPerson
+            // llViewPerson
             // 
-            this.lblViewPerson.AutoSize = true;
-            this.lblViewPerson.Enabled = false;
-            this.lblViewPerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblViewPerson.Location = new System.Drawing.Point(760, 170);
-            this.lblViewPerson.Name = "lblViewPerson";
-            this.lblViewPerson.Size = new System.Drawing.Size(129, 20);
-            this.lblViewPerson.TabIndex = 27;
-            this.lblViewPerson.TabStop = true;
-            this.lblViewPerson.Text = "View Person Info";
+            this.llViewPerson.AutoSize = true;
+            this.llViewPerson.Enabled = false;
+            this.llViewPerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llViewPerson.Location = new System.Drawing.Point(760, 170);
+            this.llViewPerson.Name = "llViewPerson";
+            this.llViewPerson.Size = new System.Drawing.Size(129, 20);
+            this.llViewPerson.TabIndex = 27;
+            this.llViewPerson.TabStop = true;
+            this.llViewPerson.Text = "View Person Info";
+            this.llViewPerson.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LlViewPerson_LinkClicked);
             // 
             // lblCreatedBy
             // 
@@ -387,6 +389,6 @@
         private System.Windows.Forms.Label lblApplicantFullName;
         private System.Windows.Forms.Label lblCreatedBy;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.LinkLabel lblViewPerson;
+        private System.Windows.Forms.LinkLabel llViewPerson;
     }
 }
