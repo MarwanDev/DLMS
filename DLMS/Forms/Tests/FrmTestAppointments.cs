@@ -1,6 +1,7 @@
 ﻿using DLMS.Properties;
 using DLMS_Business;
 using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace DLMS.Forms.Tests
@@ -13,7 +14,7 @@ namespace DLMS.Forms.Tests
         }
 
         public enum TestMode { Vision, Written, Street }
-        private TestMode CurrentTestMode {  get; set; }
+        private TestMode CurrentTestMode { get; set; }
         private LocalDLApplication CurrentLocalDLApplication { get; set; }
 
         public FrmTestAppointments(TestMode testMode, LocalDLApplication localDLApplication)
@@ -24,6 +25,23 @@ namespace DLMS.Forms.Tests
             ChangeHeaderText();
             ChangeHeaderPictureBoxImage();
             ModifyControlsAccordingToApplication();
+        }
+
+        private void GetAllTestAppointmentsInDGV()
+        {
+            if (CurrentLocalDLApplication != null)
+            {
+                DataTable localDLApplications = TestAppointment.GetAllTestAppointmentsForLocalDLApplication(CurrentLocalDLApplication.ID);
+                dgvTestAppointments.DataSource = localDLApplications;
+                Utils.DisableDGVColumnSorting(dgvTestAppointments);
+                dgvTestAppointments.Refresh();
+                UpdateCountLabel();
+            }
+        }
+
+        private void UpdateCountLabel()
+        {
+
         }
 
         private void ModifyControlsAccordingToApplication()
@@ -63,7 +81,8 @@ namespace DLMS.Forms.Tests
 
         private void FrmTestAppointments_Load(object sender, System.EventArgs e)
         {
-
+            GetAllTestAppointmentsInDGV();
+            dgvTestAppointments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         public new event Action OnFormClosed;

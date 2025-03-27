@@ -5,7 +5,6 @@ using DLMS.Forms.Tests.TestTypes;
 using DLMS.Forms.Users;
 using DLMS_Business;
 using System;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace DLMS
