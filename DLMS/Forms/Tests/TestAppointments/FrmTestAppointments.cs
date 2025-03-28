@@ -1,4 +1,5 @@
-﻿using DLMS.Properties;
+﻿using DLMS.Forms.Tests.TestAppointments;
+using DLMS.Properties;
 using DLMS_Business;
 using System;
 using System.Data;
@@ -90,6 +91,33 @@ namespace DLMS.Forms.Tests
         private void FrmTestAppointments_FormClosed(object sender, FormClosedEventArgs e)
         {
             OnFormClosed?.Invoke();
+        }
+
+        private void BtnAddTestAppointment_Click(object sender, EventArgs e)
+        {
+            int testTypeId = CurrentTestMode == TestMode.Vision ? 1 :
+                CurrentTestMode == TestMode.Written ? 2 : 3;
+            if (TestAppointment.IsTestPassed(testTypeId, CurrentLocalDLApplication.ID))
+            {
+                MessageBox.Show("Test is already passed. Can't add any more",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            else if (TestAppointment.DoesActiveTestAppointmentExist(CurrentLocalDLApplication.ID))
+            {
+                MessageBox.Show("There is an active test appointment under the same application. Can't add any more",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+                FrmAddEditTestAppointment frm = new FrmAddEditTestAppointment();
+                frm.ShowDialog();
+            }
         }
     }
 }

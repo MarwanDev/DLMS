@@ -36,6 +36,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvTestAppointments = new System.Windows.Forms.DataGridView();
             this.ucDLApplicationInfo1 = new DLMS.UserControls.UcDLApplicationInfo();
+            this.btnAddTestAppointment = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbTestType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestAppointments)).BeginInit();
             this.SuspendLayout();
@@ -93,7 +94,7 @@
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(913, 754);
+            this.btnClose.Location = new System.Drawing.Point(913, 757);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(123, 44);
             this.btnClose.TabIndex = 32;
@@ -118,11 +119,23 @@
             this.ucDLApplicationInfo1.Size = new System.Drawing.Size(1047, 424);
             this.ucDLApplicationInfo1.TabIndex = 26;
             // 
+            // btnAddTestAppointment
+            // 
+            this.btnAddTestAppointment.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddTestAppointment.Location = new System.Drawing.Point(929, 565);
+            this.btnAddTestAppointment.Name = "btnAddTestAppointment";
+            this.btnAddTestAppointment.Size = new System.Drawing.Size(106, 44);
+            this.btnAddTestAppointment.TabIndex = 34;
+            this.btnAddTestAppointment.Text = "Add";
+            this.btnAddTestAppointment.UseVisualStyleBackColor = true;
+            this.btnAddTestAppointment.Click += new System.EventHandler(this.BtnAddTestAppointment_Click);
+            // 
             // FrmTestAppointments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1048, 804);
+            this.Controls.Add(this.btnAddTestAppointment);
             this.Controls.Add(this.dgvTestAppointments);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblHeader);
@@ -156,5 +169,6 @@
         private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.DataGridView dgvTestAppointments;
+        private System.Windows.Forms.Button btnAddTestAppointment;
     }
 }
