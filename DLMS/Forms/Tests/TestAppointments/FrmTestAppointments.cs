@@ -41,7 +41,7 @@ namespace DLMS.Forms.Tests
 
         private void UpdateCountLabel()
         {
-
+            lblCount.Text = TestAppointment.GetAllTestAppointmentsCountForLocalDLApplication(CurrentLocalDLApplication.ID).ToString();
         }
 
         private void ModifyControlsAccordingToApplication()

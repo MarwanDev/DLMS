@@ -106,10 +106,16 @@
     <Compile Include="Forms\People\FrmShowPersonDetails.Designer.cs">
       <DependentUpon>FrmShowPersonDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Tests\FrmTestAppointments.cs">
+    <Compile Include="Forms\Tests\TestAppointments\FrmAddEditTestAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Tests\FrmTestAppointments.Designer.cs">
+    <Compile Include="Forms\Tests\TestAppointments\FrmAddEditTestAppointment.Designer.cs">
+      <DependentUpon>FrmAddEditTestAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Tests\TestAppointments\FrmTestAppointments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tests\TestAppointments\FrmTestAppointments.Designer.cs">
       <DependentUpon>FrmTestAppointments.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Tests\TestTypes\FrmManageTestType.cs">
@@ -218,7 +224,10 @@
     <EmbeddedResource Include="Forms\People\FrmShowPersonDetails.resx">
       <DependentUpon>FrmShowPersonDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Tests\FrmTestAppointments.resx">
+    <EmbeddedResource Include="Forms\Tests\TestAppointments\FrmAddEditTestAppointment.resx">
+      <DependentUpon>FrmAddEditTestAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tests\TestAppointments\FrmTestAppointments.resx">
       <DependentUpon>FrmTestAppointments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tests\TestTypes\FrmManageTestType.resx">
