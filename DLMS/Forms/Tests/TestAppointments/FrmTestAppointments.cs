@@ -83,7 +83,6 @@ namespace DLMS.Forms.Tests
         private void FrmTestAppointments_Load(object sender, System.EventArgs e)
         {
             GetAllTestAppointmentsInDGV();
-            dgvTestAppointments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         public new event Action OnFormClosed;
@@ -123,6 +122,16 @@ namespace DLMS.Forms.Tests
                 frm.OnFormClosed += GetAllTestAppointmentsInDGV;
                 frm.ShowDialog();
             }
+        }
+
+        private void EditTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TakeTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
