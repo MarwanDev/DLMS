@@ -126,12 +126,42 @@ namespace DLMS.Forms.Tests
 
         private void EditTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            TestAppointment testAppointment = TestAppointment.Find(SelectedTestAppointmentId);
+            if (testAppointment != null)
+            {
+                FrmAddEditTestAppointment frm = new FrmAddEditTestAppointment(testAppointment)
+                {
+                    CurrentTestMode = this.CurrentTestMode,
+                    CurrentLocalDLApplication = this.CurrentLocalDLApplication,
+                };
+                frm.OnFormClosed += GetAllTestAppointmentsInDGV;
+                frm.ShowDialog();
+            }
         }
 
         private void TakeTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        int SelectedTestAppointmentId { get; set; }
+
+        private void DgvTestAppointments_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                dgvTestAppointments.ContextMenuStrip = null;
+            else
+            {
+                dgvTestAppointments.ContextMenuStrip = cmsTestAppointment;
+                SelectedTestAppointmentId = Int32.Parse(dgvTestAppointments.Rows[e.RowIndex].Cells[0].Value?.ToString());
+                DataGridView.HitTestInfo hit = dgvTestAppointments.HitTest(e.X, e.Y);
+                if (hit.RowIndex >= 0)
+                {
+                    dgvTestAppointments.ClearSelection();
+                    dgvTestAppointments.Rows[hit.RowIndex].Selected = true;
+                    dgvTestAppointments.CurrentCell = dgvTestAppointments.Rows[hit.RowIndex].Cells[0];
+                }
+            }
         }
     }
 }

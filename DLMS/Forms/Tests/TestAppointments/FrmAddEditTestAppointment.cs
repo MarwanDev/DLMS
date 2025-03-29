@@ -14,6 +14,15 @@ namespace DLMS.Forms.Tests.TestAppointments
             CurrentMode = Mode.Add;
         }
 
+        public FrmAddEditTestAppointment(TestAppointment testAppointment)
+        {
+            InitializeComponent();
+            CurrentTestAppointment = testAppointment;
+            CurrentMode = Mode.Edit;
+        }
+
+        TestAppointment CurrentTestAppointment { get; set; }
+
         private void BtnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -26,11 +35,13 @@ namespace DLMS.Forms.Tests.TestAppointments
 
         private int CurrentTestTypeId;
 
-        private void ModifyControlsForAddition()
+        private void ModifyControls()
         {
             pbTestType.Image = CurrentTestMode == TestMode.Vision ? Resources.Vision_Test_Schdule :
                 CurrentTestMode == TestMode.Written ? Resources.Written_Test_32_Sechdule : Resources.Street_Test_32;
             this.Text = CurrentMode == Mode.Add ? "Schedule Test" : "Edit Test";
+            gbTestData.Text = CurrentTestMode == TestMode.Vision ? "Vision Test" :
+                CurrentTestMode == TestMode.Written ? "Written Test" : "Street Test";
             lblLocalDLApp.Text = CurrentLocalDLApplication.ID.ToString();
             dtpTestDate.MinDate = DateTime.Now.AddDays(1);
             lblLicenceClass.Text = CurrentLocalDLApplication.LicenceClassName;
@@ -47,7 +58,7 @@ namespace DLMS.Forms.Tests.TestAppointments
 
         private void FrmAddEditTestAppointment_Load(object sender, EventArgs e)
         {
-            ModifyControlsForAddition();
+            ModifyControls();
         }
 
         public FrmTestAppointments.TestMode CurrentTestMode { get; set; }
@@ -58,6 +69,7 @@ namespace DLMS.Forms.Tests.TestAppointments
 
         private void FrmAddEditTestAppointment_FormClosed(object sender, FormClosedEventArgs e)
         {
+            CurrentTestAppointment = null;
             OnFormClosed?.Invoke();
         }
 
@@ -68,7 +80,7 @@ namespace DLMS.Forms.Tests.TestAppointments
                 TestTypeID = CurrentTestTypeId,
                 LocalDLApplicationID = CurrentLocalDLApplication.ID,
                 AppointmentDate = dtpTestDate.Value,
-                PaidFees = !gbRetakeTestInfo.Enabled ? Convert.ToDecimal(lblFees.Text) : 
+                PaidFees = !gbRetakeTestInfo.Enabled ? Convert.ToDecimal(lblFees.Text) :
                 Convert.ToDecimal(lblTotalFees.Text),
                 CreatedByUserID = UserSession.LoggedInUser.ID,
                 IsLocked = false
@@ -78,6 +90,8 @@ namespace DLMS.Forms.Tests.TestAppointments
                 MessageBox.Show($"Test Appointment added succesfully with ID {testAppointment.ID}", "Success",
                     MessageBoxButtons.OK,
                     icon: MessageBoxIcon.Information);
+                CurrentMode = Mode.Edit;
+                lblHeader.Text = "Edit Test";
             }
             else
                 MessageBox.Show($"Something wrong happened", "Error",
@@ -87,7 +101,17 @@ namespace DLMS.Forms.Tests.TestAppointments
 
         private void SaveUpdate()
         {
-
+            CurrentTestAppointment.AppointmentDate = dtpTestDate.Value;
+            if (CurrentTestAppointment.Save())
+            {
+                MessageBox.Show("Test Appointment updated succesfully", "Success",
+                    MessageBoxButtons.OK,
+                    icon: MessageBoxIcon.Information);
+            }
+            else
+                MessageBox.Show($"Something wrong happened", "Error",
+                    MessageBoxButtons.OK,
+                    icon: MessageBoxIcon.Error);
         }
 
         private void BtnSave_Click(object sender, EventArgs e)

@@ -36,10 +36,10 @@
             this.lblHeader = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvTestAppointments = new System.Windows.Forms.DataGridView();
-            this.btnAddTestAppointment = new System.Windows.Forms.Button();
             this.cmsTestAppointment = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.takeTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnAddTestAppointment = new System.Windows.Forms.Button();
             this.ucDLApplicationInfo1 = new DLMS.UserControls.UcDLApplicationInfo();
             ((System.ComponentModel.ISupportInitialize)(this.pbTestType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestAppointments)).BeginInit();
@@ -117,6 +117,29 @@
             this.dgvTestAppointments.Name = "dgvTestAppointments";
             this.dgvTestAppointments.Size = new System.Drawing.Size(1023, 139);
             this.dgvTestAppointments.TabIndex = 33;
+            this.dgvTestAppointments.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvTestAppointments_CellMouseDown);
+            // 
+            // cmsTestAppointment
+            // 
+            this.cmsTestAppointment.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editTestToolStripMenuItem,
+            this.takeTestToolStripMenuItem});
+            this.cmsTestAppointment.Name = "contextMenuStrip1";
+            this.cmsTestAppointment.Size = new System.Drawing.Size(121, 48);
+            // 
+            // editTestToolStripMenuItem
+            // 
+            this.editTestToolStripMenuItem.Name = "editTestToolStripMenuItem";
+            this.editTestToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.editTestToolStripMenuItem.Text = "Edit Test";
+            this.editTestToolStripMenuItem.Click += new System.EventHandler(this.EditTestToolStripMenuItem_Click);
+            // 
+            // takeTestToolStripMenuItem
+            // 
+            this.takeTestToolStripMenuItem.Name = "takeTestToolStripMenuItem";
+            this.takeTestToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.takeTestToolStripMenuItem.Text = "Take Test";
+            this.takeTestToolStripMenuItem.Click += new System.EventHandler(this.TakeTestToolStripMenuItem_Click);
             // 
             // btnAddTestAppointment
             // 
@@ -128,28 +151,6 @@
             this.btnAddTestAppointment.Text = "Add";
             this.btnAddTestAppointment.UseVisualStyleBackColor = true;
             this.btnAddTestAppointment.Click += new System.EventHandler(this.BtnAddTestAppointment_Click);
-            // 
-            // cmsTestAppointment
-            // 
-            this.cmsTestAppointment.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.editTestToolStripMenuItem,
-            this.takeTestToolStripMenuItem});
-            this.cmsTestAppointment.Name = "contextMenuStrip1";
-            this.cmsTestAppointment.Size = new System.Drawing.Size(181, 70);
-            // 
-            // editTestToolStripMenuItem
-            // 
-            this.editTestToolStripMenuItem.Name = "editTestToolStripMenuItem";
-            this.editTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.editTestToolStripMenuItem.Text = "Edit Test";
-            this.editTestToolStripMenuItem.Click += new System.EventHandler(this.EditTestToolStripMenuItem_Click);
-            // 
-            // takeTestToolStripMenuItem
-            // 
-            this.takeTestToolStripMenuItem.Name = "takeTestToolStripMenuItem";
-            this.takeTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.takeTestToolStripMenuItem.Text = "Take Test";
-            this.takeTestToolStripMenuItem.Click += new System.EventHandler(this.TakeTestToolStripMenuItem_Click);
             // 
             // ucDLApplicationInfo1
             // 
