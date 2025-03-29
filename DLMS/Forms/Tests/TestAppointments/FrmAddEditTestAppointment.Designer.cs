@@ -31,11 +31,11 @@
             this.gbTestData = new System.Windows.Forms.GroupBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.gbRetakeTestInfo = new System.Windows.Forms.GroupBox();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lblTotalFees = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblRetakeTestId = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
+            this.lblRetakeFees = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.lblFees = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -50,11 +50,11 @@
             this.lblLocalDLApp = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblHeader = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbTestType = new System.Windows.Forms.PictureBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.gbTestData.SuspendLayout();
             this.gbRetakeTestInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTestType)).BeginInit();
             this.SuspendLayout();
             // 
             // gbTestData
@@ -74,7 +74,7 @@
             this.gbTestData.Controls.Add(this.lblLocalDLApp);
             this.gbTestData.Controls.Add(this.label3);
             this.gbTestData.Controls.Add(this.lblHeader);
-            this.gbTestData.Controls.Add(this.pictureBox1);
+            this.gbTestData.Controls.Add(this.pbTestType);
             this.gbTestData.Location = new System.Drawing.Point(0, 0);
             this.gbTestData.Name = "gbTestData";
             this.gbTestData.Size = new System.Drawing.Size(527, 682);
@@ -91,14 +91,15 @@
             this.btnSave.TabIndex = 30;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.BtnSave_Click);
             // 
             // gbRetakeTestInfo
             // 
-            this.gbRetakeTestInfo.Controls.Add(this.label11);
+            this.gbRetakeTestInfo.Controls.Add(this.lblTotalFees);
             this.gbRetakeTestInfo.Controls.Add(this.label12);
-            this.gbRetakeTestInfo.Controls.Add(this.label6);
+            this.gbRetakeTestInfo.Controls.Add(this.lblRetakeTestId);
             this.gbRetakeTestInfo.Controls.Add(this.label8);
-            this.gbRetakeTestInfo.Controls.Add(this.label9);
+            this.gbRetakeTestInfo.Controls.Add(this.lblRetakeFees);
             this.gbRetakeTestInfo.Controls.Add(this.label10);
             this.gbRetakeTestInfo.Location = new System.Drawing.Point(6, 490);
             this.gbRetakeTestInfo.Name = "gbRetakeTestInfo";
@@ -107,15 +108,15 @@
             this.gbRetakeTestInfo.TabStop = false;
             this.gbRetakeTestInfo.Text = "Retake Test Info";
             // 
-            // label11
+            // lblTotalFees
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(211, 108);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(36, 20);
-            this.label11.TabIndex = 26;
-            this.label11.Text = "???";
+            this.lblTotalFees.AutoSize = true;
+            this.lblTotalFees.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalFees.Location = new System.Drawing.Point(211, 108);
+            this.lblTotalFees.Name = "lblTotalFees";
+            this.lblTotalFees.Size = new System.Drawing.Size(35, 20);
+            this.lblTotalFees.TabIndex = 26;
+            this.lblTotalFees.Text = "N/A";
             // 
             // label12
             // 
@@ -127,15 +128,15 @@
             this.label12.TabIndex = 25;
             this.label12.Text = "Total Fees:";
             // 
-            // label6
+            // lblRetakeTestId
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(211, 70);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(36, 20);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "???";
+            this.lblRetakeTestId.AutoSize = true;
+            this.lblRetakeTestId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRetakeTestId.Location = new System.Drawing.Point(211, 70);
+            this.lblRetakeTestId.Name = "lblRetakeTestId";
+            this.lblRetakeTestId.Size = new System.Drawing.Size(35, 20);
+            this.lblRetakeTestId.TabIndex = 24;
+            this.lblRetakeTestId.Text = "N/A";
             // 
             // label8
             // 
@@ -147,15 +148,15 @@
             this.label8.TabIndex = 23;
             this.label8.Text = "R.Test App. ID:";
             // 
-            // label9
+            // lblRetakeFees
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(211, 34);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(36, 20);
-            this.label9.TabIndex = 22;
-            this.label9.Text = "???";
+            this.lblRetakeFees.AutoSize = true;
+            this.lblRetakeFees.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRetakeFees.Location = new System.Drawing.Point(211, 34);
+            this.lblRetakeFees.Name = "lblRetakeFees";
+            this.lblRetakeFees.Size = new System.Drawing.Size(36, 20);
+            this.lblRetakeFees.TabIndex = 22;
+            this.lblRetakeFees.Text = "???";
             // 
             // label10
             // 
@@ -296,13 +297,14 @@
             this.lblHeader.TabIndex = 1;
             this.lblHeader.Text = "Schedule Test";
             // 
-            // pictureBox1
+            // pbTestType
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(150, 28);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(214, 159);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pbTestType.Location = new System.Drawing.Point(150, 28);
+            this.pbTestType.Name = "pbTestType";
+            this.pbTestType.Size = new System.Drawing.Size(214, 159);
+            this.pbTestType.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbTestType.TabIndex = 0;
+            this.pbTestType.TabStop = false;
             // 
             // btnClose
             // 
@@ -322,14 +324,19 @@
             this.ClientSize = new System.Drawing.Size(527, 745);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.gbTestData);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmAddEditTestAppointment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add Test Appointment";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmAddEditTestAppointment_FormClosed);
+            this.Load += new System.EventHandler(this.FrmAddEditTestAppointment_Load);
             this.gbTestData.ResumeLayout(false);
             this.gbTestData.PerformLayout();
             this.gbRetakeTestInfo.ResumeLayout(false);
             this.gbRetakeTestInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTestType)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -337,7 +344,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox gbTestData;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pbTestType;
         private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.Label lblLicenceClass;
         private System.Windows.Forms.Label label4;
@@ -352,11 +359,11 @@
         private System.Windows.Forms.Label lblFees;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.GroupBox gbRetakeTestInfo;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblRetakeTestId;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label lblRetakeFees;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label lblTotalFees;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;

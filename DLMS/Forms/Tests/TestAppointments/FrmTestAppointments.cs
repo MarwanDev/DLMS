@@ -16,7 +16,7 @@ namespace DLMS.Forms.Tests
 
         public enum TestMode { Vision, Written, Street }
         private TestMode CurrentTestMode { get; set; }
-        private LocalDLApplication CurrentLocalDLApplication { get; set; }
+        public LocalDLApplication CurrentLocalDLApplication { get; set; }
 
         public FrmTestAppointments(TestMode testMode, LocalDLApplication localDLApplication)
         {
@@ -115,7 +115,12 @@ namespace DLMS.Forms.Tests
             }
             else
             {
-                FrmAddEditTestAppointment frm = new FrmAddEditTestAppointment();
+                FrmAddEditTestAppointment frm = new FrmAddEditTestAppointment
+                {
+                    CurrentLocalDLApplication = this.CurrentLocalDLApplication,
+                    CurrentTestMode = this.CurrentTestMode
+                };
+                frm.OnFormClosed += GetAllTestAppointmentsInDGV;
                 frm.ShowDialog();
             }
         }
