@@ -130,6 +130,12 @@
     <Compile Include="Forms\Tests\TestTypes\FrmUpdateTestType.Designer.cs">
       <DependentUpon>FrmUpdateTestType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Tests\Test\FrmTakeTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Tests\Test\FrmTakeTest.Designer.cs">
+      <DependentUpon>FrmTakeTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Users\FrmAddEditUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -235,6 +241,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Tests\TestTypes\FrmUpdateTestType.resx">
       <DependentUpon>FrmUpdateTestType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Tests\Test\FrmTakeTest.resx">
+      <DependentUpon>FrmTakeTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Users\FrmAddEditUser.resx">
       <DependentUpon>FrmAddEditUser.cs</DependentUpon>

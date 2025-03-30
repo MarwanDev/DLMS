@@ -1,4 +1,5 @@
-﻿using DLMS.Forms.Tests.TestAppointments;
+﻿using DLMS.Forms.Tests.Test;
+using DLMS.Forms.Tests.TestAppointments;
 using DLMS.Properties;
 using DLMS_Business;
 using System;
@@ -141,7 +142,17 @@ namespace DLMS.Forms.Tests
 
         private void TakeTestToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            TestAppointment testAppointment = TestAppointment.Find(SelectedTestAppointmentId);
+            if (testAppointment != null)
+            {
+                FrmTakeTest frm = new FrmTakeTest(testAppointment)
+                {
+                    CurrentTestMode = this.CurrentTestMode,
+                    CurrentLocalDLApplication = this.CurrentLocalDLApplication,
+                };
+                frm.OnFormClosed += GetAllTestAppointmentsInDGV;
+                frm.ShowDialog();
+            }
         }
 
         int SelectedTestAppointmentId { get; set; }

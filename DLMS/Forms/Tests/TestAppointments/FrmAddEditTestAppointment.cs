@@ -37,8 +37,8 @@ namespace DLMS.Forms.Tests.TestAppointments
 
         private void ModifyControls()
         {
-            pbTestType.Image = CurrentTestMode == TestMode.Vision ? Resources.Vision_Test_Schdule :
-                CurrentTestMode == TestMode.Written ? Resources.Written_Test_32_Sechdule : Resources.Street_Test_32;
+            pbTestType.Image = CurrentTestMode == TestMode.Vision ? Resources.Vision_512 :
+                CurrentTestMode == TestMode.Written ? Resources.Written_Test_512 : Resources.Street_Test_32;
             this.Text = CurrentMode == Mode.Add ? "Schedule Test" : "Edit Test";
             gbTestData.Text = CurrentTestMode == TestMode.Vision ? "Vision Test" :
                 CurrentTestMode == TestMode.Written ? "Written Test" : "Street Test";
