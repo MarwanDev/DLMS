@@ -69,9 +69,8 @@ namespace DLMS.Forms.Tests.TestAppointments
             lblTrial.Text = TestAppointment.GetNumberOfTrials(CurrentTestTypeId, CurrentLocalDLApplication.ID).ToString();
             CurrentTestype = TestType.Find(CurrentTestTypeId);
             lblFees.Text = CurrentTestype.Fees.ToString();
-            lblRetakeFees.Text = "5";
             gbRetakeTestInfo.Enabled = IsTestToBeRetaken;
-            lblFees.Text = IsTestToBeRetaken ? "5" : "N/A";
+            lblRetakeFees.Text = IsTestToBeRetaken ? "5" : "N/A";
             lblRetakeTestId.Text = IsTestToBeRetaken ? "???" : "N/A";
             lblTotalFees.Text = IsTestToBeRetaken ? $"{decimal.Parse(lblFees.Text) + decimal.Parse(lblRetakeFees.Text)}" : "N/A";
         }
