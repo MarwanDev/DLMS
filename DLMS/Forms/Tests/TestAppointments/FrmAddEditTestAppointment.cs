@@ -35,6 +35,8 @@ namespace DLMS.Forms.Tests.TestAppointments
 
         private int CurrentTestTypeId;
 
+        bool IsTestToBeRetaken { get; set; }
+
         private void ModifyControls()
         {
             pbTestType.Image = CurrentTestMode == TestMode.Vision ? Resources.Vision_512 :
@@ -51,13 +53,16 @@ namespace DLMS.Forms.Tests.TestAppointments
             CurrentTestype = TestType.Find(CurrentTestTypeId);
             lblFees.Text = CurrentTestype.Fees.ToString();
             lblRetakeFees.Text = "5";
-            gbRetakeTestInfo.Enabled = false;
-            //lblRetakeTestId.Text = "1";
-            //lblTotalFees.Text = "";
+            gbRetakeTestInfo.Enabled = IsTestToBeRetaken;
+            lblFees.Text = IsTestToBeRetaken ? "5" : "N/A";
+            lblRetakeTestId.Text = IsTestToBeRetaken ? "???" : "N/A";
+            lblTotalFees.Text = IsTestToBeRetaken ? $"{decimal.Parse(lblFees.Text) + decimal.Parse(lblRetakeFees.Text)}" : "N/A";
         }
 
         private void FrmAddEditTestAppointment_Load(object sender, EventArgs e)
         {
+            IsTestToBeRetaken = TestAppointment.DoesLockedTestAppointmentExist(CurrentLocalDLApplication.ID, CurrentTestTypeId) &&
+                !TestAppointment.IsTestPassed(CurrentTestTypeId, CurrentLocalDLApplication.ID);
             ModifyControls();
         }
 
@@ -91,7 +96,9 @@ namespace DLMS.Forms.Tests.TestAppointments
                     MessageBoxButtons.OK,
                     icon: MessageBoxIcon.Information);
                 CurrentMode = Mode.Edit;
+                CurrentTestAppointment = testAppointment;
                 lblHeader.Text = "Edit Test";
+                lblRetakeTestId.Text = IsTestToBeRetaken ? CurrentTestAppointment.ID.ToString() : lblRetakeTestId.Text;
             }
             else
                 MessageBox.Show($"Something wrong happened", "Error",

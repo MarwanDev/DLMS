@@ -27,19 +27,23 @@ namespace DLMS.Forms.Tests
             ChangeHeaderText();
             ChangeHeaderPictureBoxImage();
             ModifyControlsAccordingToApplication();
+            CurrentTestTypeId = CurrentTestMode == TestMode.Vision ? 1 :
+                CurrentTestMode == TestMode.Written ? 2 : 3;
         }
 
         private void GetAllTestAppointmentsInDGV()
         {
             if (CurrentLocalDLApplication != null)
             {
-                DataTable localDLApplications = TestAppointment.GetAllTestAppointmentsForLocalDLApplication(CurrentLocalDLApplication.ID);
+                DataTable localDLApplications = TestAppointment.GetAllTestAppointmentsForLocalDLApplication(CurrentLocalDLApplication.ID, CurrentTestTypeId);
                 dgvTestAppointments.DataSource = localDLApplications;
                 Utils.DisableDGVColumnSorting(dgvTestAppointments);
                 dgvTestAppointments.Refresh();
                 UpdateCountLabel();
             }
         }
+
+        int CurrentTestTypeId { get; set; }
 
         private void UpdateCountLabel()
         {
@@ -95,9 +99,7 @@ namespace DLMS.Forms.Tests
 
         private void BtnAddTestAppointment_Click(object sender, EventArgs e)
         {
-            int testTypeId = CurrentTestMode == TestMode.Vision ? 1 :
-                CurrentTestMode == TestMode.Written ? 2 : 3;
-            if (TestAppointment.IsTestPassed(testTypeId, CurrentLocalDLApplication.ID))
+            if (TestAppointment.IsTestPassed(CurrentTestTypeId, CurrentLocalDLApplication.ID))
             {
                 MessageBox.Show("Test is already passed. Can't add any more",
                     "Error",
@@ -166,6 +168,12 @@ namespace DLMS.Forms.Tests
                 dgvTestAppointments.ContextMenuStrip = cmsTestAppointment;
                 SelectedTestAppointmentId = Int32.Parse(dgvTestAppointments.Rows[e.RowIndex].Cells[0].Value?.ToString());
                 DataGridView.HitTestInfo hit = dgvTestAppointments.HitTest(e.X, e.Y);
+                TestAppointment testAppointment = TestAppointment.Find(SelectedTestAppointmentId);
+                if (testAppointment != null && testAppointment.IsLocked)
+                {
+                    editTestToolStripMenuItem.Enabled = false;
+                    takeTestToolStripMenuItem.Enabled = false;
+                }
                 if (hit.RowIndex >= 0)
                 {
                     dgvTestAppointments.ClearSelection();
