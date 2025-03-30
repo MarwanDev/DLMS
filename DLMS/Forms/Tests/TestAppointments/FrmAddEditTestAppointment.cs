@@ -21,6 +21,23 @@ namespace DLMS.Forms.Tests.TestAppointments
             CurrentMode = Mode.Edit;
         }
 
+        private void ModifyCurrentTestTypeId()
+        {
+            CurrentTestTypeId = CurrentTestMode == TestMode.Vision ? 1 : CurrentTestMode == TestMode.Written ? 2 : 3;
+        }
+
+        private void CheckIfTestIsToBeRetaken()
+        {
+            IsTestToBeRetaken = TestAppointment.DoesLockedTestAppointmentExist(CurrentLocalDLApplication.ID, CurrentTestTypeId) &&
+                !TestAppointment.IsTestPassed(CurrentTestTypeId, CurrentLocalDLApplication.ID);
+        }
+
+        private void ApplyRetakeTestControlUIModifications()
+        {
+            ModifyCurrentTestTypeId();
+            CheckIfTestIsToBeRetaken();
+        }
+
         TestAppointment CurrentTestAppointment { get; set; }
 
         private void BtnClose_Click(object sender, EventArgs e)
@@ -39,6 +56,7 @@ namespace DLMS.Forms.Tests.TestAppointments
 
         private void ModifyControls()
         {
+            ApplyRetakeTestControlUIModifications();
             pbTestType.Image = CurrentTestMode == TestMode.Vision ? Resources.Vision_512 :
                 CurrentTestMode == TestMode.Written ? Resources.Written_Test_512 : Resources.Street_Test_32;
             this.Text = CurrentMode == Mode.Add ? "Schedule Test" : "Edit Test";
@@ -48,7 +66,6 @@ namespace DLMS.Forms.Tests.TestAppointments
             dtpTestDate.MinDate = DateTime.Now.AddDays(1);
             lblLicenceClass.Text = CurrentLocalDLApplication.LicenceClassName;
             lblFullName.Text = CurrentLocalDLApplication.PersonFullName;
-            CurrentTestTypeId = CurrentTestMode == TestMode.Vision ? 1 : CurrentTestMode == TestMode.Written ? 2 : 3;
             lblTrial.Text = TestAppointment.GetNumberOfTrials(CurrentTestTypeId, CurrentLocalDLApplication.ID).ToString();
             CurrentTestype = TestType.Find(CurrentTestTypeId);
             lblFees.Text = CurrentTestype.Fees.ToString();
@@ -61,8 +78,6 @@ namespace DLMS.Forms.Tests.TestAppointments
 
         private void FrmAddEditTestAppointment_Load(object sender, EventArgs e)
         {
-            IsTestToBeRetaken = TestAppointment.DoesLockedTestAppointmentExist(CurrentLocalDLApplication.ID, CurrentTestTypeId) &&
-                !TestAppointment.IsTestPassed(CurrentTestTypeId, CurrentLocalDLApplication.ID);
             ModifyControls();
         }
 
