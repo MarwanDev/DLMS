@@ -174,6 +174,11 @@ namespace DLMS.Forms.Tests
                     editTestToolStripMenuItem.Enabled = false;
                     takeTestToolStripMenuItem.Enabled = false;
                 }
+                else
+                {
+                    takeTestToolStripMenuItem.Enabled = true;
+                    editTestToolStripMenuItem.Enabled = true;
+                }
                 if (hit.RowIndex >= 0)
                 {
                     dgvTestAppointments.ClearSelection();
