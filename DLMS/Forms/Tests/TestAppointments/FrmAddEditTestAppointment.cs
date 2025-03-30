@@ -109,6 +109,21 @@ namespace DLMS.Forms.Tests.TestAppointments
                 MessageBox.Show($"Test Appointment added succesfully with ID {testAppointment.ID}", "Success",
                     MessageBoxButtons.OK,
                     icon: MessageBoxIcon.Information);
+                if (LocalDLApplication.GetApplicationStatusById(CurrentLocalDLApplication.ID) == 1)
+                {
+                    if (LocalDLApplication.ChangeApplicationStatus(CurrentLocalDLApplication.ID, 2))
+                    {
+                        MessageBox.Show($"Application Status Changed", "Success",
+                            MessageBoxButtons.OK,
+                            icon: MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Something wrong happened while changing Application status", "Error",
+                            MessageBoxButtons.OK,
+                            icon: MessageBoxIcon.Error);
+                    }
+                }
                 CurrentMode = Mode.Edit;
                 CurrentTestAppointment = testAppointment;
                 lblHeader.Text = "Edit Test";

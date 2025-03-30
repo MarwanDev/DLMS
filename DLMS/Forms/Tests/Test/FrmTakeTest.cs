@@ -43,10 +43,18 @@ namespace DLMS.Forms.Tests.Test
                         icon: MessageBoxIcon.Information);
                     if (CurrentTestMode == TestMode.Street && rdbPass.Checked)
                     {
-                        if (LocalDLApplication.CompleteLocalDLApplication(CurrentLocalDLApplication.ID))
+                        if (LocalDLApplication.ChangeApplicationStatus(CurrentLocalDLApplication.ID, 3))
+                        {
                             MessageBox.Show($"Application Completed Successfully", "Success",
                                 MessageBoxButtons.OK,
                                 icon: MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Something wrong happened while changing Application status", "Error",
+                                MessageBoxButtons.OK,
+                                icon: MessageBoxIcon.Error);
+                        }
                     }
                     lblTestId.Text = testModel.ID.ToString();
                     btnSave.Enabled = false;
