@@ -39,8 +39,15 @@ namespace DLMS.Forms.Tests.Test
                 if (TestAppointment.LockTestAppointment(CurrentTestAppointment.ID))
                 {
                     MessageBox.Show($"Test data saved succesfully with Id {testModel.ID}", "Success",
-                    MessageBoxButtons.OK,
-                    icon: MessageBoxIcon.Information);
+                        MessageBoxButtons.OK,
+                        icon: MessageBoxIcon.Information);
+                    if (CurrentTestMode == TestMode.Street && rdbPass.Checked)
+                    {
+                        if (LocalDLApplication.CompleteLocalDLApplication(CurrentLocalDLApplication.ID))
+                            MessageBox.Show($"Application Completed Successfully", "Success",
+                                MessageBoxButtons.OK,
+                                icon: MessageBoxIcon.Information);
+                    }
                     lblTestId.Text = testModel.ID.ToString();
                     btnSave.Enabled = false;
                 }
