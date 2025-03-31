@@ -116,6 +116,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                 writtenTestToolStripMenuItem.Enabled = false;
                 streetTestToolStripMenuItem.Enabled = false;
                 scheduleTestToolStripMenuItem.Enabled = false;
+                issueLicenceToolStripMenuItem.Enabled = !LocalDLApplication.DoesLicenceExist(SelectedLocalDLApplicationId);
             }
             else
             {
@@ -123,7 +124,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                 visionTestToolStripMenuItem.Enabled = passedTests == 0;
                 writtenTestToolStripMenuItem.Enabled = passedTests == 1;
                 streetTestToolStripMenuItem.Enabled = passedTests == 2;
-                issueLicenceToolStripMenuItem.Enabled = passedTests == 3 && applicationStatus == 3;
+                issueLicenceToolStripMenuItem.Enabled = passedTests == 3;
             }
         }
 
