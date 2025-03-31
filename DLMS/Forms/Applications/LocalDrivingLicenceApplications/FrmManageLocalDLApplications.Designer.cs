@@ -53,6 +53,8 @@
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cbStatus = new System.Windows.Forms.ComboBox();
+            this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
+            this.issueLicenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalDLApplications)).BeginInit();
             this.cmsLocalDLApplications.SuspendLayout();
@@ -181,9 +183,11 @@
             this.toolStripMenuItem3,
             this.scheduleTestToolStripMenuItem,
             this.toolStripMenuItem4,
-            this.deleteApplicationToolStripMenuItem});
+            this.deleteApplicationToolStripMenuItem,
+            this.toolStripMenuItem5,
+            this.issueLicenceToolStripMenuItem});
             this.cmsLocalDLApplications.Name = "contextMenuStrip1";
-            this.cmsLocalDLApplications.Size = new System.Drawing.Size(206, 138);
+            this.cmsLocalDLApplications.Size = new System.Drawing.Size(206, 188);
             // 
             // showApplicationDetailsToolStripMenuItem
             // 
@@ -234,21 +238,21 @@
             // visionTestToolStripMenuItem
             // 
             this.visionTestToolStripMenuItem.Name = "visionTestToolStripMenuItem";
-            this.visionTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.visionTestToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.visionTestToolStripMenuItem.Text = "Vision Test";
             this.visionTestToolStripMenuItem.Click += new System.EventHandler(this.TestToolStripMenuItem_Click);
             // 
             // writtenTestToolStripMenuItem
             // 
             this.writtenTestToolStripMenuItem.Name = "writtenTestToolStripMenuItem";
-            this.writtenTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.writtenTestToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.writtenTestToolStripMenuItem.Text = "Written Test";
             this.writtenTestToolStripMenuItem.Click += new System.EventHandler(this.TestToolStripMenuItem_Click);
             // 
             // streetTestToolStripMenuItem
             // 
             this.streetTestToolStripMenuItem.Name = "streetTestToolStripMenuItem";
-            this.streetTestToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.streetTestToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.streetTestToolStripMenuItem.Text = "Street Test";
             this.streetTestToolStripMenuItem.Click += new System.EventHandler(this.TestToolStripMenuItem_Click);
             // 
@@ -281,6 +285,17 @@
             this.cbStatus.Visible = false;
             this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.CbStatus_SelectedIndexChanged);
             this.cbStatus.VisibleChanged += new System.EventHandler(this.CbStatus_VisibleChanged);
+            // 
+            // toolStripMenuItem5
+            // 
+            this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(202, 6);
+            // 
+            // issueLicenceToolStripMenuItem
+            // 
+            this.issueLicenceToolStripMenuItem.Name = "issueLicenceToolStripMenuItem";
+            this.issueLicenceToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.issueLicenceToolStripMenuItem.Text = "Issue Licence";
             // 
             // FrmManageLocalDLApplications
             // 
@@ -337,5 +352,7 @@
         private System.Windows.Forms.ToolStripMenuItem streetTestToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem4;
         private System.Windows.Forms.ToolStripMenuItem deleteApplicationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
+        private System.Windows.Forms.ToolStripMenuItem issueLicenceToolStripMenuItem;
     }
 }

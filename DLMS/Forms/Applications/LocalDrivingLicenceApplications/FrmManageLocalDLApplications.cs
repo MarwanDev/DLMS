@@ -109,11 +109,12 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
         private void ModifyCMSOptionsAbilityAccordingToPassedTest()
         {
             byte applicationStatus = LocalDLApplication.GetApplicationStatusById(SelectedLocalDLApplicationId);
-            if (applicationStatus == 0 || applicationStatus == 3)
+            if (applicationStatus == 0)
             {
                 visionTestToolStripMenuItem.Enabled = false;
                 writtenTestToolStripMenuItem.Enabled = false;
                 streetTestToolStripMenuItem.Enabled = false;
+                scheduleTestToolStripMenuItem.Enabled = false;
             }
             else
             {
@@ -121,6 +122,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                 visionTestToolStripMenuItem.Enabled = passedTests == 0;
                 writtenTestToolStripMenuItem.Enabled = passedTests == 1;
                 streetTestToolStripMenuItem.Enabled = passedTests == 2;
+                issueLicenceToolStripMenuItem.Enabled = passedTests == 3 && applicationStatus == 3;
             }
         }
 
