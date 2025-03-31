@@ -1,4 +1,5 @@
-﻿using DLMS.Forms.Tests;
+﻿using DLMS.Forms.Licence;
+using DLMS.Forms.Tests;
 using DLMS_Business;
 using DLMS_Business.Application;
 using System;
@@ -109,7 +110,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
         private void ModifyCMSOptionsAbilityAccordingToPassedTest()
         {
             byte applicationStatus = LocalDLApplication.GetApplicationStatusById(SelectedLocalDLApplicationId);
-            if (applicationStatus == 0)
+            if (applicationStatus == 0 || applicationStatus == 3)
             {
                 visionTestToolStripMenuItem.Enabled = false;
                 writtenTestToolStripMenuItem.Enabled = false;
@@ -267,6 +268,17 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
         private void FrmManageLocalDLApplications_FormClosed(object sender, FormClosedEventArgs e)
         {
             Business.DisableSorting();
+        }
+
+        private void IssueLicenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LocalDLApplication localDLApplication = LocalDLApplication.FindInDetails(SelectedLocalDLApplicationId);
+            if (localDLApplication != null)
+            {
+                FrmIssueLicence frm = new FrmIssueLicence(localDLApplication, 1);
+                frm.OnFormClosed += ReloadData;
+                frm.ShowDialog();
+            }
         }
     }
 }
