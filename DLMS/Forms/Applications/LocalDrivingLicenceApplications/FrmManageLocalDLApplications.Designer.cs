@@ -55,6 +55,7 @@
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.issueLicenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cbStatus = new System.Windows.Forms.ComboBox();
+            this.showLicenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalDLApplications)).BeginInit();
             this.cmsLocalDLApplications.SuspendLayout();
@@ -185,9 +186,10 @@
             this.toolStripMenuItem4,
             this.deleteApplicationToolStripMenuItem,
             this.toolStripMenuItem5,
-            this.issueLicenceToolStripMenuItem});
+            this.issueLicenceToolStripMenuItem,
+            this.showLicenceToolStripMenuItem});
             this.cmsLocalDLApplications.Name = "contextMenuStrip1";
-            this.cmsLocalDLApplications.Size = new System.Drawing.Size(206, 188);
+            this.cmsLocalDLApplications.Size = new System.Drawing.Size(206, 210);
             // 
             // showApplicationDetailsToolStripMenuItem
             // 
@@ -298,6 +300,12 @@
             this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.CbStatus_SelectedIndexChanged);
             this.cbStatus.VisibleChanged += new System.EventHandler(this.CbStatus_VisibleChanged);
             // 
+            // showLicenceToolStripMenuItem
+            // 
+            this.showLicenceToolStripMenuItem.Name = "showLicenceToolStripMenuItem";
+            this.showLicenceToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.showLicenceToolStripMenuItem.Text = "Show Licence";
+            // 
             // FrmManageLocalDLApplications
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -355,5 +363,6 @@
         private System.Windows.Forms.ToolStripMenuItem deleteApplicationToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem issueLicenceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showLicenceToolStripMenuItem;
     }
 }

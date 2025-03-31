@@ -41,21 +41,6 @@ namespace DLMS.Forms.Tests.Test
                     MessageBox.Show($"Test data saved succesfully with Id {testModel.ID}", "Success",
                         MessageBoxButtons.OK,
                         icon: MessageBoxIcon.Information);
-                    if (CurrentTestMode == TestMode.Street && rdbPass.Checked)
-                    {
-                        if (LocalDLApplication.ChangeApplicationStatus(CurrentLocalDLApplication.ID, 3))
-                        {
-                            MessageBox.Show($"Application Completed Successfully", "Success",
-                                MessageBoxButtons.OK,
-                                icon: MessageBoxIcon.Information);
-                        }
-                        else
-                        {
-                            MessageBox.Show($"Something wrong happened while changing Application status", "Error",
-                                MessageBoxButtons.OK,
-                                icon: MessageBoxIcon.Error);
-                        }
-                    }
                     lblTestId.Text = testModel.ID.ToString();
                     btnSave.Enabled = false;
                 }

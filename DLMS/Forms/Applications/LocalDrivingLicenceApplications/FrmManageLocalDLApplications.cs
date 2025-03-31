@@ -126,6 +126,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                 streetTestToolStripMenuItem.Enabled = passedTests == 2;
                 issueLicenceToolStripMenuItem.Enabled = passedTests == 3;
             }
+            showLicenceToolStripMenuItem.Enabled = LocalDLApplication.DoesLicenceExist(SelectedLocalDLApplicationId);
         }
 
         private void DgvLocalDLApplications_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)

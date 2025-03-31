@@ -81,7 +81,19 @@ namespace DLMS.Forms.Licence
                         "Success",
                         MessageBoxButtons.OK,
                         icon: MessageBoxIcon.Information);
-                    this.Close();
+                    if (LocalDLApplication.ChangeApplicationStatus(CurrentLocalDLApplication.ID, 3))
+                    {
+                        MessageBox.Show($"Application Completed Successfully", "Success",
+                            MessageBoxButtons.OK,
+                            icon: MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Something wrong happened while changing Application status", "Error",
+                            MessageBoxButtons.OK,
+                            icon: MessageBoxIcon.Error);
+                    }
                 }
                 else
                     MessageBox.Show($"Something wrong happened while saving the licence", "Error",
