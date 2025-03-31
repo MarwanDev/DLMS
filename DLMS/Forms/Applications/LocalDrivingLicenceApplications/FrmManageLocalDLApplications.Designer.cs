@@ -55,6 +55,7 @@
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.issueLicenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showLicenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.licenceHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cbStatus = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalDLApplications)).BeginInit();
@@ -86,7 +87,7 @@
             // 
             this.lblCount.AutoSize = true;
             this.lblCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCount.Location = new System.Drawing.Point(194, 593);
+            this.lblCount.Location = new System.Drawing.Point(197, 593);
             this.lblCount.Name = "lblCount";
             this.lblCount.Size = new System.Drawing.Size(174, 24);
             this.lblCount.TabIndex = 18;
@@ -96,11 +97,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(23, 593);
+            this.label2.Location = new System.Drawing.Point(12, 593);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(174, 24);
+            this.label2.Size = new System.Drawing.Size(185, 24);
             this.label2.TabIndex = 17;
-            this.label2.Text = "Number of People: ";
+            this.label2.Text = "Number of Records: ";
             // 
             // tbSearch
             // 
@@ -187,9 +188,10 @@
             this.deleteApplicationToolStripMenuItem,
             this.toolStripMenuItem5,
             this.issueLicenceToolStripMenuItem,
-            this.showLicenceToolStripMenuItem});
+            this.showLicenceToolStripMenuItem,
+            this.licenceHistoryToolStripMenuItem});
             this.cmsLocalDLApplications.Name = "contextMenuStrip1";
-            this.cmsLocalDLApplications.Size = new System.Drawing.Size(206, 210);
+            this.cmsLocalDLApplications.Size = new System.Drawing.Size(206, 232);
             // 
             // showApplicationDetailsToolStripMenuItem
             // 
@@ -289,6 +291,13 @@
             this.showLicenceToolStripMenuItem.Text = "Show Licence";
             this.showLicenceToolStripMenuItem.Click += new System.EventHandler(this.ShowLicenceToolStripMenuItem_Click);
             // 
+            // licenceHistoryToolStripMenuItem
+            // 
+            this.licenceHistoryToolStripMenuItem.Name = "licenceHistoryToolStripMenuItem";
+            this.licenceHistoryToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.licenceHistoryToolStripMenuItem.Text = "Person Licence History";
+            this.licenceHistoryToolStripMenuItem.Click += new System.EventHandler(this.LicenceHistoryToolStripMenuItem_Click);
+            // 
             // cbStatus
             // 
             this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -365,5 +374,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem5;
         private System.Windows.Forms.ToolStripMenuItem issueLicenceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showLicenceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem licenceHistoryToolStripMenuItem;
     }
 }

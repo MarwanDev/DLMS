@@ -127,6 +127,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                 issueLicenceToolStripMenuItem.Enabled = passedTests == 3;
             }
             showLicenceToolStripMenuItem.Enabled = LocalDLApplication.DoesLicenceExist(SelectedLocalDLApplicationId);
+            licenceHistoryToolStripMenuItem.Enabled = LocalDLApplication.DoesLicenceExist(SelectedLocalDLApplicationId);
         }
 
         private void DgvLocalDLApplications_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
@@ -289,6 +290,18 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
             if (licence != null)
             {
                 FrmShowLicence frm = new FrmShowLicence(licence);
+                frm.OnFormClosed += ReloadData;
+                frm.ShowDialog();
+            }
+        }
+
+        private void LicenceHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int personId = LocalDLApplication.GetPersonApplicantId(SelectedLocalDLApplicationId);
+            Person person = personId != 0 ? Person.Find(personId) : null;
+            if (person != null)
+            {
+                FrmLicenceHistory frm = new FrmLicenceHistory(person);
                 frm.OnFormClosed += ReloadData;
                 frm.ShowDialog();
             }
