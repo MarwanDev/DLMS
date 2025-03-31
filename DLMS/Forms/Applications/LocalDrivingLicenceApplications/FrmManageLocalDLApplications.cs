@@ -282,5 +282,16 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                 frm.ShowDialog();
             }
         }
+
+        private void ShowLicenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LicenceModel licence = LicenceModel.FindByLocalDLApplication(SelectedLocalDLApplicationId);
+            if (licence != null)
+            {
+                FrmShowLicence frm = new FrmShowLicence(licence);
+                frm.OnFormClosed += ReloadData;
+                frm.ShowDialog();
+            }
+        }
     }
 }

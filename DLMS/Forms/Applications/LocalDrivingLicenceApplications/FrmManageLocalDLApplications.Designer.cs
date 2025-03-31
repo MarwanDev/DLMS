@@ -54,8 +54,8 @@
             this.deleteApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripSeparator();
             this.issueLicenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cbStatus = new System.Windows.Forms.ComboBox();
             this.showLicenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeader)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalDLApplications)).BeginInit();
             this.cmsLocalDLApplications.SuspendLayout();
@@ -282,6 +282,13 @@
             this.issueLicenceToolStripMenuItem.Text = "Issue Licence";
             this.issueLicenceToolStripMenuItem.Click += new System.EventHandler(this.IssueLicenceToolStripMenuItem_Click);
             // 
+            // showLicenceToolStripMenuItem
+            // 
+            this.showLicenceToolStripMenuItem.Name = "showLicenceToolStripMenuItem";
+            this.showLicenceToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
+            this.showLicenceToolStripMenuItem.Text = "Show Licence";
+            this.showLicenceToolStripMenuItem.Click += new System.EventHandler(this.ShowLicenceToolStripMenuItem_Click);
+            // 
             // cbStatus
             // 
             this.cbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -299,12 +306,6 @@
             this.cbStatus.Visible = false;
             this.cbStatus.SelectedIndexChanged += new System.EventHandler(this.CbStatus_SelectedIndexChanged);
             this.cbStatus.VisibleChanged += new System.EventHandler(this.CbStatus_VisibleChanged);
-            // 
-            // showLicenceToolStripMenuItem
-            // 
-            this.showLicenceToolStripMenuItem.Name = "showLicenceToolStripMenuItem";
-            this.showLicenceToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
-            this.showLicenceToolStripMenuItem.Text = "Show Licence";
             // 
             // FrmManageLocalDLApplications
             // 
