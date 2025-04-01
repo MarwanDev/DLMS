@@ -116,7 +116,7 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                 writtenTestToolStripMenuItem.Enabled = false;
                 streetTestToolStripMenuItem.Enabled = false;
                 scheduleTestToolStripMenuItem.Enabled = false;
-                issueLicenceToolStripMenuItem.Enabled = !LocalDLApplication.DoesLicenceExist(SelectedLocalDLApplicationId);
+                issueLicenceToolStripMenuItem.Enabled = !LocalDLApplication.DoesLicenceExistForLocalDLApplication(SelectedLocalDLApplicationId);
             }
             else
             {
@@ -126,8 +126,8 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
                 streetTestToolStripMenuItem.Enabled = passedTests == 2;
                 issueLicenceToolStripMenuItem.Enabled = passedTests == 3;
             }
-            showLicenceToolStripMenuItem.Enabled = LocalDLApplication.DoesLicenceExist(SelectedLocalDLApplicationId);
-            licenceHistoryToolStripMenuItem.Enabled = LocalDLApplication.DoesLicenceExist(SelectedLocalDLApplicationId);
+            showLicenceToolStripMenuItem.Enabled = LocalDLApplication.DoesLicenceExistForLocalDLApplication(SelectedLocalDLApplicationId);
+            licenceHistoryToolStripMenuItem.Enabled = LocalDLApplication.DoesLicenceExistForLocalDLApplication(SelectedLocalDLApplicationId);
         }
 
         private void DgvLocalDLApplications_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)

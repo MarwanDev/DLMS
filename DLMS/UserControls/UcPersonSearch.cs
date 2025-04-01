@@ -210,5 +210,10 @@ namespace DLMS.UserControls
                 }
             }
         }
+
+        public string GetSearchTerm()
+        {
+            return tbSearch.Text.Trim();
+        }
     }
 }

@@ -88,6 +88,12 @@
     <Compile Include="Forms\FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Licence\FrmIssueInternationalLicence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Licence\FrmIssueInternationalLicence.Designer.cs">
+      <DependentUpon>FrmIssueInternationalLicence.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Licence\FrmIssueLicence.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,6 +210,12 @@
     <Compile Include="UserControls\ucHeader.Designer.cs">
       <DependentUpon>ucHeader.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\UcLicenceSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\UcLicenceSearch.Designer.cs">
+      <DependentUpon>UcLicenceSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\UcLoginInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -244,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Licence\FrmIssueInternationalLicence.resx">
+      <DependentUpon>FrmIssueInternationalLicence.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Licence\FrmIssueLicence.resx">
       <DependentUpon>FrmIssueLicence.cs</DependentUpon>
@@ -312,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ucHeader.resx">
       <DependentUpon>ucHeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\UcLicenceSearch.resx">
+      <DependentUpon>UcLicenceSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\UcLoginInfo.resx">
       <DependentUpon>UcLoginInfo.cs</DependentUpon>

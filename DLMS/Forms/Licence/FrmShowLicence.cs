@@ -37,7 +37,7 @@ namespace DLMS.Forms.Licence
             lblIsActive.Text = CurrentLicence.IsActive ? "Yes" : "No";
             lblDOB.Text = CurrentLicence.IssueDate.ToShortDateString();
             lblDriverId.Text = CurrentLicence.DriverId.ToString();
-            lblIsDetained.Text = CurrentLicence.IssueReason == 1 ? "Yes" : "No";
+            lblIsDetained.Text = CurrentLicence.IssueReason == 1 ? "No" : "Yes";
             pbPersonImage.Image = !string.IsNullOrEmpty(CurrentLicence.ImagePath) && File.Exists(CurrentLicence.ImagePath) ?
                Image.FromFile(CurrentLicence.ImagePath) : CurrentLicence.Gender == "Female" ?
                Resources.Female_512 : Resources.Male_512;

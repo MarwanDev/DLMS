@@ -70,7 +70,7 @@
             this.btnAddNewPerson.UseVisualStyleBackColor = true;
             this.btnAddNewPerson.Click += new System.EventHandler(this.BtnAddNewPerson_Click);
             // 
-            // btnPersonSearch
+            // btnLicenceSearch
             // 
             this.btnPersonSearch.Enabled = false;
             this.btnPersonSearch.Location = new System.Drawing.Point(516, 25);

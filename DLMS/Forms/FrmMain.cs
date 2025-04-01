@@ -1,6 +1,7 @@
 ﻿using DLMS.Forms;
 using DLMS.Forms.Applications.ApplicationTypes;
 using DLMS.Forms.Applications.LocalDrivingLicenceApplications;
+using DLMS.Forms.Licence;
 using DLMS.Forms.People;
 using DLMS.Forms.Tests.TestTypes;
 using DLMS.Forms.Users;
@@ -64,14 +65,14 @@ namespace DLMS
 
         private void CurrentUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmShowUserDetails frmShowUserDetails = new FrmShowUserDetails(UserSession.LoggedInUser.ID);
-            frmShowUserDetails.ShowDialog();
+            FrmShowUserDetails frm = new FrmShowUserDetails(UserSession.LoggedInUser.ID);
+            frm.ShowDialog();
         }
 
         private void ChangeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmChangePassword frmChangePassword = new FrmChangePassword(UserSession.LoggedInUser.ID);
-            frmChangePassword.ShowDialog();
+            FrmChangePassword frm = new FrmChangePassword(UserSession.LoggedInUser.ID);
+            frm.ShowDialog();
         }
 
         private void HandleManagementFormClose()
@@ -81,33 +82,39 @@ namespace DLMS
 
         private void ManageApplicationTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmManageApplicationTypes frmManageApplicationTypes = new FrmManageApplicationTypes();
-            frmManageApplicationTypes.OnFormClosed += HandleManagementFormClose;
-            frmManageApplicationTypes.ShowDialog();
+            FrmManageApplicationTypes frm = new FrmManageApplicationTypes();
+            frm.OnFormClosed += HandleManagementFormClose;
+            frm.ShowDialog();
         }
 
         private void ManageTestTypesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmManageTestType frmManageTestType = new FrmManageTestType();
-            frmManageTestType.OnFormClosed += HandleManagementFormClose;
-            frmManageTestType.ShowDialog();
+            FrmManageTestType frm = new FrmManageTestType();
+            frm.OnFormClosed += HandleManagementFormClose;
+            frm.ShowDialog();
         }
 
         private void LocalLicenceToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmAddEditLocalDrivingLicenceApplication frmAddEditLocalDrivingLicenceApplication = new FrmAddEditLocalDrivingLicenceApplication();
-            frmAddEditLocalDrivingLicenceApplication.ShowDialog();
+            FrmAddEditLocalDrivingLicenceApplication frm = new FrmAddEditLocalDrivingLicenceApplication();
+            frm.ShowDialog();
         }
 
         private void LocalDrivingLicenceApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmManageLocalDLApplications frmManageLocalDLApplications = new FrmManageLocalDLApplications();
-            frmManageLocalDLApplications.ShowDialog();
+            FrmManageLocalDLApplications frm = new FrmManageLocalDLApplications();
+            frm.ShowDialog();
         }
 
         private void DriversToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmManageDrivers frm = new FrmManageDrivers();
+            frm.ShowDialog();
+        }
+
+        private void InternationalLicenceToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FrmIssueInternationalLicence frm = new FrmIssueInternationalLicence();
             frm.ShowDialog();
         }
     }
