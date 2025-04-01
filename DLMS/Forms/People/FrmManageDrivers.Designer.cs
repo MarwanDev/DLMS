@@ -64,12 +64,13 @@
             // tbSearch
             // 
             this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSearch.Location = new System.Drawing.Point(421, 245);
+            this.tbSearch.Location = new System.Drawing.Point(393, 245);
             this.tbSearch.Name = "tbSearch";
             this.tbSearch.Size = new System.Drawing.Size(247, 31);
             this.tbSearch.TabIndex = 27;
             this.tbSearch.Visible = false;
             this.tbSearch.TextChanged += new System.EventHandler(this.TbSearch_TextChanged);
+            this.tbSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TbSearch_KeyPress);
             // 
             // label1
             // 
@@ -92,7 +93,6 @@
             "Person ID",
             "National No.",
             "Full Name",
-            "Date",
             "Active Licences"});
             this.cbFilter.Location = new System.Drawing.Point(115, 244);
             this.cbFilter.Name = "cbFilter";
@@ -121,6 +121,7 @@
             this.dgvDrivers.ReadOnly = true;
             this.dgvDrivers.Size = new System.Drawing.Size(1091, 289);
             this.dgvDrivers.TabIndex = 22;
+            this.dgvDrivers.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvDrivers_ColumnHeaderMouseClick);
             // 
             // lblHeader
             // 

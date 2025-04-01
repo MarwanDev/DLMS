@@ -40,7 +40,7 @@ namespace DLMS.Forms.People
         {
             lblCount.Text = CurrentMode == Mode.All ?
                 Driver.GetAllDriversCount().ToString() :
-                Driver.GetFilteredDriversCount(tbSearch.Text.Trim()).ToString();
+                Driver.GetFilteredDriversCount(searchQuery).ToString();
         }
 
         private void FrmManageDrivers_Load(object sender, EventArgs e)
@@ -57,7 +57,56 @@ namespace DLMS.Forms.People
 
         private void TbSearch_TextChanged(object sender, EventArgs e)
         {
+            if (tbSearch.Text == "\u007f")
+                tbSearch.Clear();
+            if (tbSearch.Text == "")
+                GetAllDriversInDGV();
+            else
+                FilterDrivers(tbSearch.Text.Trim());
+        }
 
+        private void FilterDrivers(string searchKeyWord)
+        {
+            DataTable filteredDrivers = tbSearch.Text != "" ?
+                Driver.FilterDrivers(cbFilter.Text, searchKeyWord) : Driver.GetAllDrivers();
+            dgvDrivers.DataSource = filteredDrivers;
+            Utils.DisableDGVColumnSorting(dgvDrivers);
+            dgvDrivers.Refresh();
+            CurrentMode = Mode.Filter;
+            UpdateCountLabel(searchKeyWord);
+        }
+
+        private void TbSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cbFilter.SelectedIndex == 1 || cbFilter.SelectedIndex == 2)
+            {
+                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void DgvDrivers_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex >= 0)
+            {
+                string headerText = dgvDrivers.Columns[e.ColumnIndex].HeaderText;
+                Person.ApplySorting(headerText);
+                ReloadData();
+            }
+        }
+
+        private void ReloadData()
+        {
+            if (tbSearch.Visible && tbSearch.Text.Trim() != "")
+            {
+                FilterDrivers(tbSearch.Text.Trim());
+            }
+            else
+            {
+                GetAllDriversInDGV();
+            }
         }
     }
 }
