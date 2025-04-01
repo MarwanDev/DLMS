@@ -45,6 +45,9 @@
             this.retakeTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.manageApplicationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.localDrivingLicenceApplicationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
+            this.internationalDrivingLicenceApplicationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.detainLicencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
@@ -60,9 +63,6 @@
             this.changeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
             this.signOutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.localDrivingLicenceApplicationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem8 = new System.Windows.Forms.ToolStripSeparator();
-            this.internationalDrivingLicenceApplicationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -199,6 +199,24 @@
             this.manageApplicationsToolStripMenuItem.Size = new System.Drawing.Size(213, 22);
             this.manageApplicationsToolStripMenuItem.Text = "Manage Applications";
             // 
+            // localDrivingLicenceApplicationsToolStripMenuItem
+            // 
+            this.localDrivingLicenceApplicationsToolStripMenuItem.Name = "localDrivingLicenceApplicationsToolStripMenuItem";
+            this.localDrivingLicenceApplicationsToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
+            this.localDrivingLicenceApplicationsToolStripMenuItem.Text = "Local Driving Licence Applications";
+            this.localDrivingLicenceApplicationsToolStripMenuItem.Click += new System.EventHandler(this.LocalDrivingLicenceApplicationsToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem8
+            // 
+            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(291, 6);
+            // 
+            // internationalDrivingLicenceApplicationsToolStripMenuItem
+            // 
+            this.internationalDrivingLicenceApplicationsToolStripMenuItem.Name = "internationalDrivingLicenceApplicationsToolStripMenuItem";
+            this.internationalDrivingLicenceApplicationsToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
+            this.internationalDrivingLicenceApplicationsToolStripMenuItem.Text = "International Driving Licence Applications";
+            // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
@@ -246,6 +264,7 @@
             this.driversToolStripMenuItem.Name = "driversToolStripMenuItem";
             this.driversToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.driversToolStripMenuItem.Text = "Drivers";
+            this.driversToolStripMenuItem.Click += new System.EventHandler(this.DriversToolStripMenuItem_Click);
             // 
             // usersToolStripMenuItem
             // 
@@ -298,24 +317,6 @@
             this.signOutToolStripMenuItem1.Size = new System.Drawing.Size(168, 22);
             this.signOutToolStripMenuItem1.Text = "Sign Out";
             this.signOutToolStripMenuItem1.Click += new System.EventHandler(this.SignOutToolStripMenuItem1_Click);
-            // 
-            // localDrivingLicenceApplicationsToolStripMenuItem
-            // 
-            this.localDrivingLicenceApplicationsToolStripMenuItem.Name = "localDrivingLicenceApplicationsToolStripMenuItem";
-            this.localDrivingLicenceApplicationsToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
-            this.localDrivingLicenceApplicationsToolStripMenuItem.Text = "Local Driving Licence Applications";
-            this.localDrivingLicenceApplicationsToolStripMenuItem.Click += new System.EventHandler(this.LocalDrivingLicenceApplicationsToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem8
-            // 
-            this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(252, 6);
-            // 
-            // internationalDrivingLicenceApplicationsToolStripMenuItem
-            // 
-            this.internationalDrivingLicenceApplicationsToolStripMenuItem.Name = "internationalDrivingLicenceApplicationsToolStripMenuItem";
-            this.internationalDrivingLicenceApplicationsToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
-            this.internationalDrivingLicenceApplicationsToolStripMenuItem.Text = "International Driving Licence Applications";
             // 
             // FrmMain
             // 

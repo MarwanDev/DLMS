@@ -21,6 +21,8 @@ namespace DLMS.Forms.Licence
             CurrentIssueReason = issueReason;
             ChangeFormText();
             ModifyControlsAccordingToApplication();
+            CurrentApplicationApplicantPersonId = LocalDLApplication.
+                GetPersonApplicantId(CurrentLocalDLApplication.ID);
         }
 
         private void ModifyControlsAccordingToApplication()
@@ -52,59 +54,87 @@ namespace DLMS.Forms.Licence
             OnFormClosed?.Invoke();
         }
 
-        private void BtnSave_Click(object sender, EventArgs e)
+        private bool DoesDriverExistWithSamePersonId()
+        {
+            return Driver.DoesDriverExistWithSamePersonId(CurrentApplicationApplicantPersonId);
+        }
+
+        private int CurrentApplicationApplicantPersonId {  get; set; }
+
+        private void AddLicence()
         {
             Driver driver = new Driver
             {
-                PersonId = LocalDLApplication.GetPersonApplicantId(CurrentLocalDLApplication.ID),
+                PersonId = CurrentApplicationApplicantPersonId,
                 CreatedByUserId = UserSession.LoggedInUser.ID,
                 CreatedDate = DateTime.Now
             };
-            if (driver.AddNewDriver())
+            if (DoesDriverExistWithSamePersonId())
             {
-                LicenceModel licence = new LicenceModel
+                driver = Driver.Find(Driver.GetDriversIdByPersonId(CurrentApplicationApplicantPersonId));
+                AddNewLicence(driver);
+            }
+            else
+            {
+                AddNewLicenceWithNewDriver(driver);
+            }
+        }
+
+        private void AddNewLicence(Driver driver)
+        {
+            LicenceModel licence = new LicenceModel
+            {
+                ApplicationId = LocalDLApplication.GetApplicationId(CurrentLocalDLApplication.ID),
+                LicenceClassId = LocalDLApplication.GetLicenceClassId(CurrentLocalDLApplication.ID),
+                DriverId = driver.ID,
+                IssueDate = DateTime.Parse(DateTime.Now.ToShortDateString()),
+                ExpirationDate = DateTime.Parse(DateTime.Now.AddYears(10).ToShortDateString()),
+                IsActive = true,
+                Notes = rtbNotes.Text.Trim(),
+                PaidFees = CurrentLocalDLApplication.PaidFees,
+                IssueReason = CurrentIssueReason,
+                CreatedByUserId = UserSession.LoggedInUser.ID
+            };
+            if (licence.AddNewLicence())
+            {
+                MessageBox.Show($"Licence Issued Successfully with ID {licence.ID}",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    icon: MessageBoxIcon.Information);
+                if (LocalDLApplication.ChangeApplicationStatus(CurrentLocalDLApplication.ID, 3))
                 {
-                    ApplicationId = LocalDLApplication.GetApplicationId(CurrentLocalDLApplication.ID),
-                    LicenceClassId = LocalDLApplication.GetLicenceClassId(CurrentLocalDLApplication.ID),
-                    DriverId = driver.ID,
-                    IssueDate = DateTime.Parse(DateTime.Now.ToShortDateString()),
-                    ExpirationDate = DateTime.Parse(DateTime.Now.AddYears(10).ToShortDateString()),
-                    IsActive = true,
-                    Notes = rtbNotes.Text.Trim(),
-                    PaidFees = CurrentLocalDLApplication.PaidFees,
-                    IssueReason = CurrentIssueReason,
-                    CreatedByUserId = UserSession.LoggedInUser.ID
-                };
-                if (licence.AddNewLicence())
-                {
-                    MessageBox.Show($"Licence Issued Successfully with ID {licence.ID}",
-                        "Success",
+                    MessageBox.Show($"Application Completed Successfully", "Success",
                         MessageBoxButtons.OK,
                         icon: MessageBoxIcon.Information);
-                    if (LocalDLApplication.ChangeApplicationStatus(CurrentLocalDLApplication.ID, 3))
-                    {
-                        MessageBox.Show($"Application Completed Successfully", "Success",
-                            MessageBoxButtons.OK,
-                            icon: MessageBoxIcon.Information);
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show($"Something wrong happened while changing Application status", "Error",
-                            MessageBoxButtons.OK,
-                            icon: MessageBoxIcon.Error);
-                    }
+                    this.Close();
                 }
                 else
-                    MessageBox.Show($"Something wrong happened while saving the licence", "Error",
-                    MessageBoxButtons.OK,
-                    icon: MessageBoxIcon.Error);
+                {
+                    MessageBox.Show($"Something wrong happened while changing Application status", "Error",
+                        MessageBoxButtons.OK,
+                        icon: MessageBoxIcon.Error);
+                }
             }
+            else
+                MessageBox.Show($"Something wrong happened while saving the licence", "Error",
+                MessageBoxButtons.OK,
+                icon: MessageBoxIcon.Error);
+        }
+
+        private void AddNewLicenceWithNewDriver(Driver driver)
+        {
+            if (driver.AddNewDriver())
+                AddNewLicence(driver);
             else
                 MessageBox.Show($"Something wrong happened while saving the driver info",
                 "Error",
                 MessageBoxButtons.OK,
                 icon: MessageBoxIcon.Error);
+        }
+
+        private void BtnSave_Click(object sender, EventArgs e)
+        {
+            AddLicence();
         }
     }
 }

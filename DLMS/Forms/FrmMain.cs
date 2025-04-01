@@ -1,6 +1,7 @@
 ﻿using DLMS.Forms;
 using DLMS.Forms.Applications.ApplicationTypes;
 using DLMS.Forms.Applications.LocalDrivingLicenceApplications;
+using DLMS.Forms.People;
 using DLMS.Forms.Tests.TestTypes;
 using DLMS.Forms.Users;
 using DLMS_Business;
@@ -102,6 +103,12 @@ namespace DLMS
         {
             FrmManageLocalDLApplications frmManageLocalDLApplications = new FrmManageLocalDLApplications();
             frmManageLocalDLApplications.ShowDialog();
+        }
+
+        private void DriversToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmManageDrivers frm = new FrmManageDrivers();
+            frm.ShowDialog();
         }
     }
 }
