@@ -112,6 +112,12 @@
     <Compile Include="Forms\Licence\FrmManageInternationalLicences.Designer.cs">
       <DependentUpon>FrmManageInternationalLicences.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Licence\FrmShowInternationalLicence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Licence\FrmShowInternationalLicence.Designer.cs">
+      <DependentUpon>FrmShowInternationalLicence.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Licence\FrmShowLicence.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Licence\FrmManageInternationalLicences.resx">
       <DependentUpon>FrmManageInternationalLicences.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Licence\FrmShowInternationalLicence.resx">
+      <DependentUpon>FrmShowInternationalLicence.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Licence\FrmShowLicence.resx">
       <DependentUpon>FrmShowLicence.cs</DependentUpon>

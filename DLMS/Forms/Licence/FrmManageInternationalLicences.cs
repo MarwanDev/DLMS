@@ -1,4 +1,5 @@
-﻿using DLMS_Business;
+﻿using DLMS.Forms.People;
+using DLMS_Business;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -97,6 +98,60 @@ namespace DLMS.Forms.Licence
                 string headerText = dgvInternationalLicences.Columns[e.ColumnIndex].HeaderText;
                 Person.ApplySorting(headerText);
                 ReloadData();
+            }
+        }
+
+        private int SelectedInternationalLicenceId { get; set; }
+
+        private void DgvInternationalLicences_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                dgvInternationalLicences.ContextMenuStrip = null;
+            else
+            {
+                SelectedInternationalLicenceId = Int32.Parse(dgvInternationalLicences.Rows[e.RowIndex].Cells[0].Value?.ToString());
+                DataGridView.HitTestInfo hit = dgvInternationalLicences.HitTest(e.X, e.Y);
+                if (hit.RowIndex >= 0)
+                {
+                    dgvInternationalLicences.ClearSelection();
+                    dgvInternationalLicences.Rows[hit.RowIndex].Selected = true;
+                    dgvInternationalLicences.CurrentCell = dgvInternationalLicences.Rows[hit.RowIndex].Cells[0];
+                }
+            }
+        }
+
+        private void ShowPersonDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LicenceModel licence = LicenceModel.FindInternationalLicence(SelectedInternationalLicenceId);
+            Person person = Person.FindByNationalNo(licence.NationalNo);
+            if (person != null)
+            {
+                FrmShowPersonDetails frm = new FrmShowPersonDetails(person);
+                frm.OnFormClosed += ReloadData;
+                frm.ShowDialog();
+            }
+        }
+
+        private void ShowLicenceInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LicenceModel licence = LicenceModel.FindInternationalLicence(SelectedInternationalLicenceId);
+            if (licence != null)
+            {
+                FrmShowInternationalLicence frm = new FrmShowInternationalLicence(licence);
+                frm.OnFormClosed += ReloadData;
+                frm.ShowDialog();
+            }
+        }
+
+        private void ShowPersonLicenceHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LicenceModel licence = LicenceModel.FindInternationalLicence(SelectedInternationalLicenceId);
+            Person person = Person.FindByNationalNo(licence.NationalNo);
+            if (person != null)
+            {
+                FrmLicenceHistory frm = new FrmLicenceHistory(person);
+                frm.OnFormClosed += ReloadData;
+                frm.ShowDialog();
             }
         }
     }

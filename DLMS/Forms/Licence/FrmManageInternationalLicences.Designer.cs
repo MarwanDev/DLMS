@@ -37,9 +37,13 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvInternationalLicences = new System.Windows.Forms.DataGridView();
             this.cmsInternationalLicence = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showPersonDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showLicenceInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showPersonLicenceHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblHeader = new System.Windows.Forms.Label();
             this.pbHeader = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInternationalLicences)).BeginInit();
+            this.cmsInternationalLicence.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeader)).BeginInit();
             this.SuspendLayout();
             // 
@@ -121,12 +125,38 @@
             this.dgvInternationalLicences.ReadOnly = true;
             this.dgvInternationalLicences.Size = new System.Drawing.Size(1081, 289);
             this.dgvInternationalLicences.TabIndex = 22;
+            this.dgvInternationalLicences.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvInternationalLicences_CellMouseDown);
             this.dgvInternationalLicences.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvInternationalLicences_ColumnHeaderMouseClick);
             // 
             // cmsInternationalLicence
             // 
+            this.cmsInternationalLicence.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showPersonDetailsToolStripMenuItem,
+            this.showLicenceInfoToolStripMenuItem,
+            this.showPersonLicenceHistoryToolStripMenuItem});
             this.cmsInternationalLicence.Name = "cmsInternationalLicence";
-            this.cmsInternationalLicence.Size = new System.Drawing.Size(61, 4);
+            this.cmsInternationalLicence.Size = new System.Drawing.Size(227, 70);
+            // 
+            // showPersonDetailsToolStripMenuItem
+            // 
+            this.showPersonDetailsToolStripMenuItem.Name = "showPersonDetailsToolStripMenuItem";
+            this.showPersonDetailsToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.showPersonDetailsToolStripMenuItem.Text = "Show Person Details";
+            this.showPersonDetailsToolStripMenuItem.Click += new System.EventHandler(this.ShowPersonDetailsToolStripMenuItem_Click);
+            // 
+            // showLicenceInfoToolStripMenuItem
+            // 
+            this.showLicenceInfoToolStripMenuItem.Name = "showLicenceInfoToolStripMenuItem";
+            this.showLicenceInfoToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.showLicenceInfoToolStripMenuItem.Text = "Show Licence Info";
+            this.showLicenceInfoToolStripMenuItem.Click += new System.EventHandler(this.ShowLicenceInfoToolStripMenuItem_Click);
+            // 
+            // showPersonLicenceHistoryToolStripMenuItem
+            // 
+            this.showPersonLicenceHistoryToolStripMenuItem.Name = "showPersonLicenceHistoryToolStripMenuItem";
+            this.showPersonLicenceHistoryToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
+            this.showPersonLicenceHistoryToolStripMenuItem.Text = "Show Person Licence History";
+            this.showPersonLicenceHistoryToolStripMenuItem.Click += new System.EventHandler(this.ShowPersonLicenceHistoryToolStripMenuItem_Click);
             // 
             // lblHeader
             // 
@@ -172,6 +202,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmManageInternationalLicences_FormClosed);
             this.Load += new System.EventHandler(this.FrmManageInternationalLicences_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInternationalLicences)).EndInit();
+            this.cmsInternationalLicence.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbHeader)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -189,5 +220,8 @@
         private System.Windows.Forms.Label lblHeader;
         private System.Windows.Forms.PictureBox pbHeader;
         private System.Windows.Forms.ContextMenuStrip cmsInternationalLicence;
+        private System.Windows.Forms.ToolStripMenuItem showPersonDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showLicenceInfoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showPersonLicenceHistoryToolStripMenuItem;
     }
 }
