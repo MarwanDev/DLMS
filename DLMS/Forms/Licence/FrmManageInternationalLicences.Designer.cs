@@ -121,6 +121,7 @@
             this.dgvInternationalLicences.ReadOnly = true;
             this.dgvInternationalLicences.Size = new System.Drawing.Size(1081, 289);
             this.dgvInternationalLicences.TabIndex = 22;
+            this.dgvInternationalLicences.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvInternationalLicences_ColumnHeaderMouseClick);
             // 
             // cmsInternationalLicence
             // 

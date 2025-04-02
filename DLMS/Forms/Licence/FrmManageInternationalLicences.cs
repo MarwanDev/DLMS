@@ -1,4 +1,5 @@
 ﻿using DLMS_Business;
+using System;
 using System.Data;
 using System.Windows.Forms;
 
@@ -87,6 +88,16 @@ namespace DLMS.Forms.Licence
                 GetAllInternationalLicencesInDGV();
             else
                 FilterInternationalLicences(tbSearch.Text.Trim());
+        }
+
+        private void DgvInternationalLicences_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex >= 0)
+            {
+                string headerText = dgvInternationalLicences.Columns[e.ColumnIndex].HeaderText;
+                Person.ApplySorting(headerText);
+                ReloadData();
+            }
         }
     }
 }
