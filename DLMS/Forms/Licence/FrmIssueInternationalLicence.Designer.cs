@@ -42,7 +42,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.lblFees = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.lblIssueDaate = new System.Windows.Forms.Label();
+            this.lblIssueDate = new System.Windows.Forms.Label();
             this.lblApplicationId = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -83,7 +83,7 @@
             this.gbApplicationInfo.Controls.Add(this.label12);
             this.gbApplicationInfo.Controls.Add(this.lblFees);
             this.gbApplicationInfo.Controls.Add(this.label9);
-            this.gbApplicationInfo.Controls.Add(this.lblIssueDaate);
+            this.gbApplicationInfo.Controls.Add(this.lblIssueDate);
             this.gbApplicationInfo.Controls.Add(this.lblApplicationId);
             this.gbApplicationInfo.Controls.Add(this.label5);
             this.gbApplicationInfo.Controls.Add(this.label3);
@@ -205,15 +205,15 @@
             this.label9.TabIndex = 48;
             this.label9.Text = "Fees:";
             // 
-            // lblIssueDaate
+            // lblIssueDate
             // 
-            this.lblIssueDaate.AutoSize = true;
-            this.lblIssueDaate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIssueDaate.Location = new System.Drawing.Point(186, 74);
-            this.lblIssueDaate.Name = "lblIssueDaate";
-            this.lblIssueDaate.Size = new System.Drawing.Size(36, 20);
-            this.lblIssueDaate.TabIndex = 47;
-            this.lblIssueDaate.Text = "???";
+            this.lblIssueDate.AutoSize = true;
+            this.lblIssueDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIssueDate.Location = new System.Drawing.Point(186, 74);
+            this.lblIssueDate.Name = "lblIssueDaate";
+            this.lblIssueDate.Size = new System.Drawing.Size(36, 20);
+            this.lblIssueDate.TabIndex = 47;
+            this.lblIssueDate.Text = "???";
             // 
             // lblApplicationId
             // 
@@ -309,7 +309,7 @@
         private System.Windows.Forms.GroupBox gbApplicationInfo;
         private System.Windows.Forms.Label lblFees;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label lblIssueDaate;
+        private System.Windows.Forms.Label lblIssueDate;
         private System.Windows.Forms.Label lblApplicationId;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;

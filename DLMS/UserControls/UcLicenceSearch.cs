@@ -79,6 +79,11 @@ namespace DLMS.UserControls
             }
         }
 
+        public int GetDriverId()
+        {
+            return Int32.Parse(lblDriverId.Text);
+        }
+
         private void ModifyControlsUIAccordingToLicence(LicenceModel licence)
         {
             lblClassName.Text = licence.ClassName;
