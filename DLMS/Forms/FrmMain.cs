@@ -117,5 +117,11 @@ namespace DLMS
             FrmIssueInternationalLicence frm = new FrmIssueInternationalLicence();
             frm.ShowDialog();
         }
+
+        private void InternationalDrivingLicenceApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmManageInternationalLicences frm = new FrmManageInternationalLicences();
+            frm.ShowDialog();
+        }
     }
 }

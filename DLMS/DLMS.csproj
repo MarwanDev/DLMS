@@ -272,6 +272,9 @@
     <EmbeddedResource Include="Forms\Licence\FrmLicenceHistory.resx">
       <DependentUpon>FrmLicenceHistory.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Licence\FrmManageInternationalLicences.resx">
+      <DependentUpon>FrmManageInternationalLicences.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Licence\FrmShowLicence.resx">
       <DependentUpon>FrmShowLicence.cs</DependentUpon>
     </EmbeddedResource>
