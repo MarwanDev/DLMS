@@ -31,13 +31,6 @@ namespace DLMS.UserControls
         private void ValidateLicenceId(LicenceModel licence)
         {
             ModifyControlsUIAccordingToLicence(licence);
-            CheckLocalLicencClassValidation(licence);
-            CheckLocalLicenceExpirationDate(licence);
-            CheckIfLocalLicenceIsActive(licence);
-        }
-
-        private void CheckLocalLicencClassValidation(LicenceModel licence)
-        {
             if (LicenceModel.GetLicencClassId(licence.ID) != 3)
             {
                 MessageBox.Show($"The local licence with id {licence.ID} is not valid for international licence!",
@@ -45,12 +38,18 @@ namespace DLMS.UserControls
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 ChangeIssueButtonAbility(false);
+            }
+
+            if (licence.ExpirationDate < DateTime.Now)
+            {
+                MessageBox.Show($"The local licence with id {licence.ID} is expired!",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                ChangeIssueButtonAbility(false);
                 return;
             }
-        }
 
-        private void CheckIfLocalLicenceIsActive(LicenceModel licence)
-        {
             if (licence.IsActive)
                 ChangeIssueButtonAbility();
             else
@@ -60,19 +59,6 @@ namespace DLMS.UserControls
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 ChangeIssueButtonAbility(false);
-            }
-        }
-
-        private void CheckLocalLicenceExpirationDate(LicenceModel licence)
-        {
-            if (licence.ExpirationDate < DateTime.Now)
-            {
-                MessageBox.Show($"The local licence with id {licence.ID} is expired!",
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                ChangeIssueButtonAbility(false);
-                return;
             }
         }
 
