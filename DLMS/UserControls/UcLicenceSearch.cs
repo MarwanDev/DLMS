@@ -28,7 +28,7 @@ namespace DLMS.UserControls
                 return;
             }
             ModifyControlsUIAccordingToLicence(licence);
-            if (LicenceModel.GetLicencClassId(licence.ID) != 3)
+            if (LicenceModel.GetLicenceClassId(licence.ID) != 3)
             {
                 MessageBox.Show($"The local licence with id {licence.ID} is not valid for international licence!",
                     "Error",

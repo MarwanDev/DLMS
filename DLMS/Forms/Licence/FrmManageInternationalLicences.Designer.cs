@@ -36,9 +36,9 @@
             this.cbFilter = new System.Windows.Forms.ComboBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvInternationalLicences = new System.Windows.Forms.DataGridView();
+            this.cmsInternationalLicence = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.lblHeader = new System.Windows.Forms.Label();
             this.pbHeader = new System.Windows.Forms.PictureBox();
-            this.cmsInternationalLicence = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInternationalLicences)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeader)).BeginInit();
             this.SuspendLayout();
@@ -71,6 +71,7 @@
             this.tbSearch.Size = new System.Drawing.Size(247, 31);
             this.tbSearch.TabIndex = 27;
             this.tbSearch.Visible = false;
+            this.tbSearch.TextChanged += new System.EventHandler(this.TbSearch_TextChanged);
             // 
             // label1
             // 
@@ -91,14 +92,12 @@
             "None",
             "Int. licence ID",
             "Application ID",
-            "L.Licence ID",
-            "Issue Date",
-            "Expiration Date",
-            "Is Active"});
+            "L.Licence ID"});
             this.cbFilter.Location = new System.Drawing.Point(109, 246);
             this.cbFilter.Name = "cbFilter";
             this.cbFilter.Size = new System.Drawing.Size(210, 32);
             this.cbFilter.TabIndex = 25;
+            this.cbFilter.SelectedIndexChanged += new System.EventHandler(this.CbFilter_SelectedIndexChanged);
             // 
             // btnClose
             // 
@@ -123,6 +122,11 @@
             this.dgvInternationalLicences.Size = new System.Drawing.Size(1081, 289);
             this.dgvInternationalLicences.TabIndex = 22;
             // 
+            // cmsInternationalLicence
+            // 
+            this.cmsInternationalLicence.Name = "cmsInternationalLicence";
+            this.cmsInternationalLicence.Size = new System.Drawing.Size(61, 4);
+            // 
             // lblHeader
             // 
             this.lblHeader.AutoSize = true;
@@ -143,11 +147,6 @@
             this.pbHeader.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbHeader.TabIndex = 20;
             this.pbHeader.TabStop = false;
-            // 
-            // cmsInternationalLicence
-            // 
-            this.cmsInternationalLicence.Name = "cmsInternationalLicence";
-            this.cmsInternationalLicence.Size = new System.Drawing.Size(61, 4);
             // 
             // FrmManageInternationalLicences
             // 

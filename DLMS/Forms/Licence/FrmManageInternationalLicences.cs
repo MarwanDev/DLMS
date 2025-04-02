@@ -43,9 +43,50 @@ namespace DLMS.Forms.Licence
 
         private void UpdateCountLabel(string searchQuery = "")
         {
-            //lblCount.Text = CurrentMode == Mode.All ?
-            //    LocalDLApplication.GetAllLocalDLApplicationsCount().ToString() :
-            //    LocalDLApplication.GetFilteredLocalDLApplicationsCount(searchQuery).ToString();
+            lblCount.Text = CurrentMode == Mode.All ?
+                LicenceModel.GetAllInternationalLicenceCount().ToString() :
+                LicenceModel.GetFilteredInternationalLicencesCount(searchQuery).ToString();
+        }
+
+        private void CbFilter_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            tbSearch.Clear();
+            Business.DisableSorting();
+            ReloadData();
+            tbSearch.Visible = cbFilter.SelectedIndex != 0;
+        }
+
+        private void ReloadData()
+        {
+            if (tbSearch.Visible && tbSearch.Text.Trim() != "")
+            {
+                FilterInternationalLicences(tbSearch.Text.Trim());
+            }
+            else
+            {
+                GetAllInternationalLicencesInDGV();
+            }
+        }
+
+        private void FilterInternationalLicences(string searchKeyWord)
+        {
+            DataTable filteredInternationlLicences =
+                LicenceModel.FilterInternationalLicences(cbFilter.Text, searchKeyWord);
+            dgvInternationalLicences.DataSource = filteredInternationlLicences;
+            Utils.DisableDGVColumnSorting(dgvInternationalLicences);
+            dgvInternationalLicences.Refresh();
+            CurrentMode = Mode.Filter;
+            UpdateCountLabel(searchKeyWord);
+        }
+
+        private void TbSearch_TextChanged(object sender, System.EventArgs e)
+        {
+            if (tbSearch.Text == "\u007f")
+                tbSearch.Clear();
+            if (tbSearch.Text == "")
+                GetAllInternationalLicencesInDGV();
+            else
+                FilterInternationalLicences(tbSearch.Text.Trim());
         }
     }
 }
