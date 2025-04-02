@@ -51,7 +51,8 @@ namespace DLMS.Forms.Licence
                     LocalLicenceId = Int32.Parse(lblLocalLicenceId.Text),
                     IssueDate = DateTime.Parse(lblIssueDate.Text),
                     ExpirationDate = DateTime.Parse(lblExpirationDate.Text),
-                    CreatedByUserId = UserSession.LoggedInUser.ID
+                    CreatedByUserId = UserSession.LoggedInUser.ID,
+                    IsActive = true
                 };
                 if (licence.AddNewInternationalLicence())
                 {
@@ -75,6 +76,7 @@ namespace DLMS.Forms.Licence
                     icon: MessageBoxIcon.Error);
             }
         }
+
         private void FrmIssueInternationalLicence_Load(object sender, EventArgs e)
         {
             ApplicationType applicationType = ApplicationType.Find(6);

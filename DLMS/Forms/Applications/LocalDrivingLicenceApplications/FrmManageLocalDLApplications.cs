@@ -112,15 +112,18 @@ namespace DLMS.Forms.Applications.LocalDrivingLicenceApplications
             byte applicationStatus = LocalDLApplication.GetApplicationStatusById(SelectedLocalDLApplicationId);
             if (applicationStatus == 0 || applicationStatus == 3)
             {
+                scheduleTestToolStripMenuItem.Enabled = false;
                 visionTestToolStripMenuItem.Enabled = false;
                 writtenTestToolStripMenuItem.Enabled = false;
                 streetTestToolStripMenuItem.Enabled = false;
-                scheduleTestToolStripMenuItem.Enabled = false;
-                issueLicenceToolStripMenuItem.Enabled = !LocalDLApplication.DoesLicenceExistForLocalDLApplication(SelectedLocalDLApplicationId);
+                issueLicenceToolStripMenuItem.Enabled = 
+                    !LocalDLApplication.DoesLicenceExistForLocalDLApplication(SelectedLocalDLApplicationId) &&
+                    applicationStatus == 3;
             }
             else
             {
                 int passedTests = LocalDLApplication.GetPassedTestsCount(SelectedLocalDLApplicationId);
+                scheduleTestToolStripMenuItem.Enabled = passedTests >= 0 && passedTests < 3;
                 visionTestToolStripMenuItem.Enabled = passedTests == 0;
                 writtenTestToolStripMenuItem.Enabled = passedTests == 1;
                 streetTestToolStripMenuItem.Enabled = passedTests == 2;
