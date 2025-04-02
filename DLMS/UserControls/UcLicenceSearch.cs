@@ -14,7 +14,7 @@ namespace DLMS.UserControls
             InitializeComponent();
         }
 
-        private void CheckInternationalLicenceAvailability(LicenceModel licence)
+        private void ValidateLicenceId(LicenceModel licence)
         {
             if (LicenceModel.DoesInternationalLicenceExistWithLocalLicenceId(Int32.Parse(tbSearch.Text.Trim())))
             {
@@ -24,12 +24,9 @@ namespace DLMS.UserControls
                     MessageBoxIcon.Error);
                 ChangeIssueButtonAbility(false);
                 ModifyControlsUIAccordingToLicence(licence);
+                SubmitValidLicenceId(-1);
                 return;
             }
-        }
-
-        private void ValidateLicenceId(LicenceModel licence)
-        {
             ModifyControlsUIAccordingToLicence(licence);
             if (LicenceModel.GetLicencClassId(licence.ID) != 3)
             {
@@ -38,6 +35,7 @@ namespace DLMS.UserControls
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 ChangeIssueButtonAbility(false);
+                SubmitValidLicenceId(-1);
             }
 
             if (licence.ExpirationDate < DateTime.Now)
@@ -47,11 +45,15 @@ namespace DLMS.UserControls
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 ChangeIssueButtonAbility(false);
+                SubmitValidLicenceId(-1);
                 return;
             }
 
             if (licence.IsActive)
+            {
                 ChangeIssueButtonAbility();
+                SubmitValidLicenceId(licence.ID);
+            }
             else
             {
                 MessageBox.Show($"The local licence with id {licence.ID} is not active!",
@@ -65,7 +67,6 @@ namespace DLMS.UserControls
         private void BtnLicenceSearch_Click(object sender, EventArgs e)
         {
             LicenceModel licence = LicenceModel.Find(Int32.Parse(tbSearch.Text.Trim()));
-            CheckInternationalLicenceAvailability(licence);
             if (licence != null)
                 ValidateLicenceId(licence);
             else
@@ -99,10 +100,16 @@ namespace DLMS.UserControls
         }
 
         public event Action<bool> OnIssueButtonAbilityChanged;
+        public event Action<int> OnSubmittingValidLicenceId;
 
         private void ChangeIssueButtonAbility(bool isEnabled = true)
         {
             OnIssueButtonAbilityChanged?.Invoke(isEnabled);
+        }
+
+        private void SubmitValidLicenceId(int licenceId)
+        {
+            OnSubmittingValidLicenceId?.Invoke(licenceId);
         }
 
         private void TbSearch_TextChanged(object sender, EventArgs e)

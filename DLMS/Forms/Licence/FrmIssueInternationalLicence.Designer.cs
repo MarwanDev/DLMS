@@ -294,6 +294,7 @@
             this.Name = "FrmIssueInternationalLicence";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Issue International Licence";
+            this.Load += new System.EventHandler(this.FrmIssueInternationalLicence_Load);
             this.gbApplicationInfo.ResumeLayout(false);
             this.gbApplicationInfo.PerformLayout();
             this.ResumeLayout(false);
