@@ -1,6 +1,7 @@
 ﻿using DLMS_Business;
 using DLMS_Business.Application;
 using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace DLMS.Forms.Licence
@@ -29,6 +30,8 @@ namespace DLMS.Forms.Licence
         {
             lblOldLicenceId.Text = licenceId != -1 ? licenceId.ToString() : "???";
             CurrentLicence = ucLicenceSearch1.CurrentLicence;
+            llShowLicenceHistory.Enabled = true;
+            CurrentPerson = Person.FindByNationalNo(ucLicenceSearch1.GetNationalNumber());
         }
 
         private LicenceModel CurrentLicence { get; set; }
@@ -45,17 +48,16 @@ namespace DLMS.Forms.Licence
                 ApplicationStatus = 3,
                 CreatedByUserId = UserSession.LoggedInUser.ID
             };
-            int applicationId = -1;
-            if (application.AddNewApplication(ref applicationId) && application.ApplicantPersonId != -1)
+            if (application.AddNewApplication(ref newApplicaitonId) && application.ApplicantPersonId != -1)
             {
-                int renewdLicenceId = CurrentLicence.RenewLicence(UserSession.LoggedInUser.ID, application.ID, rtbNotes.Text);
-                if (renewdLicenceId != -1)
+                newLicenceId = CurrentLicence.RenewLicence(UserSession.LoggedInUser.ID, application.ID, rtbNotes.Text);
+                if (newLicenceId != -1)
                 {
                     MessageBox.Show($"Licence Renewed Successfully with ID {CurrentLicence.ID}",
                         "Success",
                         MessageBoxButtons.OK,
                         icon: MessageBoxIcon.Information);
-                    btnRenew.Enabled = false;
+                    ChangeRenewBtnAbiblity(false);
                     return true;
                 }
                 else
@@ -78,6 +80,7 @@ namespace DLMS.Forms.Licence
                     lblRenewedLicenceId.Text = newLicenceId.ToString();
                     lblApplicationId.Text = newApplicaitonId.ToString();
                     lblLicenceFees.Text = CurrentLicence.PaidFees.ToString();
+                    llShowNewLiceence.Enabled = true;
                     lblTotalFees.Text = ((decimal.Parse(lblApplicationFees.Text)) +
                         (decimal.Parse(lblLicenceFees.Text))).ToString();
                 }
@@ -93,6 +96,23 @@ namespace DLMS.Forms.Licence
             lblCreatedBy.Text = UserSession.LoggedInUser.UserName;
             lblApplicationFees.Text = applicationType?.Fees.ToString();
             lblApplicationDate.Text = DateTime.Now.ToShortDateString();
+        }
+
+        private Person CurrentPerson {  get; set; }
+
+        private void LlShowLicenceHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            if (CurrentPerson != null)
+            {
+                FrmLicenceHistory frm = new FrmLicenceHistory(CurrentPerson);
+                frm.ShowDialog();
+            }
+        }
+
+        private void LlShowNewLiceence_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FrmShowLicence frm = new FrmShowLicence(CurrentLicence);
+            frm.ShowDialog();
         }
     }
 }

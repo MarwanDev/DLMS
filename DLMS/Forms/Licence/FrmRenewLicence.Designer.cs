@@ -54,6 +54,9 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.llShowLicenceHistory = new System.Windows.Forms.LinkLabel();
+            this.llShowNewLiceence = new System.Windows.Forms.LinkLabel();
             this.gbApplicationInfo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -340,11 +343,52 @@
             this.label7.TabIndex = 42;
             this.label7.Text = "R.L.Application ID:";
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(0, 0);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(55, 13);
+            this.linkLabel1.TabIndex = 65;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "linkLabel1";
+            // 
+            // llShowLicenceHistory
+            // 
+            this.llShowLicenceHistory.AutoSize = true;
+            this.llShowLicenceHistory.Enabled = false;
+            this.llShowLicenceHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llShowLicenceHistory.Location = new System.Drawing.Point(28, 829);
+            this.llShowLicenceHistory.Name = "llShowLicenceHistory";
+            this.llShowLicenceHistory.Size = new System.Drawing.Size(181, 16);
+            this.llShowLicenceHistory.TabIndex = 66;
+            this.llShowLicenceHistory.TabStop = true;
+            this.llShowLicenceHistory.Text = "Show Person Licence History";
+            this.llShowLicenceHistory.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.llShowLicenceHistory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LlShowLicenceHistory_LinkClicked);
+            // 
+            // llShowNewLiceence
+            // 
+            this.llShowNewLiceence.AutoSize = true;
+            this.llShowNewLiceence.Enabled = false;
+            this.llShowNewLiceence.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.llShowNewLiceence.Location = new System.Drawing.Point(226, 829);
+            this.llShowNewLiceence.Name = "llShowNewLiceence";
+            this.llShowNewLiceence.Size = new System.Drawing.Size(144, 16);
+            this.llShowNewLiceence.TabIndex = 67;
+            this.llShowNewLiceence.TabStop = true;
+            this.llShowNewLiceence.Text = "Show New Licence Info";
+            this.llShowNewLiceence.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.llShowNewLiceence.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LlShowNewLiceence_LinkClicked);
+            // 
             // FrmRenewLicence
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(926, 857);
+            this.Controls.Add(this.llShowNewLiceence);
+            this.Controls.Add(this.llShowLicenceHistory);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.btnRenew);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.gbApplicationInfo);
@@ -359,6 +403,7 @@
             this.gbApplicationInfo.ResumeLayout(false);
             this.gbApplicationInfo.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -390,5 +435,8 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label lblApplicationFees;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.LinkLabel llShowLicenceHistory;
+        private System.Windows.Forms.LinkLabel llShowNewLiceence;
     }
 }

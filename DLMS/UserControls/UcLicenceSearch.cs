@@ -139,6 +139,11 @@ namespace DLMS.UserControls
             OnRenewButtonAbilityChanged?.Invoke(isEnabled);
         }
 
+        public string GetNationalNumber()
+        {
+            return lblNationalNo.Text;
+        }
+
         private void SubmitValidLicenceId(int licenceId)
         {
             OnSubmittingValidLicenceId?.Invoke(licenceId);

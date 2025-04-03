@@ -31,7 +31,7 @@ namespace DLMS.Forms.Licence
             lblNatinalNo.Text = CurrentLicence.NationalNo;
             lblGender.Text = CurrentLicence.Gender;
             lblIssueDate.Text = CurrentLicence.IssueDate.ToShortDateString();
-            lblExpDate.Text = CurrentLicence.IssueDate.ToShortDateString();
+            lblExpDate.Text = CurrentLicence.ExpirationDate.ToShortDateString();
             lblIssueReason.Text = CurrentLicence.IssueReason == 1 ? "First Time" : "Not First Time";
             lblNotes.Text = !string.IsNullOrEmpty(CurrentLicence.Notes) ? CurrentLicence.Notes : "No Notes";
             lblIsActive.Text = CurrentLicence.IsActive ? "Yes" : "No";
