@@ -32,7 +32,11 @@ namespace DLMS.Forms.Licence
             lblGender.Text = CurrentLicence.Gender;
             lblIssueDate.Text = CurrentLicence.IssueDate.ToShortDateString();
             lblExpDate.Text = CurrentLicence.ExpirationDate.ToShortDateString();
-            lblIssueReason.Text = CurrentLicence.IssueReason == 1 ? "First Time" : "Not First Time";
+            lblIssueReason.Text = CurrentLicence.IssueReason == 1 ? "First Time" :
+                CurrentLicence.IssueReason == 2 ? "Renew" : 
+                CurrentLicence.IssueReason == 3 ? "Replacement for lost" :
+                CurrentLicence.IssueReason == 4 ? "Replacement for damaged" :
+                CurrentLicence.IssueReason == 5 ? "Release for detained" : "";
             lblNotes.Text = !string.IsNullOrEmpty(CurrentLicence.Notes) ? CurrentLicence.Notes : "No Notes";
             lblIsActive.Text = CurrentLicence.IsActive ? "Yes" : "No";
             lblDOB.Text = CurrentLicence.IssueDate.ToShortDateString();
