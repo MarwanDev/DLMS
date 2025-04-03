@@ -38,11 +38,17 @@ namespace DLMS.UserControls
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                ChangeIssueButtonAbility(false);
+                if (CurrentMode == Mode.InternationlLicence)
+                    ChangeIssueButtonAbility(false);
+                if (CurrentMode == Mode.Lost || CurrentMode == Mode.Damaged)
+                    ChangeReplaceButtonAbility(false);
                 SubmitValidLicenceId(-1);
             }
 
-            if (licence.ExpirationDate < DateTime.Now && CurrentMode == Mode.InternationlLicence)
+            if (licence.ExpirationDate < DateTime.Now &&
+                (CurrentMode == Mode.InternationlLicence ||
+                CurrentMode == Mode.Lost ||
+                CurrentMode == Mode.Damaged))
             {
                 MessageBox.Show($"The local licence with id {licence.ID} is expired!",
                     "Error",
@@ -70,6 +76,8 @@ namespace DLMS.UserControls
                     ChangeIssueButtonAbility();
                 if (CurrentMode == Mode.Renew)
                     ChangeRenewButtonAbility();
+                if (CurrentMode == Mode.Lost || CurrentMode == Mode.Damaged)
+                    ChangeReplaceButtonAbility();
                 CurrentLicence = licence;
                 SubmitValidLicenceId(licence.ID);
             }
@@ -79,7 +87,12 @@ namespace DLMS.UserControls
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                ChangeIssueButtonAbility(false);
+                if (CurrentMode == Mode.InternationlLicence)
+                    ChangeIssueButtonAbility(false);
+                if (CurrentMode == Mode.Renew)
+                    ChangeRenewButtonAbility(false);
+                if (CurrentMode == Mode.Lost || CurrentMode == Mode.Damaged)
+                    ChangeReplaceButtonAbility(false);
             }
         }
 
@@ -127,6 +140,7 @@ namespace DLMS.UserControls
 
         public event Action<bool> OnIssueButtonAbilityChanged;
         public event Action<bool> OnRenewButtonAbilityChanged;
+        public event Action<bool> OnReplaceButtonAbilityChanged;
         public event Action<int> OnSubmittingValidLicenceId;
         public event Action<Mode> OnChangingCurrentMode;
 
@@ -138,6 +152,11 @@ namespace DLMS.UserControls
         private void ChangeIssueButtonAbility(bool isEnabled = true)
         {
             OnIssueButtonAbilityChanged?.Invoke(isEnabled);
+        }
+
+        private void ChangeReplaceButtonAbility(bool isEnabled = true)
+        {
+            OnReplaceButtonAbilityChanged?.Invoke(isEnabled);
         }
 
         private void ChangeRenewButtonAbility(bool isEnabled = true)

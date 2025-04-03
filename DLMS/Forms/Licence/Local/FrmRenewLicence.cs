@@ -1,7 +1,6 @@
 ﻿using DLMS_Business;
 using DLMS_Business.Application;
 using System;
-using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace DLMS.Forms.Licence
@@ -98,7 +97,7 @@ namespace DLMS.Forms.Licence
             lblApplicationDate.Text = DateTime.Now.ToShortDateString();
         }
 
-        private Person CurrentPerson {  get; set; }
+        private Person CurrentPerson { get; set; }
 
         private void LlShowLicenceHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {

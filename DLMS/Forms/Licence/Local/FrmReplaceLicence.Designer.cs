@@ -69,6 +69,7 @@
             this.llShowNewLiceence.TabStop = true;
             this.llShowNewLiceence.Text = "Show New Licence Info";
             this.llShowNewLiceence.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.llShowNewLiceence.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LlShowNewLiceence_LinkClicked);
             // 
             // llShowLicenceHistory
             // 
@@ -82,6 +83,7 @@
             this.llShowLicenceHistory.TabStop = true;
             this.llShowLicenceHistory.Text = "Show Person Licence History";
             this.llShowLicenceHistory.VisitedLinkColor = System.Drawing.Color.Blue;
+            this.llShowLicenceHistory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LlShowLicenceHistory_LinkClicked);
             // 
             // btnReplace
             // 
@@ -264,6 +266,7 @@
             this.Name = "FrmReplaceLicence";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmReplaceLicence";
+            this.Load += new System.EventHandler(this.FrmReplaceLicence_Load);
             this.gbApplicationInfo.ResumeLayout(false);
             this.gbApplicationInfo.PerformLayout();
             this.ResumeLayout(false);
