@@ -60,9 +60,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.gbReplacementFor = new System.Windows.Forms.GroupBox();
+            this.rdbLost = new System.Windows.Forms.RadioButton();
+            this.rdbDamaged = new System.Windows.Forms.RadioButton();
             this.gbPersonSearch.SuspendLayout();
             this.gbDriverLicenceInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).BeginInit();
+            this.gbReplacementFor.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbPersonSearch
@@ -82,7 +86,7 @@
             this.btnLicenceSearch.Enabled = false;
             this.btnLicenceSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLicenceSearch.Location = new System.Drawing.Point(442, 19);
-            this.btnLicenceSearch.Name = "btnPersonSearch";
+            this.btnLicenceSearch.Name = "btnLicenceSearch";
             this.btnLicenceSearch.Size = new System.Drawing.Size(104, 30);
             this.btnLicenceSearch.TabIndex = 3;
             this.btnLicenceSearch.Text = "Search";
@@ -416,19 +420,61 @@
             this.label7.TabIndex = 20;
             this.label7.Text = "Class:";
             // 
+            // gbReplacementFor
+            // 
+            this.gbReplacementFor.Controls.Add(this.rdbLost);
+            this.gbReplacementFor.Controls.Add(this.rdbDamaged);
+            this.gbReplacementFor.Location = new System.Drawing.Point(606, 12);
+            this.gbReplacementFor.Name = "gbReplacementFor";
+            this.gbReplacementFor.Size = new System.Drawing.Size(286, 81);
+            this.gbReplacementFor.TabIndex = 5;
+            this.gbReplacementFor.TabStop = false;
+            this.gbReplacementFor.Text = "Replacement For";
+            this.gbReplacementFor.Visible = false;
+            // 
+            // rdbLost
+            // 
+            this.rdbLost.AutoSize = true;
+            this.rdbLost.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbLost.Location = new System.Drawing.Point(18, 45);
+            this.rdbLost.Name = "rdbLost";
+            this.rdbLost.Size = new System.Drawing.Size(96, 20);
+            this.rdbLost.TabIndex = 1;
+            this.rdbLost.TabStop = true;
+            this.rdbLost.Text = "Lost licence";
+            this.rdbLost.UseVisualStyleBackColor = true;
+            this.rdbLost.CheckedChanged += new System.EventHandler(this.RdbLicenceMode_CheckedChanged);
+            // 
+            // rdbDamaged
+            // 
+            this.rdbDamaged.AutoSize = true;
+            this.rdbDamaged.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbDamaged.Location = new System.Drawing.Point(18, 19);
+            this.rdbDamaged.Name = "rdbDamaged";
+            this.rdbDamaged.Size = new System.Drawing.Size(132, 20);
+            this.rdbDamaged.TabIndex = 0;
+            this.rdbDamaged.TabStop = true;
+            this.rdbDamaged.Text = "Damaged licence";
+            this.rdbDamaged.UseVisualStyleBackColor = true;
+            this.rdbDamaged.CheckedChanged += new System.EventHandler(this.RdbLicenceMode_CheckedChanged);
+            // 
             // UcLicenceSearch
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.gbReplacementFor);
             this.Controls.Add(this.gbDriverLicenceInfo);
             this.Controls.Add(this.gbPersonSearch);
             this.Name = "UcLicenceSearch";
             this.Size = new System.Drawing.Size(925, 562);
+            this.Load += new System.EventHandler(this.UcLicenceSearch_Load);
             this.gbPersonSearch.ResumeLayout(false);
             this.gbPersonSearch.PerformLayout();
             this.gbDriverLicenceInfo.ResumeLayout(false);
             this.gbDriverLicenceInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).EndInit();
+            this.gbReplacementFor.ResumeLayout(false);
+            this.gbReplacementFor.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -467,5 +513,8 @@
         private System.Windows.Forms.Label lblIsActive;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.GroupBox gbReplacementFor;
+        private System.Windows.Forms.RadioButton rdbDamaged;
+        private System.Windows.Forms.RadioButton rdbLost;
     }
 }

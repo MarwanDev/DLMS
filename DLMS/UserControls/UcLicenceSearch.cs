@@ -14,7 +14,7 @@ namespace DLMS.UserControls
             InitializeComponent();
         }
 
-        public enum Mode { InternationlLicence, Renew };
+        public enum Mode { InternationlLicence, Renew, Lost, Damaged };
         public Mode CurrentMode { get; set; } = Mode.InternationlLicence;
 
         private void ValidateLicenceId(LicenceModel licence)
@@ -128,6 +128,12 @@ namespace DLMS.UserControls
         public event Action<bool> OnIssueButtonAbilityChanged;
         public event Action<bool> OnRenewButtonAbilityChanged;
         public event Action<int> OnSubmittingValidLicenceId;
+        public event Action<Mode> OnChangingCurrentMode;
+
+        private void ChangeCurrentMode()
+        {
+            OnChangingCurrentMode?.Invoke(CurrentMode);
+        }
 
         private void ChangeIssueButtonAbility(bool isEnabled = true)
         {
@@ -163,6 +169,17 @@ namespace DLMS.UserControls
             {
                 e.Handled = true;
             }
+        }
+
+        private void RdbLicenceMode_CheckedChanged(object sender, EventArgs e)
+        {
+            CurrentMode = rdbLost.Checked ? Mode.Lost : Mode.Damaged;
+            ChangeCurrentMode();
+        }
+
+        private void UcLicenceSearch_Load(object sender, EventArgs e)
+        {
+            gbReplacementFor.Visible = CurrentMode == Mode.Lost || CurrentMode == Mode.Damaged;
         }
     }
 }

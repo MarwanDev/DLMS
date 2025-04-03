@@ -49,7 +49,7 @@ namespace DLMS.Forms.Licence
         private void UpdateCountLabels()
         {
             lblLocalCount.Text = LicenceModel.GetAllLocalLicencePerPersonCount(CurrentPerson.ID).ToString();
-            lblInternationalCount.Text = LicenceModel.GetAllInternationalLicencePerPersonCount(CurrentPerson.ID).ToString();
+            lblInternationalCount.Text = LicenceModel.GetAllInternationalLicencesPerPersonCount(CurrentPerson.ID).ToString();
             lblLocalCount.Refresh();
             lblInternationalCount.Refresh();
         }

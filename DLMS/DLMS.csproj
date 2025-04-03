@@ -88,46 +88,52 @@
     <Compile Include="Forms\FrmLogin.Designer.cs">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Licence\FrmIssueInternationalLicence.cs">
+    <Compile Include="Forms\Licence\International\FrmIssueInternationalLicence.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Licence\FrmIssueInternationalLicence.Designer.cs">
+    <Compile Include="Forms\Licence\International\FrmIssueInternationalLicence.Designer.cs">
       <DependentUpon>FrmIssueInternationalLicence.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Licence\FrmIssueLicence.cs">
+    <Compile Include="Forms\Licence\Local\FrmIssueLicence.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Licence\FrmIssueLicence.Designer.cs">
+    <Compile Include="Forms\Licence\Local\FrmIssueLicence.Designer.cs">
       <DependentUpon>FrmIssueLicence.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Licence\FrmLicenceHistory.cs">
+    <Compile Include="Forms\Licence\Local\FrmLicenceHistory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Licence\FrmLicenceHistory.Designer.cs">
+    <Compile Include="Forms\Licence\Local\FrmLicenceHistory.Designer.cs">
       <DependentUpon>FrmLicenceHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Licence\FrmManageInternationalLicences.cs">
+    <Compile Include="Forms\Licence\International\FrmManageInternationalLicences.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Licence\FrmManageInternationalLicences.Designer.cs">
+    <Compile Include="Forms\Licence\International\FrmManageInternationalLicences.Designer.cs">
       <DependentUpon>FrmManageInternationalLicences.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Licence\FrmRenewLicence.cs">
+    <Compile Include="Forms\Licence\Local\FrmRenewLicence.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Licence\FrmRenewLicence.Designer.cs">
+    <Compile Include="Forms\Licence\Local\FrmRenewLicence.Designer.cs">
       <DependentUpon>FrmRenewLicence.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Licence\FrmShowInternationalLicence.cs">
+    <Compile Include="Forms\Licence\International\FrmShowInternationalLicence.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Licence\FrmShowInternationalLicence.Designer.cs">
+    <Compile Include="Forms\Licence\International\FrmShowInternationalLicence.Designer.cs">
       <DependentUpon>FrmShowInternationalLicence.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Licence\FrmShowLicence.cs">
+    <Compile Include="Forms\Licence\Local\FrmReplaceLicence.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Licence\FrmShowLicence.Designer.cs">
+    <Compile Include="Forms\Licence\Local\FrmReplaceLicence.Designer.cs">
+      <DependentUpon>FrmReplaceLicence.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Licence\Local\FrmShowLicence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Licence\Local\FrmShowLicence.Designer.cs">
       <DependentUpon>FrmShowLicence.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\People\FrmAddEditPerson.cs">
@@ -275,25 +281,28 @@
     <EmbeddedResource Include="Forms\FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Licence\FrmIssueInternationalLicence.resx">
+    <EmbeddedResource Include="Forms\Licence\International\FrmIssueInternationalLicence.resx">
       <DependentUpon>FrmIssueInternationalLicence.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Licence\FrmIssueLicence.resx">
+    <EmbeddedResource Include="Forms\Licence\Local\FrmIssueLicence.resx">
       <DependentUpon>FrmIssueLicence.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Licence\FrmLicenceHistory.resx">
+    <EmbeddedResource Include="Forms\Licence\Local\FrmLicenceHistory.resx">
       <DependentUpon>FrmLicenceHistory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Licence\FrmManageInternationalLicences.resx">
+    <EmbeddedResource Include="Forms\Licence\International\FrmManageInternationalLicences.resx">
       <DependentUpon>FrmManageInternationalLicences.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Licence\FrmRenewLicence.resx">
+    <EmbeddedResource Include="Forms\Licence\Local\FrmRenewLicence.resx">
       <DependentUpon>FrmRenewLicence.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Licence\FrmShowInternationalLicence.resx">
+    <EmbeddedResource Include="Forms\Licence\International\FrmShowInternationalLicence.resx">
       <DependentUpon>FrmShowInternationalLicence.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Licence\FrmShowLicence.resx">
+    <EmbeddedResource Include="Forms\Licence\Local\FrmReplaceLicence.resx">
+      <DependentUpon>FrmReplaceLicence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Licence\Local\FrmShowLicence.resx">
       <DependentUpon>FrmShowLicence.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\People\FrmAddEditPerson.resx">

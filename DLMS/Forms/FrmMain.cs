@@ -2,6 +2,7 @@
 using DLMS.Forms.Applications.ApplicationTypes;
 using DLMS.Forms.Applications.LocalDrivingLicenceApplications;
 using DLMS.Forms.Licence;
+using DLMS.Forms.Licence.Local;
 using DLMS.Forms.People;
 using DLMS.Forms.Tests.TestTypes;
 using DLMS.Forms.Users;
@@ -127,6 +128,12 @@ namespace DLMS
         private void RenewDrivingLicenceToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             FrmRenewLicence frm = new FrmRenewLicence();
+            frm.ShowDialog();
+        }
+
+        private void ReplacementForToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmReplaceLicence frm = new FrmReplaceLicence();
             frm.ShowDialog();
         }
     }
