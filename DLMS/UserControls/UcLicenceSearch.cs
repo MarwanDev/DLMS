@@ -14,9 +14,13 @@ namespace DLMS.UserControls
             InitializeComponent();
         }
 
+        public enum Mode { InternationlLicence, Renew };
+        public Mode CurrentMode { get; set; } = Mode.InternationlLicence;
+
         private void ValidateLicenceId(LicenceModel licence)
         {
-            if (LicenceModel.DoesInternationalLicenceExistWithLocalLicenceId(Int32.Parse(tbSearch.Text.Trim())))
+            if (LicenceModel.DoesInternationalLicenceExistWithLocalLicenceId(Int32.Parse(tbSearch.Text.Trim())) &&
+                CurrentMode == Mode.InternationlLicence)
             {
                 MessageBox.Show("An international licence already exists under the same local licence",
                     "Error",
@@ -28,7 +32,7 @@ namespace DLMS.UserControls
                 return;
             }
             ModifyControlsUIAccordingToLicence(licence);
-            if (LicenceModel.GetLicenceClassId(licence.ID) != 3)
+            if (LicenceModel.GetLicenceClassId(licence.ID) != 3 && CurrentMode == Mode.InternationlLicence)
             {
                 MessageBox.Show($"The local licence with id {licence.ID} is not valid for international licence!",
                     "Error",
@@ -38,7 +42,7 @@ namespace DLMS.UserControls
                 SubmitValidLicenceId(-1);
             }
 
-            if (licence.ExpirationDate < DateTime.Now)
+            if (licence.ExpirationDate < DateTime.Now && CurrentMode == Mode.InternationlLicence)
             {
                 MessageBox.Show($"The local licence with id {licence.ID} is expired!",
                     "Error",
@@ -49,9 +53,24 @@ namespace DLMS.UserControls
                 return;
             }
 
+            if (licence.ExpirationDate > DateTime.Now && CurrentMode == Mode.Renew)
+            {
+                MessageBox.Show($"The local licence with id {licence.ID} is not expired!",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                ChangeIssueButtonAbility(false);
+                SubmitValidLicenceId(-1);
+                return;
+            }
+
             if (licence.IsActive)
             {
-                ChangeIssueButtonAbility();
+                if (CurrentMode == Mode.InternationlLicence)
+                    ChangeIssueButtonAbility();
+                if (CurrentMode == Mode.Renew)
+                    ChangeRenewButtonAbility();
+                CurrentLicence = licence;
                 SubmitValidLicenceId(licence.ID);
             }
             else
@@ -63,6 +82,8 @@ namespace DLMS.UserControls
                 ChangeIssueButtonAbility(false);
             }
         }
+
+        public LicenceModel CurrentLicence { get; private set; }
 
         private void BtnLicenceSearch_Click(object sender, EventArgs e)
         {
@@ -105,11 +126,17 @@ namespace DLMS.UserControls
         }
 
         public event Action<bool> OnIssueButtonAbilityChanged;
+        public event Action<bool> OnRenewButtonAbilityChanged;
         public event Action<int> OnSubmittingValidLicenceId;
 
         private void ChangeIssueButtonAbility(bool isEnabled = true)
         {
             OnIssueButtonAbilityChanged?.Invoke(isEnabled);
+        }
+
+        private void ChangeRenewButtonAbility(bool isEnabled = true)
+        {
+            OnRenewButtonAbilityChanged?.Invoke(isEnabled);
         }
 
         private void SubmitValidLicenceId(int licenceId)

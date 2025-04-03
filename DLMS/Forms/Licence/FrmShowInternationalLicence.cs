@@ -21,7 +21,7 @@ namespace DLMS.Forms.Licence
             ChangeControlsUIAccordingToLicence();
         }
 
-        LicenceModel CurrentLicence { get; set; }
+        private LicenceModel CurrentLicence { get; set; }
 
         public new event Action OnFormClosed;
 

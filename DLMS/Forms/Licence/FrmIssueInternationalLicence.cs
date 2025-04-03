@@ -35,7 +35,7 @@ namespace DLMS.Forms.Licence
             ApplicationModel application = new ApplicationModel
             {
                 ApplicantPersonId = driver.PersonId,
-                ApplicationTypeId = 5,
+                ApplicationTypeId = 6,
                 ApplicationDate = DateTime.Now,
                 LastStatusDate = DateTime.Now,
                 ApplicationStatus = 3,
@@ -84,7 +84,7 @@ namespace DLMS.Forms.Licence
             lblIssueDate.Text = DateTime.Now.ToShortDateString();
             lblFees.Text = ((int)applicationType.Fees).ToString();
             lblExpirationDate.Text = DateTime.Now.AddYears(10).ToShortDateString();
-            lblCreatedBy.Text = UserSession.LoggedInUser.ID.ToString();
+            lblCreatedBy.Text = UserSession.LoggedInUser.UserName;
         }
     }
 }

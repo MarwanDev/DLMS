@@ -123,5 +123,11 @@ namespace DLMS
             FrmManageInternationalLicences frm = new FrmManageInternationalLicences();
             frm.ShowDialog();
         }
+
+        private void RenewDrivingLicenceToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FrmRenewLicence frm = new FrmRenewLicence();
+            frm.ShowDialog();
+        }
     }
 }
