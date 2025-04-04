@@ -1,5 +1,6 @@
 ﻿using DLMS.Properties;
 using DLMS_Business;
+using DLMS_Business.Licence;
 using System;
 using System.Drawing;
 using System.IO;
@@ -41,7 +42,7 @@ namespace DLMS.Forms.Licence
             lblIsActive.Text = CurrentLicence.IsActive ? "Yes" : "No";
             lblDOB.Text = CurrentLicence.IssueDate.ToShortDateString();
             lblDriverId.Text = CurrentLicence.DriverId.ToString();
-            lblIsDetained.Text = CurrentLicence.IssueReason == 1 ? "No" : "Yes";
+            lblIsDetained.Text = DetainedLicence.IsLicenceDetained(CurrentLicence.ID) ? "Yes" : "No";
             pbPersonImage.Image = !string.IsNullOrEmpty(CurrentLicence.ImagePath) && File.Exists(CurrentLicence.ImagePath) ?
                Image.FromFile(CurrentLicence.ImagePath) : CurrentLicence.Gender == "Female" ?
                Resources.Female_512 : Resources.Male_512;

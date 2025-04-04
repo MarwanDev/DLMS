@@ -2,6 +2,7 @@
 using DLMS.Forms.Applications.ApplicationTypes;
 using DLMS.Forms.Applications.LocalDrivingLicenceApplications;
 using DLMS.Forms.Licence;
+using DLMS.Forms.Licence.DetainRelease;
 using DLMS.Forms.Licence.Local;
 using DLMS.Forms.People;
 using DLMS.Forms.Tests.TestTypes;
@@ -134,6 +135,12 @@ namespace DLMS
         private void ReplacementForToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmReplaceLicence frm = new FrmReplaceLicence();
+            frm.ShowDialog();
+        }
+
+        private void DetainLicenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmDetainLicence frm = new FrmDetainLicence();
             frm.ShowDialog();
         }
     }

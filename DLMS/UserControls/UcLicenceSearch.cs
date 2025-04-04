@@ -1,5 +1,6 @@
 ﻿using DLMS.Properties;
 using DLMS_Business;
+using DLMS_Business.Licence;
 using System;
 using System.Drawing;
 using System.IO;
@@ -14,7 +15,7 @@ namespace DLMS.UserControls
             InitializeComponent();
         }
 
-        public enum Mode { InternationlLicence, Renew, Lost, Damaged };
+        public enum Mode { InternationlLicence, Renew, Lost, Damaged, DetainReleased, ReleaseDetained };
         public Mode CurrentMode { get; set; } = Mode.InternationlLicence;
 
         private void ValidateLicenceId(LicenceModel licence)
@@ -48,13 +49,22 @@ namespace DLMS.UserControls
             if (licence.ExpirationDate < DateTime.Now &&
                 (CurrentMode == Mode.InternationlLicence ||
                 CurrentMode == Mode.Lost ||
-                CurrentMode == Mode.Damaged))
+                CurrentMode == Mode.Damaged ||
+                CurrentMode == Mode.DetainReleased ||
+                CurrentMode == Mode.ReleaseDetained))
             {
                 MessageBox.Show($"The local licence with id {licence.ID} is expired!",
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                ChangeIssueButtonAbility(false);
+                if (CurrentMode == Mode.Lost || CurrentMode == Mode.Damaged)
+                    ChangeReplaceButtonAbility(false);
+                if (CurrentMode == Mode.InternationlLicence)
+                    ChangeIssueButtonAbility(false);
+                if (CurrentMode == Mode.ReleaseDetained)
+                    ChangeReleaseButtonAbility(false);
+                if (CurrentMode == Mode.DetainReleased)
+                    ChangeDetainButtonAbility(false);
                 SubmitValidLicenceId(-1);
                 return;
             }
@@ -65,7 +75,29 @@ namespace DLMS.UserControls
                     "Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-                ChangeIssueButtonAbility(false);
+                ChangeRenewButtonAbility(false);
+                SubmitValidLicenceId(-1);
+                return;
+            }
+
+            if (DetainedLicence.IsLicenceDetained(licence.ID) && CurrentMode == Mode.DetainReleased)
+            {
+                MessageBox.Show($"The local licence with id {licence.ID} is already detained!",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                ChangeDetainButtonAbility(false);
+                SubmitValidLicenceId(-1);
+                return;
+            }
+
+            if (!DetainedLicence.IsLicenceDetained(licence.ID) && CurrentMode == Mode.ReleaseDetained)
+            {
+                MessageBox.Show($"The local licence with id {licence.ID} is not detained!",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                ChangeReleaseButtonAbility(false);
                 SubmitValidLicenceId(-1);
                 return;
             }
@@ -78,6 +110,10 @@ namespace DLMS.UserControls
                     ChangeRenewButtonAbility();
                 if (CurrentMode == Mode.Lost || CurrentMode == Mode.Damaged)
                     ChangeReplaceButtonAbility();
+                if (CurrentMode == Mode.DetainReleased)
+                    ChangeDetainButtonAbility();
+                if (CurrentMode == Mode.ReleaseDetained)
+                    ChangeReleaseButtonAbility();
                 CurrentLicence = licence;
                 SubmitValidLicenceId(licence.ID);
             }
@@ -93,6 +129,10 @@ namespace DLMS.UserControls
                     ChangeRenewButtonAbility(false);
                 if (CurrentMode == Mode.Lost || CurrentMode == Mode.Damaged)
                     ChangeReplaceButtonAbility(false);
+                if (CurrentMode == Mode.DetainReleased)
+                    ChangeDetainButtonAbility(false);
+                if (CurrentMode == Mode.ReleaseDetained)
+                    ChangeReleaseButtonAbility(false);
             }
         }
 
@@ -141,12 +181,24 @@ namespace DLMS.UserControls
         public event Action<bool> OnIssueButtonAbilityChanged;
         public event Action<bool> OnRenewButtonAbilityChanged;
         public event Action<bool> OnReplaceButtonAbilityChanged;
+        public event Action<bool> OnDetainButtonAbilityChanged;
+        public event Action<bool> OnReleaseeButtonAbilityChanged;
         public event Action<int> OnSubmittingValidLicenceId;
         public event Action<Mode> OnChangingCurrentMode;
 
         private void ChangeCurrentMode()
         {
             OnChangingCurrentMode?.Invoke(CurrentMode);
+        }
+
+        private void ChangeReleaseButtonAbility(bool isEnabled = true)
+        {
+            OnReleaseeButtonAbilityChanged?.Invoke(isEnabled);
+        }
+
+        private void ChangeDetainButtonAbility(bool isEnabled = true)
+        {
+            OnDetainButtonAbilityChanged?.Invoke(isEnabled);
         }
 
         private void ChangeIssueButtonAbility(bool isEnabled = true)
