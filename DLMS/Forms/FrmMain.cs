@@ -143,5 +143,11 @@ namespace DLMS
             FrmDetainLicence frm = new FrmDetainLicence();
             frm.ShowDialog();
         }
+
+        private void ReleaseDetainedLicenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmReleaseLicence frm = new FrmReleaseLicence();
+            frm.ShowDialog();
+        }
     }
 }
