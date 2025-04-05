@@ -155,5 +155,11 @@ namespace DLMS
             FrmManageDetainedLicences frm = new FrmManageDetainedLicences();
             frm.ShowDialog();
         }
+
+        private void RetakeTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmManageLocalDLApplications frm = new FrmManageLocalDLApplications();
+            frm.ShowDialog();
+        }
     }
 }
