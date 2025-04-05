@@ -94,6 +94,12 @@
     <Compile Include="Forms\Licence\DetainRelease\FrmDetainLicence.Designer.cs">
       <DependentUpon>FrmDetainLicence.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Licence\DetainRelease\FrmManageDetainedLicences.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Licence\DetainRelease\FrmManageDetainedLicences.Designer.cs">
+      <DependentUpon>FrmManageDetainedLicences.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Licence\DetainRelease\FrmReleaseLicence.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -295,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Licence\DetainRelease\FrmDetainLicence.resx">
       <DependentUpon>FrmDetainLicence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Licence\DetainRelease\FrmManageDetainedLicences.resx">
+      <DependentUpon>FrmManageDetainedLicences.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Licence\DetainRelease\FrmReleaseLicence.resx">
       <DependentUpon>FrmReleaseLicence.cs</DependentUpon>
