@@ -136,7 +136,19 @@ namespace DLMS.UserControls
             }
         }
 
-        public LicenceModel CurrentLicence { get; private set; }
+        public LicenceModel CurrentLicence { get; set; }
+
+        public void DisableFilterGroupBox()
+        {
+            gbLicenceSearch.Enabled = false;
+        }
+
+        public void SearchForValidLicence(int licenceId)
+        {
+            tbSearch.Text = licenceId.ToString();
+            SubmitValidLicenceId(licenceId);
+            ChangeReleaseButtonAbility(true);
+        }
 
         private void BtnLicenceSearch_Click(object sender, EventArgs e)
         {
@@ -158,7 +170,7 @@ namespace DLMS.UserControls
             return Int32.Parse(lblDriverId.Text);
         }
 
-        private void ModifyControlsUIAccordingToLicence(LicenceModel licence)
+        public void ModifyControlsUIAccordingToLicence(LicenceModel licence)
         {
             lblClassName.Text = licence.ClassName;
             lblName.Text = licence.FullName;

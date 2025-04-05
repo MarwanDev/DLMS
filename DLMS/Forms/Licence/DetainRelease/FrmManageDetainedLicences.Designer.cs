@@ -176,6 +176,7 @@
             this.releaseDetainedLicenceToolStripMenuItem.Name = "releaseDetainedLicenceToolStripMenuItem";
             this.releaseDetainedLicenceToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
             this.releaseDetainedLicenceToolStripMenuItem.Text = "Release Detained Licence";
+            this.releaseDetainedLicenceToolStripMenuItem.Click += new System.EventHandler(this.ReleaseDetainedLicenceToolStripMenuItem_Click);
             // 
             // lblHeader
             // 

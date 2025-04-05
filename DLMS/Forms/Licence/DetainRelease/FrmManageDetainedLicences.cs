@@ -282,5 +282,16 @@ namespace DLMS.Forms.Licence.DetainRelease
                 frm.ShowDialog();
             }
         }
+
+        private void ReleaseDetainedLicenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LicenceModel licence = LicenceModel.Find(CurrentDetaineLicence.LicenceID);
+            if (licence != null)
+            {
+                FrmReleaseLicence frm = new FrmReleaseLicence(licence);
+                frm.OnFormClosed += ReloadData;
+                frm.ShowDialog();
+            }
+        }
     }
 }

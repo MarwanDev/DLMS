@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.gbPersonSearch = new System.Windows.Forms.GroupBox();
+            this.gbLicenceSearch = new System.Windows.Forms.GroupBox();
             this.btnLicenceSearch = new System.Windows.Forms.Button();
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -63,23 +63,23 @@
             this.gbReplacementFor = new System.Windows.Forms.GroupBox();
             this.rdbLost = new System.Windows.Forms.RadioButton();
             this.rdbDamaged = new System.Windows.Forms.RadioButton();
-            this.gbPersonSearch.SuspendLayout();
+            this.gbLicenceSearch.SuspendLayout();
             this.gbDriverLicenceInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).BeginInit();
             this.gbReplacementFor.SuspendLayout();
             this.SuspendLayout();
             // 
-            // gbPersonSearch
+            // gbLicenceSearch
             // 
-            this.gbPersonSearch.Controls.Add(this.btnLicenceSearch);
-            this.gbPersonSearch.Controls.Add(this.tbSearch);
-            this.gbPersonSearch.Controls.Add(this.label1);
-            this.gbPersonSearch.Location = new System.Drawing.Point(5, 10);
-            this.gbPersonSearch.Name = "gbPersonSearch";
-            this.gbPersonSearch.Size = new System.Drawing.Size(565, 61);
-            this.gbPersonSearch.TabIndex = 3;
-            this.gbPersonSearch.TabStop = false;
-            this.gbPersonSearch.Text = "Filter";
+            this.gbLicenceSearch.Controls.Add(this.btnLicenceSearch);
+            this.gbLicenceSearch.Controls.Add(this.tbSearch);
+            this.gbLicenceSearch.Controls.Add(this.label1);
+            this.gbLicenceSearch.Location = new System.Drawing.Point(5, 10);
+            this.gbLicenceSearch.Name = "gbLicenceSearch";
+            this.gbLicenceSearch.Size = new System.Drawing.Size(565, 61);
+            this.gbLicenceSearch.TabIndex = 3;
+            this.gbLicenceSearch.TabStop = false;
+            this.gbLicenceSearch.Text = "Search";
             // 
             // btnLicenceSearch
             // 
@@ -464,12 +464,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.gbReplacementFor);
             this.Controls.Add(this.gbDriverLicenceInfo);
-            this.Controls.Add(this.gbPersonSearch);
+            this.Controls.Add(this.gbLicenceSearch);
             this.Name = "UcLicenceSearch";
             this.Size = new System.Drawing.Size(925, 562);
             this.Load += new System.EventHandler(this.UcLicenceSearch_Load);
-            this.gbPersonSearch.ResumeLayout(false);
-            this.gbPersonSearch.PerformLayout();
+            this.gbLicenceSearch.ResumeLayout(false);
+            this.gbLicenceSearch.PerformLayout();
             this.gbDriverLicenceInfo.ResumeLayout(false);
             this.gbDriverLicenceInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbPersonImage)).EndInit();
@@ -481,7 +481,7 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox gbPersonSearch;
+        private System.Windows.Forms.GroupBox gbLicenceSearch;
         private System.Windows.Forms.Button btnLicenceSearch;
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Label label1;

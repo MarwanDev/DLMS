@@ -16,6 +16,22 @@ namespace DLMS.Forms.Licence.DetainRelease
             ucLicenceSearch1.OnSubmittingValidLicenceId += ChangeControlsUIAfterLicenceShow;
         }
 
+        public FrmReleaseLicence(LicenceModel licence)
+        {
+            InitializeComponent();
+            CurrentLicence = licence;
+            CurrentDetainedLicence = DetainedLicence.FindbyLicenceId(licence.ID);
+            ucLicenceSearch1.SearchForValidLicence(licence.ID);
+            ucLicenceSearch1.DisableFilterGroupBox();
+            ucLicenceSearch1.CurrentLicence = licence;
+            ucLicenceSearch1.CurrentMode = UserControls.UcLicenceSearch.Mode.ReleaseDetained;
+            ucLicenceSearch1.ModifyControlsUIAccordingToLicence(licence);
+            ChangeReleaseBtnAbiblity(true);
+            llShowLicenceHistory.Enabled = true;
+            llShowNewLiceence.Enabled = true;
+            ChangeControlsUIAfterLicenceShow(licence.ID);
+        }
+
         private void ChangeReleaseBtnAbiblity(bool isEnabled)
         {
             btnRelease.Enabled = isEnabled;
@@ -32,6 +48,9 @@ namespace DLMS.Forms.Licence.DetainRelease
             lblDetainDate.Text = CurrentDetainedLicence.ReleaseDate.ToShortDateString();
             lblFineFees.Text = CurrentDetainedLicence.FineFees.ToString();
             lblDetainedBy.Text = UserSession.LoggedInUser.UserName;
+            CurrentApplicationType = ApplicationType.Find(5);
+            lblDetainDate.Text = DateTime.Now.ToShortDateString();
+            lblApplicationFees.Text = CurrentApplicationType?.Fees.ToString();
             lblTotalFees.Text = (decimal.Parse(lblApplicationFees.Text) + decimal.Parse(lblFineFees.Text)).ToString();
         }
 
