@@ -137,6 +137,7 @@
             this.dgvDetainedLicences.ReadOnly = true;
             this.dgvDetainedLicences.Size = new System.Drawing.Size(1081, 289);
             this.dgvDetainedLicences.TabIndex = 22;
+            this.dgvDetainedLicences.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvDetainedLicences_CellMouseDown);
             this.dgvDetainedLicences.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvDetainedLicences_ColumnHeaderMouseClick);
             // 
             // cmsDetainedLicences
@@ -154,18 +155,21 @@
             this.showPersonDetailsToolStripMenuItem.Name = "showPersonDetailsToolStripMenuItem";
             this.showPersonDetailsToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
             this.showPersonDetailsToolStripMenuItem.Text = "Show Person Details";
+            this.showPersonDetailsToolStripMenuItem.Click += new System.EventHandler(this.ShowPersonDetailsToolStripMenuItem_Click);
             // 
             // showLicenceDetailsToolStripMenuItem
             // 
             this.showLicenceDetailsToolStripMenuItem.Name = "showLicenceDetailsToolStripMenuItem";
             this.showLicenceDetailsToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
             this.showLicenceDetailsToolStripMenuItem.Text = "Show Licence Details";
+            this.showLicenceDetailsToolStripMenuItem.Click += new System.EventHandler(this.ShowLicenceDetailsToolStripMenuItem_Click);
             // 
             // showPersonLicenceHistoryToolStripMenuItem
             // 
             this.showPersonLicenceHistoryToolStripMenuItem.Name = "showPersonLicenceHistoryToolStripMenuItem";
             this.showPersonLicenceHistoryToolStripMenuItem.Size = new System.Drawing.Size(226, 22);
             this.showPersonLicenceHistoryToolStripMenuItem.Text = "Show Person Licence History";
+            this.showPersonLicenceHistoryToolStripMenuItem.Click += new System.EventHandler(this.ShowPersonLicenceHistoryToolStripMenuItem_Click);
             // 
             // releaseDetainedLicenceToolStripMenuItem
             // 

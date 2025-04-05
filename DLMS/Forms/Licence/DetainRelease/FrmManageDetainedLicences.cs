@@ -1,6 +1,8 @@
-﻿using DLMS_Business;
+﻿using DLMS.Forms.People;
+using DLMS_Business;
 using DLMS_Business.Licence;
 using System;
+using System.ComponentModel;
 using System.Data;
 using System.Windows.Forms;
 
@@ -213,6 +215,71 @@ namespace DLMS.Forms.Licence.DetainRelease
                 string headerText = dgvDetainedLicences.Columns[e.ColumnIndex].HeaderText;
                 Person.ApplySorting(headerText);
                 ReloadData();
+            }
+        }
+
+        private int SelectedDetainId { get; set; }
+
+        private DetainedLicence CurrentDetaineLicence { get; set; }
+
+        private void ModifyCMSOptionsAbilityAccordingToPassedTest()
+        {
+            DetainedLicence detainedLicence = DetainedLicence.Find(SelectedDetainId);
+            if (detainedLicence != null)
+            {
+                releaseDetainedLicenceToolStripMenuItem.Enabled = DetainedLicence.IsLicenceDetained(detainedLicence.LicenceID);
+                CurrentDetaineLicence = detainedLicence;
+            }
+        }
+
+        private void DgvDetainedLicences_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                dgvDetainedLicences.ContextMenuStrip = null;
+            else
+            {
+                SelectedDetainId = Int32.Parse(dgvDetainedLicences.Rows[e.RowIndex].Cells[0].Value?.ToString());
+                ModifyCMSOptionsAbilityAccordingToPassedTest();
+                DataGridView.HitTestInfo hit = dgvDetainedLicences.HitTest(e.X, e.Y);
+                if (hit.RowIndex >= 0)
+                {
+                    dgvDetainedLicences.ClearSelection();
+                    dgvDetainedLicences.Rows[hit.RowIndex].Selected = true;
+                    dgvDetainedLicences.CurrentCell = dgvDetainedLicences.Rows[hit.RowIndex].Cells[0];
+                }
+            }
+        }
+
+        private void ShowPersonDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Person person = Person.Find(DetainedLicence.GetPersonIdByDetainLicenceId(SelectedDetainId));
+            if (person != null)
+            {
+                FrmShowPersonDetails frm = new FrmShowPersonDetails(person);
+                frm.OnFormClosed += ReloadData;
+                frm.ShowDialog();
+            }
+        }
+
+        private void ShowLicenceDetailsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LicenceModel licence = LicenceModel.Find(CurrentDetaineLicence.LicenceID);
+            if (licence != null)
+            {
+                FrmShowLicence frm = new FrmShowLicence(licence);
+                frm.OnFormClosed += ReloadData;
+                frm.ShowDialog();
+            }
+        }
+
+        private void ShowPersonLicenceHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Person person = Person.Find(DetainedLicence.GetPersonIdByDetainLicenceId(SelectedDetainId));
+            if (person != null)
+            {
+                FrmLicenceHistory frm = new FrmLicenceHistory(person);
+                frm.OnFormClosed += ReloadData;
+                frm.ShowDialog();
             }
         }
     }
