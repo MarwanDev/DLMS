@@ -242,6 +242,7 @@
             this.Name = "FrmDetainLicence";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmDetainLicence";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmDetainLicence_FormClosed);
             this.Load += new System.EventHandler(this.FrmDetainLicence_Load);
             this.gbApplicationInfo.ResumeLayout(false);
             this.gbApplicationInfo.PerformLayout();

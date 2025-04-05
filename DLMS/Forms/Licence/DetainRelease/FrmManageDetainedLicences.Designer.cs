@@ -46,6 +46,8 @@
             this.pnlIsReleased = new System.Windows.Forms.Panel();
             this.rdbNo = new System.Windows.Forms.RadioButton();
             this.rdbYes = new System.Windows.Forms.RadioButton();
+            this.btnDetain = new System.Windows.Forms.Button();
+            this.btnRelease = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetainedLicences)).BeginInit();
             this.cmsDetainedLicences.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeader)).BeginInit();
@@ -135,6 +137,7 @@
             this.dgvDetainedLicences.ReadOnly = true;
             this.dgvDetainedLicences.Size = new System.Drawing.Size(1081, 289);
             this.dgvDetainedLicences.TabIndex = 22;
+            this.dgvDetainedLicences.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvDetainedLicences_ColumnHeaderMouseClick);
             // 
             // cmsDetainedLicences
             // 
@@ -227,11 +230,33 @@
             this.rdbYes.UseVisualStyleBackColor = true;
             this.rdbYes.CheckedChanged += new System.EventHandler(this.RdbIsReleased_CheckedChanged);
             // 
+            // btnDetain
+            // 
+            this.btnDetain.Location = new System.Drawing.Point(994, 236);
+            this.btnDetain.Name = "btnDetain";
+            this.btnDetain.Size = new System.Drawing.Size(78, 36);
+            this.btnDetain.TabIndex = 31;
+            this.btnDetain.Text = "Detain";
+            this.btnDetain.UseVisualStyleBackColor = true;
+            this.btnDetain.Click += new System.EventHandler(this.BtnDetain_Click);
+            // 
+            // btnRelease
+            // 
+            this.btnRelease.Location = new System.Drawing.Point(898, 236);
+            this.btnRelease.Name = "btnRelease";
+            this.btnRelease.Size = new System.Drawing.Size(78, 36);
+            this.btnRelease.TabIndex = 32;
+            this.btnRelease.Text = "Release";
+            this.btnRelease.UseVisualStyleBackColor = true;
+            this.btnRelease.Click += new System.EventHandler(this.BtnRelease_Click);
+            // 
             // FrmManageDetainedLicences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1084, 633);
+            this.Controls.Add(this.btnRelease);
+            this.Controls.Add(this.btnDetain);
             this.Controls.Add(this.pnlIsReleased);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.label2);
@@ -248,6 +273,7 @@
             this.Name = "FrmManageDetainedLicences";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmManageDetainedLicences";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmManageDetainedLicences_FormClosed);
             this.Load += new System.EventHandler(this.FrmManageDetainedLicences_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetainedLicences)).EndInit();
             this.cmsDetainedLicences.ResumeLayout(false);
@@ -278,5 +304,7 @@
         private System.Windows.Forms.Panel pnlIsReleased;
         private System.Windows.Forms.RadioButton rdbNo;
         private System.Windows.Forms.RadioButton rdbYes;
+        private System.Windows.Forms.Button btnDetain;
+        private System.Windows.Forms.Button btnRelease;
     }
 }

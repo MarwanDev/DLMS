@@ -118,5 +118,12 @@ namespace DLMS.Forms.Licence.DetainRelease
             FrmShowLicence frm = new FrmShowLicence(CurrentLicence);
             frm.ShowDialog();
         }
+
+        public new event Action OnFormClosed;
+
+        private void FrmDetainLicence_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            OnFormClosed?.Invoke();
+        }
     }
 }

@@ -158,9 +158,62 @@ namespace DLMS.Forms.Licence.DetainRelease
 
         private void RdbIsReleased_CheckedChanged(object sender, EventArgs e)
         {
+            FilterWithIsReleased();
+        }
+
+        private void FilterWithIsReleased()
+        {
             if (rdbYes.Checked)
                 FilterDetainedLicences("1");
             else FilterDetainedLicences("0");
+        }
+
+        private void ReloadData()
+        {
+            if (tbSearch.Visible && tbSearch.Text.Trim() != "")
+            {
+                FilterDetainedLicences(tbSearch.Text.Trim());
+            }
+            else if (pnlIsReleased.Visible && (rdbYes.Checked || rdbNo.Checked))
+            {
+                FilterWithIsReleased();
+            }
+            else
+            {
+                GetAllDetainedLicencesInDGV();
+            }
+        }
+
+        private void BtnRelease_Click(object sender, EventArgs e)
+        {
+            FrmReleaseLicence frm = new FrmReleaseLicence();
+            frm.OnFormClosed += ReloadData;
+            frm.ShowDialog();
+        }
+
+        private void BtnDetain_Click(object sender, EventArgs e)
+        {
+            FrmDetainLicence frm = new FrmDetainLicence();
+            frm.OnFormClosed += ReloadData;
+            frm.ShowDialog();
+        }
+
+        public new event Action OnFormClosed;
+
+        private void FrmManageDetainedLicences_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Business.DisableSorting();
+            OnFormClosed?.Invoke();
+        }
+
+        private void DgvDetainedLicences_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex >= 0)
+            {
+                string headerText = dgvDetainedLicences.Columns[e.ColumnIndex].HeaderText;
+                Person.ApplySorting(headerText);
+                ReloadData();
+            }
         }
     }
 }

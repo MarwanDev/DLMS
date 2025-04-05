@@ -314,6 +314,7 @@
             this.Name = "FrmReleaseLicence";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmReleaseLicence";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmReleaseLicence_FormClosed);
             this.Load += new System.EventHandler(this.FrmReleaseLicence_Load);
             this.gbApplicationInfo.ResumeLayout(false);
             this.gbApplicationInfo.PerformLayout();
