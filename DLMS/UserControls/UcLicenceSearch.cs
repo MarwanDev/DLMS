@@ -178,7 +178,11 @@ namespace DLMS.UserControls
             lblLicenceId.Text = licence.ID.ToString();
             lblGender.Text = licence.Gender;
             lblIssueDate.Text = licence.IssueDate.ToShortDateString();
-            lblIssueReason.Text = licence.IssueReason == 1 ? "First Time" : "Not First Time";
+            lblIssueReason.Text = licence.IssueReason == 1 ? "First Time" :
+                licence.IssueReason == 2 ? "Renew" :
+                licence.IssueReason == 3 ? "Replacement for lost" :
+                licence.IssueReason == 4 ? "Replacement for damaged" :
+                licence.IssueReason == 5 ? "Release for detained" : "";
             lblNotes.Text = !string.IsNullOrEmpty(licence.Notes) ? licence.Notes : "No Notes";
             lblIsActive.Text = licence.IsActive ? "Yes" : "No";
             lblDOB.Text = licence.DateOfBirth.ToShortDateString();
