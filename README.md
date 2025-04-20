@@ -35,7 +35,7 @@ This solution follows a **3-tier architecture**:
 
 | Login | Drivers | Local Licennce Applications |
 |-----------|----------------|------------------|
-| ![Login](Screenshots/Login.JPG) | ![Drivers](Screenshots/Drivers.JPG) | ![History](Screenshots/LocalDLApplications.JPG) |
+| ![Login](DLMS/Screenshots/Login.JPG) | ![Drivers](DLMS/Screenshots/Drivers.JPG) | ![History](DLMS/Screenshots/LocalDLApplications.JPG) |
 
 ---
 
