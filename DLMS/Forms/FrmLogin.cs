@@ -102,7 +102,8 @@ namespace DLMS.Forms
             if (!string.IsNullOrEmpty(Properties.Settings.Default.SavedUsername) &&
                 !string.IsNullOrEmpty(Properties.Settings.Default.SavedPassword))
             {
-                LoggedInUser = User.FindByAuth(Properties.Settings.Default.SavedUsername, Properties.Settings.Default.SavedPassword);
+                LoggedInUser = User.FindByAuth(Properties.Settings.Default.SavedUsername,
+                    Properties.Settings.Default.SavedPassword);
                 return LoggedInUser != null && LoggedInUser.IsActive;
             }
             return false;

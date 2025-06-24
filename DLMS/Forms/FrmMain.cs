@@ -27,10 +27,6 @@ namespace DLMS
             frmPeople.ShowDialog();
         }
 
-        private void FrmMain_Load(object sender, EventArgs e)
-        {
-        }
-
         private void ManageUsersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FrmManageUsers frmManageUsers = new FrmManageUsers();

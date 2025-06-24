@@ -429,6 +429,7 @@
     <None Include="Resources\pngwing.com.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\10-gano-high-resolution-logo-white-on-black-background.png" />
     <Content Include="Resources\account_settings 64.png" />
     <Content Include="Resources\Add New User 32.png" />
     <Content Include="Resources\Add New User 72.png" />
